@@ -28,9 +28,9 @@ typedef struct s_tensr
 
 void        free_tensr(t_tensr *tensr);
 
-t_tensr     *tensr_create(const size_t ndim, const size_t itemsize, ...);
+void        tensr_set(t_tensr *t, const size_t *indices, void *value);
+void        tensr_get(t_tensr *t, const size_t *indices, void *value);
 
-void        tensr_set(const t_tensr *t, const size_t *indices, void *value);
-void        tensr_get(const t_tensr *t, const size_t *indices, void *value);
+t_tensr *tensr_create(const size_t ndim, const size_t itemsize, const size_t *shape);
 
 #endif

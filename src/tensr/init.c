@@ -12,42 +12,42 @@
 
 #include <libtensr.h>
 
-void    free_tensr(t_tensr *tensr)
+void    free_tensr(t_tensr *t)
 {
-    if (!tensr)
+    if (!t)
         return ;
-    if (tensr->data)
-        free(tensr->data);
-    if (tensr->shape)
-        free(tensr->shape);
-    if (tensr->stride)
-        free(tensr->stride);
-    free(tensr);
+    if (t->data)
+        free(t->data);
+    if (t->shape)
+        free(t->shape);
+    if (t->stride)
+        free(t->stride);
+    free(t);
 }
 
 static t_tensr *tensr_init(size_t ndim, size_t itemsize)
 {
-    t_tensr    *tensr;
+    t_tensr *t;
 
     if (ndim == 0 || itemsize == 0)
         return (NULL);
-    tensr = malloc(sizeof(t_tensr));
-    if (!tensr)
+    t = malloc(sizeof(t_tensr));
+    if (!t)
         return (NULL);
-    tensr->ndim = ndim;
-    tensr->itemsize = itemsize;
-    tensr->size = 1;
-    tensr->data = NULL;
-    tensr->shape = NULL;
-    tensr->stride = NULL;
-    return (tensr);
+    t->ndim = ndim;
+    t->itemsize = itemsize;
+    t->size = 1;
+    t->data = NULL;
+    t->shape = NULL;
+    t->stride = NULL;
+    return (t);
 }
 
 static bool calculate_stride(t_tensr *t)
 {
     size_t  i;
 
-    if (!t|| !t->shape)
+    if (!t || !t->shape)
         return (false);
     t->stride = malloc(sizeof(size_t) * t->ndim);
     if (!t->stride)
@@ -59,12 +59,12 @@ static bool calculate_stride(t_tensr *t)
     return (true);
 }
 
-static bool init_metadata(t_tensr *t, va_list dims)
+static bool init_metadata(t_tensr *t, const size_t *shape)
 {
-    size_t  i;
-    size_t  dim;
+    size_t i;
+    size_t dim;
 
-    if (!t)
+    if (!t || !shape)
         return (false);
     t->shape = malloc(sizeof(size_t) * t->ndim);
     if (!t->shape)
@@ -72,10 +72,11 @@ static bool init_metadata(t_tensr *t, va_list dims)
     i = 0;
     while (i < t->ndim)
     {
-        dim = va_arg(dims, size_t);
+        dim = shape[i];
         if (dim == 0 || t->size > __SIZE_MAX__ / dim)
         {
             free(t->shape);
+            t->shape = NULL;
             return (false);
         }
         t->shape[i] = dim;
@@ -87,21 +88,15 @@ static bool init_metadata(t_tensr *t, va_list dims)
     return (true);
 }
 
-t_tensr    *tensr_create(const size_t ndim, const size_t itemsize, ...)
+t_tensr *tensr_create(const size_t ndim, const size_t itemsize, const size_t *shape)
 {
-    t_tensr    *t;
-    va_list     dims;
+    t_tensr *t;
 
-    t= tensr_init(ndim, itemsize);
+    t = tensr_init(ndim, itemsize);
     if (!t)
         return (NULL);
-    va_start(dims, itemsize);
-    if (!init_metadata(t, dims))
-    {
-        va_end(dims);
+    if (!init_metadata(t, shape))
         return (free_tensr(t), NULL);
-    }
-    va_end(dims);
     if (t->size > __SIZE_MAX__ / t->itemsize)
         return (free_tensr(t), NULL);
     t->data = malloc(t->size * t->itemsize);

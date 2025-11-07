@@ -27,17 +27,17 @@ static size_t tensr_offset(const t_tensr *t, const size_t *indices)
     return (offset);
 }
 
-void    tensr_set(const t_tensr *t, const size_t *indices, void *value)
+void    tensr_set(t_tensr *t, const size_t *indices, void *value)
 {
     unsigned char *base;
 
     if (!t || !indices)
         return ;
     base = (unsigned char *)t->data + tensr_offset(t, indices);
-    ft_memcpy(value, base, t->itemsize);
+    ft_memcpy(base, value, t->itemsize);
 }
 
-void    tensr_get(const t_tensr *t, const size_t *indices, void *value)
+void    tensr_get(t_tensr *t, const size_t *indices, void *value)
 {
     unsigned char *base;
 
