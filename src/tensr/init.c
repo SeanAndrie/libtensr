@@ -74,12 +74,15 @@ static bool init_metadata(t_tensr *t, va_list dims)
     {
         dim = va_arg(dims, size_t);
         if (dim == 0 || t->size > __SIZE_MAX__ / dim)
+        {
+            free(t->shape);
             return (false);
+        }
         t->shape[i] = dim;
         t->size *= dim;
         i++;
     }
-    if (t->ndim > 1 && !calculate_stride(t))
+    if (!calculate_stride(t))
         return (false);
     return (true);
 }

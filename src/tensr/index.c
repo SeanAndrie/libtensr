@@ -18,8 +18,12 @@ static size_t tensr_offset(const t_tensr *t, const size_t *indices)
     size_t  offset;
 
     i = 0;
-    while (i++ < t->ndim)
+    offset = 0;
+    while (i < t->ndim)
+    {
         offset += indices[i] * t->stride[i];
+        i++;
+    }
     return (offset);
 }
 
