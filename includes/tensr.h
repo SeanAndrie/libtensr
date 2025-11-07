@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef tensr_H
-# define tensr_H
+#ifndef TENSR_H
+# define TENSR_H
 
 #include <limits.h>
 #include <stdlib.h>
