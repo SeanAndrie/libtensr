@@ -99,7 +99,7 @@ t_tensr *tensr_create(const size_t ndim, const size_t itemsize, const size_t *sh
         return (free_tensr(t), NULL);
     if (t->size > __SIZE_MAX__ / t->itemsize)
         return (free_tensr(t), NULL);
-    t->data = ft_calloc(t->itemsize, t->size);
+    t->data = ft_calloc(t->size, t->itemsize);
     if (!t->data)
         return (free_tensr(t), NULL);
     return (t);
