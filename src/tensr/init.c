@@ -6,11 +6,11 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 19:22:02 by sgadinga          #+#    #+#             */
-/*   Updated: 2025/11/06 23:46:42 by sgadinga         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:03:16 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr.h>
+#include <libtensr.h>
 
 void    free_tensr(t_tensr *tensr)
 {

@@ -6,13 +6,13 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/06 01:13:04 by sgadinga          #+#    #+#              #
-#    Updated: 2025/11/06 23:30:25 by sgadinga         ###   ########.fr        #
+#    Updated: 2025/11/07 15:57:33 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libtensr.a
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -Iincludes
+CFLAGS := -Wall -Werror -Wextra -Iincludes -I../libft/includes
 ARCHIVE := ar rcs
 
 SRC_DIR := src
