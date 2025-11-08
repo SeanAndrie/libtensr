@@ -16,6 +16,13 @@
 #include <libft.h>
 #include <limits.h>
 
+typedef enum s_dtype
+{
+    DTYPE_INT,
+    DTYPE_FLOAT,
+    DTYPE_DOUBLE
+}   t_dtype;
+
 typedef struct s_tensr
 {
     size_t          ndim;       // e.g. 3 for (2, 3, 4)
@@ -23,6 +30,7 @@ typedef struct s_tensr
     size_t          itemsize;   // size per element
     size_t          *shape;     // array of dimension lengths
     size_t          *stride;    // byte step per dimension
+    t_dtype         dtype;
     void            *data;
 }                   t_tensr;
 
