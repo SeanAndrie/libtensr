@@ -12,7 +12,21 @@
 
 #include <libtensr.h>
 
-static size_t tensr_offset(const t_tensr *t, const size_t *indices)
+static bool indices_in_bounds(const t_tensr *t, const size_t *indices)
+{
+    size_t  i;
+
+    i = 0;
+    while (i < t->ndim)
+    {
+        if (indices[i] >= t->shape[i])
+            return (false);
+        i++;
+    }
+    return (true);
+}
+
+size_t tensr_offset(const t_tensr *t, const size_t *indices)
 {
     size_t  i;
     size_t  offset;
@@ -27,22 +41,29 @@ static size_t tensr_offset(const t_tensr *t, const size_t *indices)
     return (offset);
 }
 
-void    tensr_set(t_tensr *t, const size_t *indices, void *value)
+bool    tensr_set(t_tensr *t, const size_t *indices, void *value)
 {
-    unsigned char *base;
+    unsigned char   *base;
+    size_t          value_size;
 
-    if (!t || !indices)
-        return ;
+    if (!t || !indices || !value || !t->data)
+        return (false);
+    if (!indices_in_bounds(t, indices))
+        return (false);
     base = (unsigned char *)t->data + tensr_offset(t, indices);
     ft_memcpy(base, value, t->itemsize);
+    return (true);
 }
 
-void    tensr_get(t_tensr *t, const size_t *indices, void *value)
+bool    tensr_get(t_tensr *t, const size_t *indices, void *value)
 {
     unsigned char *base;
 
-    if (!t || !indices)
-        return ;
+    if (!t || !indices || !value || !t->data)
+        return (false);
+    if (!indices_in_bounds(t, indices))
+        return (false);
     base = (unsigned char *)t->data + tensr_offset(t, indices);
     ft_memcpy(value, base, t->itemsize);
+    return (true);
 }

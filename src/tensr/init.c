@@ -93,14 +93,14 @@ t_tensr *tensr_create(const size_t ndim, const size_t *shape, t_dtype dtype)
     t_tensr *t;
     size_t  itemsize;
 
-    if (dtype == DTYPE_DOUBLE)
+    if (dtype == DTYPE_INT)
         itemsize = sizeof(int);
     else if (dtype == DTYPE_FLOAT)
         itemsize = sizeof(float);
-    else if (dtype == DTYPE_INT)
+    else if (dtype == DTYPE_DOUBLE))
         itemsize = sizeof(int);
     else
-        return (NULL);
+        return (free_tensr(t), NULL);
     t = tensr_init(ndim, itemsize);
     if (!t)
         return (NULL);
