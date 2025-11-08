@@ -88,21 +88,22 @@ static bool init_metadata(t_tensr *t, const size_t *shape)
     return (true);
 }
 
-t_tensr *tensr_create(const size_t ndims, const size_t *shape, t_dtype dtype)
+t_tensr *tensr_create(const size_t ndim, const size_t *shape, t_dtype dtype)
 {
     t_tensr *t;
+    size_t  itemsize;
 
+    if (dtype == DTYPE_DOUBLE)
+        itemsize = sizeof(int);
+    else if (dtype == DTYPE_FLOAT)
+        itemsize = sizeof(float);
+    else if (dtype == DTYPE_INT)
+        itemsize = sizeof(int);
+    else
+        return (NULL);
     t = tensr_init(ndim, itemsize);
     if (!t)
         return (NULL);
-    if (dtype == DTYPE_DOUBLE)
-        t->itemsize = sizeof(int);
-    else if (dtype == DTYPE_FLOAT)
-        t->itemsize = sizeof(float);
-    else if (dtype == DTYPE_INT))
-        t->itemsize = sizeof(int);
-    else
-        return (free_tensr(t), NULL);
     if (!init_metadata(t, shape))
         return (free_tensr(t), NULL);
     if (t->size > __SIZE_MAX__ / t->itemsize)
