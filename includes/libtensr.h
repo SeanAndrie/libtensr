@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 01:14:54 by sgadinga          #+#    #+#             */
-/*   Updated: 2025/11/07 16:08:23 by sgadinga         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:26:06 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define TENSR_H
 
 #include <libft.h>
+#include <debug.h>
 #include <limits.h>
 
 # define MAX_DIM 32
 
-typedef enum s_dtype
+typedef enum e_dtype
 {
     DTYPE_INT,
     DTYPE_FLOAT,
@@ -29,7 +30,7 @@ typedef struct s_tensr
 {
     size_t          ndim;       // e.g. 3 for (2, 3, 4)
     size_t          size;       // total number of elements
-    t_dtype         dtype;      // item data type
+    enum e_dtype    dtype;      // item data type
     void            *data;
     size_t          *shape;     // array of dimension lengths
     size_t          *stride;    // byte step per dimension
