@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/06 01:13:04 by sgadinga          #+#    #+#              #
-#    Updated: 2025/11/07 15:57:33 by sgadinga         ###   ########.fr        #
+#    Updated: 2025/11/10 18:27:27 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ ARCHIVE := ar rcs
 SRC_DIR := src
 OBJ_DIR := obj
 
-TENSR_MODULES := $(addprefix tensr/, init.c index.c)
+DEBUG_MODULES := $(addprefix debug/, tensr_info.c)
+TENSR_MODULES := $(addprefix tensr/, init.c index.c utils.c)
 
-SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES))
+SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(DEBUG_MODULES))
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 $(NAME): $(OBJS)
