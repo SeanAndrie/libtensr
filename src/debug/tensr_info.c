@@ -6,13 +6,14 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:14:05 by sgadinga          #+#    #+#             */
-/*   Updated: 2025/11/10 18:25:46 by sgadinga         ###   ########.fr       */
+/*   Updated: 2025/11/13 15:22:41 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <debug.h>
 #include <stdio.h>
-#include <libtensr.h>
+#include <libft.h>
+#include <tensr.h>
+#include <debug.h>
 
 static void print_arr(size_t ndim, size_t *indices, const char *field)
 {
@@ -26,7 +27,7 @@ static void print_arr(size_t ndim, size_t *indices, const char *field)
     {
         printf("%zu", indices[i]);
         if (i + 1 < ndim)
-            printf(" ");
+            printf(", ");
         i++;
     }
     printf("}\n");
@@ -36,6 +37,7 @@ void    tensr_info(t_tensr *t, const char *name)
 {
     if (!t)
         return ;
+    printf("\n");
     if (name || *name)
         printf("Tensor: %s\n----------\n", name);
     printf("ndim: %zu\n", t->ndim);
@@ -51,5 +53,7 @@ void    tensr_info(t_tensr *t, const char *name)
     printf("\n");
     print_arr(t->ndim, t->shape, "shape");
     print_arr(t->ndim, t->stride, "stride");
+    tensr_data(t);
+    printf("\n");
 }
 

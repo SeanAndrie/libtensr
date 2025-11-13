@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   linalg.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 01:14:54 by sgadinga          #+#    #+#             */
-/*   Updated: 2025/11/13 15:46:31 by sgadinga         ###   ########.fr       */
+/*   Created: 2025/11/13 15:42:14 by sgadinga          #+#    #+#             */
+/*   Updated: 2025/11/13 15:43:56 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#ifndef LINALG_H
+# define LINALG_H
 
-#include <libft.h>
-#include <debug.h>
-#include <tensr.h>
-#include <linalg.h>
+typedef struct s_tensr t_tensr;
+
+t_tensr *tensr_add(t_tensr *a, t_tensr *b);
 
 #endif
+

@@ -10,7 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libtensr.h>
+#include <libft.h>
+#include <tensr.h>
+
+void    free_tensr(t_tensr *t) {
+    if (!t)
+        return ;
+    if (t->data)
+        free(t->data);
+    if (t->shape)
+        free(t->shape);
+    if (t->stride)
+        free(t->stride);
+    free(t);
+}
 
 static t_tensr *tensr_init(size_t ndim, t_dtype type)
 {
@@ -83,9 +96,12 @@ t_tensr *tensr_create(const size_t ndim, const size_t *shape, t_dtype dtype)
 {
     t_tensr *t;
 
-    if (!shape || ndim == 0)
+    if (!shape)
         return (NULL);
-    t = tensr_init(ndim, dtype);
+    if (ndim == 0)
+        t = tensr_init(1, dtype);
+    else
+        t = tensr_init(ndim, dtype);
     if (!t)
         return (NULL);
     if (!init_metadata(t, shape))
