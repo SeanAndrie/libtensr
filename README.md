@@ -5,7 +5,7 @@
 The library depends on the <a href='https://github.com/SeanAndrie/libft-adapt'>libft-adapt</a>
  repository, which provides foundational utilities and data structures, and should be placed in the root directory alongside it to ensure proper compilation and linkage.
 
-## Features (Current)
+## Current Features
 
 **Core Tensor Management**
 - Creation of tensors with arbitrary rank and shape
