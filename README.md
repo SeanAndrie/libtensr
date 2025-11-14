@@ -36,7 +36,7 @@ The library depends on the <a href='https://github.com/SeanAndrie/libft-adapt'>l
 - [ ] Squeeze dimensions of size 1
 - [ ] Unsqueze/expand dimensions
 
-**Mathematical Operations
+**Mathematical Operations**
 - [ ] Basic elementwise arithmetic (add, sub, mul, div)
 - [ ] Vector dot product
 - [ ] Matrix multiplication
