@@ -13,8 +13,8 @@
 #ifndef LIBTENSR_H
 # define LIBTENSR_H
 
-# include <tensr_debug.h>
-# include <tensr_math.h>
+# include <core/tensr_debug.h>
+# include <core/tensr_math.h>
 # include <tensr.h>
 
 #endif
