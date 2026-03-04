@@ -6,8 +6,9 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 18:13:08 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/02/18 19:31:04 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/04 21:33:16 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
+#include <core/tensr_math.h>

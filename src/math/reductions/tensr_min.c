@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 18:01:42 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/02/18 18:11:21 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/04 21:33:15 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
+#include <core/tensr_math.h>
 
 static void	typed_min(void *a, const void *b, t_dtype dtype)
 {

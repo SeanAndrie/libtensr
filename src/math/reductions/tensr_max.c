@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 11:19:43 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/02 15:56:05 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/04 21:32:38 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
+#include <core/tensr_math.h>
 
 static void	typed_max(void *a, const void *b, t_dtype dtype)
 {

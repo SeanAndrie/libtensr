@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 13:35:39 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/02/18 11:33:17 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/04 21:33:28 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
+#include <core/tensr_math.h>
 
 static void	sum_init(void *acc, t_dtype dtype)
 {
