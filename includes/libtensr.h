@@ -15,6 +15,6 @@
 
 # include <core/tensr_debug.h>
 # include <core/tensr_math.h>
-# include <tensr.h>
+# include <core/tensr.h>
 
 #endif
