@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/04 21:31:31 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/05 00:34:44 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,6 +345,16 @@ bool						layout_alloc(const int ndim, t_layout *l);
  ** @return          true on success, false on failure.
  */
 bool						layout_copy(t_layout *dst, const t_layout *src);
+
+/*
+ ** Compares the shapes of two tensor layouts.
+ **
+ ** @param a        Pointer to layout A.
+ ** @param b        Pointer to layout B.
+ **
+ ** @return         true if shapes are equal, false if otherwise
+ */
+bool                        layout_shape_eq(const t_layout *a, const t_layout *b);
 
 /*
  ** Frees the memory allocated for a layout.
