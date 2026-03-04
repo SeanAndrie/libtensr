@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/03/04 22:00:45 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/03/05 00:33:52 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ TENSR_MODULES := $(addprefix tensr/, \
 				 	$(addprefix alloc/, tensr_alloc.c tensr_bcast.c tensr_reduced.c tensr_from_arr.c tensr_get.c tensr_set.c) \
 					$(addprefix iterator/, iter_init.c iter_next.c iter_reset.c) \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
-					$(addprefix layout/, layout_alloc.c layout_copy.c layout_free.c) \
+					$(addprefix layout/, layout_alloc.c layout_copy.c layout_shape_eq.c layout_free.c) \
 					$(addprefix tensr/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c))
 
 TENSR_MATH_MODULES := $(addprefix math/, \
