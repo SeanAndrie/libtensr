@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:49:08 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/04 21:55:21 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/05 04:27:50 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ t_tensr					*tensr_min(const t_tensr *t, const int n_axes,
 
 // Linear Algebra Operations
 t_tensr					*tensr_dot(const t_tensr *a, const t_tensr *b);
+t_tensr					*tensr_cross(const t_tensr *a, const t_tensr *b);
 
 #endif
