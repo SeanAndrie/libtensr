@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 03:44:49 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 21:59:19 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/06 01:39:23 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <core/tensr_math.h>
 #include <utils/tensr_callbacks.h>
 
-static void	acc_init(void *acc, t_dtype dtype)
+static void	value_init(void *acc, t_dtype dtype)
 {
 	if (dtype == DT_I32)
 		*(int *)acc = 0;
@@ -32,8 +32,8 @@ static void	set_cross_entry(const t_tensr *a, const t_tensr *b, void *data,
 	unsigned char	a_v[MAX_ACC_SIZE];
 	unsigned char	b_v[MAX_ACC_SIZE];
 
-	acc_init(a_v, a->dtype);
-	acc_init(b_v, a->dtype);
+	value_init(a_v, a->dtype);
+	value_init(b_v, a->dtype);
 	mul_func(tensr_get(a, (size_t[]){indices[0]}), tensr_get(b,
 			(size_t[]){indices[1]}), a_v, a->dtype);
 	mul_func(tensr_get(a, (size_t[]){indices[1]}), tensr_get(b,
