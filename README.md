@@ -1,7 +1,6 @@
-# libtensr
-
 <p align="center">
-  <img src="" alt="libtensr" width="200" />
+  <h1 align="center">libtensr</h1>
+  <!-- <img src="" alt="libtensr" width="200" /> -->
 </p>
 
 <p align="center">
