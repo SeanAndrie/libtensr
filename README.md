@@ -21,6 +21,21 @@
 
 `libtensr` is a lightweight multi-dimensional tensor library written in C, designed for numerical and linear algebra operations in small-scale projects. It provides a simple API for creating, managing, and accessing N-dimensional arrays with stride-based memory layout.
 
+---
+
+## Planned Features
+
+| Feature | Description |
+|---------|-------------|
+| `tensr_matmul` | Matrix multiplication |
+| `tensr_mean` | Arithmetic mean over axis |
+| `tensr_abs` | Element-wise absolute value |
+| `tensr_clamp` | Clamp tensor values to a range |
+| `tensr_cast` | Cast tensor to different data type |
+| `tensr_linspace` | Create evenly spaced tensor |
+
+---
+
 ## Features
 
 ### Data Types
@@ -112,8 +127,8 @@ This produces a static library `libtensr.a`.
 
 ## Usage
 
+#include <libtensr.h>
 ```c
-#include "tensr.h"
 
 int main() {
     // Create a 3x3 tensor
@@ -125,48 +140,6 @@ int main() {
     return 0;
 }
 ```
-
-## API Reference
-
-### Tensor Creation
-- `tensr_alloc(shape, ndim, dtype)` - Allocate new tensor
-- `tensr_from_arr(data, shape, ndim, dtype)` - Create tensor from array
-- `tensr_bcast(shape, ndim, dtype)` - Create broadcasted tensor
-
-### Tensor Manipulation
-- `tensr_reshape(tensor, shape, ndim)` - Reshape tensor
-- `tensr_transpose(tensor, perm, ndim)` - Transpose tensor
-- `tensr_slice(tensor, starts, ends, ndim)` - Slice tensor
-
-### Mathematical Operations
-- `tensr_add(a, b)` - Element-wise addition
-- `tensr_sub(a, b)` - Element-wise subtraction
-- `tensr_mul(a, b)` - Element-wise multiplication
-- `tensr_div(a, b)` - Element-wise division
-- `tensr_matmul(a, b)` - Matrix multiplication
-- `tensr_dot(a, b)` - Dot product
-- `tensr_cross(a, b)` - Cross product
-- `tensr_norm(tensor, type)` - Compute norm
-
-### Reductions
-- `tensr_sum(tensor, axis)` - Sum over axis
-- `tensr_min(tensor, axis)` - Minimum over axis
-- `tensr_max(tensor, axis)` - Maximum over axis
-
----
-
-## Planned Features
-
-| Feature | Description |
-|---------|-------------|
-| `tensr_matmul` | Matrix multiplication |
-| `tensr_mean` | Arithmetic mean over axis |
-| `tensr_abs` | Element-wise absolute value |
-| `tensr_clamp` | Clamp tensor values to a range |
-| `tensr_cast` | Cast tensor to different data type |
-| `tensr_linspace` | Create evenly spaced tensor |
-
----
 
 <p align="center">
   Built for numerical computing in C
