@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 19:57:35 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/05 22:31:34 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -423,5 +423,7 @@ t_array						arr_i64(long long int *data, const size_t len);
  ** @return          A typed array structure.
  */
 t_array						arr_f64(double *data, const size_t len);
+
+bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
 
 #endif
