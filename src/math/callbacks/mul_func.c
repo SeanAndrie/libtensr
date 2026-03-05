@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_add.c                                        :+:      :+:    :+:   */
+/*   mul_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 17:38:23 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 20:34:19 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/05 20:42:58 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/05 20:47:10 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
-#include <core/tensr_math.h>
 #include <utils/tensr_callbacks.h>
 
-t_tensr *tensr_add(const t_tensr *a, const t_tensr *b)
+void	mul_func(void *a, void *b, void *out, t_dtype dtype)
 {
-    t_tensr *out;
-
-    if (!a || !b)
-        return (NULL);
-    out = tensr_elementwise(a, b, add_func);
-    if (!out)
-        return (NULL);
-    return (out);
+	if (dtype == DT_I32)
+		*(int *)out = *(int *)a * *(int *)b;
+	else if (dtype == DT_I64)
+		*(long long *)out = *(long long *)a * *(long long *)b;
+	else if (dtype == DT_F32)
+		*(float *)out = *(float *)a * *(float *)b;
+	else if (dtype == DT_F64)
+		*(double *)out = *(double *)a * *(double *)b;
 }

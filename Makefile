@@ -6,13 +6,13 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/03/05 04:28:05 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/03/05 20:49:29 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libtensr.a
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/core -I../libft/includes
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/core -I../libft/includes
 ARCHIVE := ar rcs
 
 SRC_DIR := src
@@ -27,7 +27,8 @@ TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix tensr/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c))
 
 TENSR_MATH_MODULES := $(addprefix math/, \
-					  	$(addprefix elementwise/, tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c) \
+						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c) \
+  						$(addprefix elementwise/, tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c) \
 						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c) \
 						$(addprefix linalg/, tensr_dot.c tensr_cross.c))
 
