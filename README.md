@@ -12,7 +12,6 @@
   <a href="#features">Features</a> ·
   <a href="#installation">Installation</a> ·
   <a href="#usage">Usage</a> ·
-  <a href="#api-reference">API Reference</a>
 </p>
 
 ---
@@ -78,11 +77,10 @@
 - Multiplication (`*`)
 - Division (`/`)
 - Negation (`-`)
-- Custom callback support
+- Custom callback support via `tensr_elementwise`
 
 ### Linear Algebra
 
-- **Matrix Multiplication** - General matrix-matrix multiply
 - **Dot Product** - Inner product of vectors/matrices
 - **Cross Product** - Cross product for 3D vectors
 - **Norm** - Compute vector/matrix norms
@@ -92,7 +90,6 @@
 - **Sum** - Sum all elements along specified axes
 - **Min** - Minimum value along specified axes
 - **Max** - Maximum value along specified axes
-- **Strided Reductions** - Optimized reductions for strided tensors
 
 ### Iteration
 
@@ -111,14 +108,19 @@
 
 ## Dependencies
 
-- [libft](https://github.com/ft-nr/libft) - Utility library for C
+- [libft](https://github.com/SeanAndrie/libft-adapt) - Utility library for C
 
 ## Installation
 
 ```bash
 # Clone libft first
-git clone https://github.com/ft-nr/libft.git ../libft
-cd ../libft && make && cd -
+git clone https://github.com/SeanAndrie/libft-adapt libft
+
+# Clone libtensr
+git clone https://github.com/SeanAndrie/libtensr.git
+
+# Navigate to repository
+cd libtensr
 
 make
 ```
@@ -127,12 +129,16 @@ This produces a static library `libtensr.a`.
 
 ## Usage
 
-#include <libtensr.h>
 ```c
+#include <libtensr.h>
 
 int main() {
-    // Create a 3x3 tensor
-    tensr_t *a = tensr_alloc((uint32_t[]){3, 3}, 2, DT_F64);
+
+    // Create a typed array
+    t_array vec_a = arr_i32((int[]{1, 2, 3}), 3);
+
+    // Create a vector
+    tensr_t *a = tensr_from_arr(&vec_a, 1, (size_t[]){3}, DT_I32);
     
     // ... use the tensor ...
     
