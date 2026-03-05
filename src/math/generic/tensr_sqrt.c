@@ -6,10 +6,11 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:57:22 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/06 02:07:09 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/06 02:42:17 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <core/tensr.h>
 #include <core/tensr_math.h>
 
