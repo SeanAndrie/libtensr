@@ -13,31 +13,43 @@
 #include <core/tensr.h>
 #include <core/tensr_math.h>
 
-static void *mul_func(void *a, void *b, t_dtype dtype)
-{
-    static t_result res;
+// static void *mul_func(void *a, void *b, t_dtype dtype)
+// {
+//     static t_result res;
+//
+//     if (dtype == DT_I32)
+//     {
+//         res.i = *(int *)a * *(int *)b;
+//         return (&res.i);
+//     }
+//     else if (dtype == DT_I64)
+//     {
+//         res.l = *(long long *)a * *(long long *)b;
+//         return (&res.l);
+//     }
+//     else if (dtype == DT_F32)
+//     {
+//         res.f = *(float *)a * *(float *)b;
+//         return (&res.f);
+//     }
+//     else if (dtype == DT_F64)
+//     {
+//         res.d = *(double *)a * *(double *)b;
+//         return (&res.d);
+//     }
+//     return (NULL);
+// }
 
+static void mul_func(void *a, void *b, void *out, t_dtype dtype)
+{
     if (dtype == DT_I32)
-    {
-        res.i = *(int *)a * *(int *)b;
-        return (&res.i);
-    }
+        *(int *)out = *(int *)a * *(int *)b;
     else if (dtype == DT_I64)
-    {
-        res.l = *(long long *)a * *(long long *)b;
-        return (&res.l);
-    }
+        *(long long *)out = *(long long *)a * *(long long *)b;
     else if (dtype == DT_F32)
-    {
-        res.f = *(float *)a * *(float *)b;
-        return (&res.f);
-    }
+        *(float *)out = *(float *)a * *(float *)b;
     else if (dtype == DT_F64)
-    {
-        res.d = *(double *)a * *(double *)b;
-        return (&res.d);
-    }
-    return (NULL);
+        *(double *)out = *(double *)a * *(double *)b;
 }
 
 t_tensr *tensr_mul(const t_tensr *a, const t_tensr *b)
