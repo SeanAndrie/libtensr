@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 00:34:44 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/05 19:57:35 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -375,8 +375,13 @@ void						layout_free(t_layout *l);
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
+
+// t_tensr						*tensr_elementwise(const t_tensr *a,
+// 								const t_tensr *b, void *(*f)(void *a, void *b,
+// 									t_dtype dtype));
+
 t_tensr						*tensr_elementwise(const t_tensr *a,
-								const t_tensr *b, void *(*f)(void *a, void *b,
+								const t_tensr *b, void (*f)(void *a, void *b, void *out,
 									t_dtype dtype));
 
 /*
