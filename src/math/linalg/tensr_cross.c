@@ -73,7 +73,7 @@ static void	*sub_func(void *a, void *b, t_dtype dtype)
  * a[0, 0]*b[0, 1] - a[0, 1]*b[0, 0]
  */
 static void	*cross_entry(const t_tensr *a, const t_tensr *b,
-		const size_t *a_indices, const size_t *b_indices)
+		const size_t *a_index, const size_t *b_index)
 {
 	static t_result	a_val;
 	void			*raw;
@@ -97,14 +97,14 @@ t_tensr	*tensr_cross(const t_tensr *a, const t_tensr *b)
 	out = tensr_alloc(1, (size_t[]){3}, a->dtype);
 	if (!out)
 		return (NULL);
-	if (!tensr_set(out, cross_entry(a, b, (size_t[]){0, 1}, (size_t[]){0, 2}),
-			(size_t[]){0, 0}))
+	if (!tensr_set(out, cross_entry(a, b, (size_t[]){1}, (size_t[]){2}),
+			(size_t[]){0}))
 		return (tensr_free(out), NULL);
-	if (!tensr_set(out, cross_entry(a, b, (size_t[]){0, 2}, (size_t[]){0, 0}),
-			(size_t[]){0, 1}))
+	if (!tensr_set(out, cross_entry(a, b, (size_t[]){2}, (size_t[]){0}),
+			(size_t[]){1}))
 		return (tensr_free(out), NULL);
-	if (!tensr_set(out, cross_entry(a, b, (size_t[]){0, 0}, (size_t[]){0, 1}),
-			(size_t[]){0, 2}))
+	if (!tensr_set(out, cross_entry(a, b, (size_t[]){0}, (size_t[]){1}),
+			(size_t[]){2}))
 		return (tensr_free(out), NULL);
 	return (out);
 }
