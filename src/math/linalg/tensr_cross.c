@@ -78,10 +78,10 @@ static void	*cross_entry(const t_tensr *a, const t_tensr *b,
 	static t_result	a_val;
 	void			*raw;
 
-	raw = mul_func(tensr_get(a, a_indices), tensr_get(b, b_indices), a->dtype);
+	raw = mul_func(tensr_get(a, a_index), tensr_get(b, b_index), a->dtype);
 	ft_memcpy(&a_val, raw, a->elemsize);
-	return (sub_func(&a_val, mul_func(tensr_get(a, b_indices), tensr_get(b,
-					a_indices), a->dtype), a->dtype));
+	return (sub_func(&a_val, mul_func(tensr_get(a, b_index), tensr_get(b,
+					a_index), a->dtype), a->dtype));
 }
 
 t_tensr	*tensr_cross(const t_tensr *a, const t_tensr *b)
