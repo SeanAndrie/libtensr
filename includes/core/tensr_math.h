@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:49:08 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 04:27:50 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/06 00:32:25 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef union u_result
 typedef struct s_tensr	t_tensr;
 
 // Elementwise Operations
+t_tensr                 *tensr_neg(const t_tensr *t);
 t_tensr					*tensr_add(const t_tensr *a, const t_tensr *b);
 t_tensr					*tensr_mul(const t_tensr *a, const t_tensr *b);
 t_tensr					*tensr_sub(const t_tensr *a, const t_tensr *b);

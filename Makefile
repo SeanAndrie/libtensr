@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/03/05 22:32:17 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/03/06 00:32:38 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ TENSR_MODULES := $(addprefix tensr/, \
 
 TENSR_MATH_MODULES := $(addprefix math/, \
 						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c) \
-  						$(addprefix elementwise/, tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c) \
+  						$(addprefix elementwise/, tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c) \
 						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c) \
 						$(addprefix linalg/, tensr_dot.c tensr_cross.c))
 
