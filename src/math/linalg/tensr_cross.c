@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 03:44:49 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/06 01:39:23 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/06 01:44:41 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,12 @@
 #include <core/tensr_math.h>
 #include <utils/tensr_callbacks.h>
 
-static void	value_init(void *acc, t_dtype dtype)
-{
-	if (dtype == DT_I32)
-		*(int *)acc = 0;
-	else if (dtype == DT_I64)
-		*(long long *)acc = 0;
-	else if (dtype == DT_F32)
-		*(float *)acc = 0.0f;
-	else if (dtype == DT_F64)
-		*(double *)acc = 0.0;
-}
-
 static void	set_cross_entry(const t_tensr *a, const t_tensr *b, void *data,
 		const size_t *indices)
 {
 	unsigned char	a_v[MAX_ACC_SIZE];
 	unsigned char	b_v[MAX_ACC_SIZE];
 
-	value_init(a_v, a->dtype);
-	value_init(b_v, a->dtype);
 	mul_func(tensr_get(a, (size_t[]){indices[0]}), tensr_get(b,
 			(size_t[]){indices[1]}), a_v, a->dtype);
 	mul_func(tensr_get(a, (size_t[]){indices[1]}), tensr_get(b,
@@ -50,7 +36,7 @@ t_tensr	*tensr_cross(const t_tensr *a, const t_tensr *b)
 {
 	t_tensr	*out;
 
-	if (!a || !b)
+	if (!a || !b || a->dtype != b->dtype)
 		return (NULL);
 	if (a->layout.ndim != 1 || b->layout.ndim != 1)
 		return (NULL);
