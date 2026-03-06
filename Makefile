@@ -6,13 +6,13 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/03/02 16:14:44 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/03/06 13:56:53 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libtensr.a
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/core -I../libft/includes
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/core -I../libft/includes
 ARCHIVE := ar rcs
 
 SRC_DIR := src
@@ -23,12 +23,14 @@ TENSR_MODULES := $(addprefix tensr/, \
 				 	$(addprefix alloc/, tensr_alloc.c tensr_bcast.c tensr_reduced.c tensr_from_arr.c tensr_get.c tensr_set.c) \
 					$(addprefix iterator/, iter_init.c iter_next.c iter_reset.c) \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
-					$(addprefix layout/, layout_alloc.c layout_copy.c layout_free.c) \
-					$(addprefix tensr/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c))
+					$(addprefix layout/, layout_alloc.c layout_copy.c layout_shape_eq.c layout_free.c) \
+					$(addprefix tensr/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c ))
 
 TENSR_MATH_MODULES := $(addprefix math/, \
-					  	$(addprefix elementwise/, tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c) \
-						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c))
+						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c) \
+  						$(addprefix elementwise/, tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c) \
+						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c) \
+						$(addprefix linalg/, tensr_dot.c tensr_cross.c tensr_norm.c tensr_matmul.c))
 
 TENSR_DEBUG_FNS := $(addprefix debug/, tensr_metadata.c tensr_print.c)
 

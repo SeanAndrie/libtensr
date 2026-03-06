@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <core/tensr_debug.h>
 #include <core/tensr.h>
+#include <utils/tensr_debug.h>
 
 void	print_element(const t_tensr *t, char *data_ptr)
 {

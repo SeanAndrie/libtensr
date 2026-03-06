@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_add.c                                        :+:      :+:    :+:   */
+/*   layout_shape_eq.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 17:38:23 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 20:34:19 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/05 00:28:30 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/05 00:38:25 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
-#include <core/tensr_math.h>
-#include <utils/tensr_callbacks.h>
 
-t_tensr *tensr_add(const t_tensr *a, const t_tensr *b)
+bool    layout_shape_eq(const t_layout *a, const t_layout *b)
 {
-    t_tensr *out;
+    int i;
 
-    if (!a || !b)
-        return (NULL);
-    out = tensr_elementwise(a, b, add_func);
-    if (!out)
-        return (NULL);
-    return (out);
+    if (!a || !b || a->ndim != b->ndim)
+        return (false);
+    i = a->ndim - 1;
+    while (i >= 0)
+    {
+        if (a->shape[i] != b->shape[i])
+            return (false);
+        i--;
+    }
+    return (true);
 }

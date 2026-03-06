@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_add.c                                        :+:      :+:    :+:   */
+/*   tensr_callbacks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 17:38:23 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 20:34:19 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/05 20:30:45 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/05 20:33:40 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <core/tensr.h>
-#include <core/tensr_math.h>
-#include <utils/tensr_callbacks.h>
+#ifndef TENSR_CALLBACKS
+# define TENSR_CALLBACKS
 
-t_tensr *tensr_add(const t_tensr *a, const t_tensr *b)
-{
-    t_tensr *out;
+typedef enum e_dtype t_dtype;
+typedef struct s_tensr t_tensr;
 
-    if (!a || !b)
-        return (NULL);
-    out = tensr_elementwise(a, b, add_func);
-    if (!out)
-        return (NULL);
-    return (out);
-}
+void	add_func(void *a, void *b, void *out, t_dtype dtype);
+void	sub_func(void *a, void *b, void *out, t_dtype dtype);
+void	mul_func(void *a, void *b, void *out, t_dtype dtype);
+void	div_func(void *a, void *b, void *out, t_dtype dtype);
+
+#endif

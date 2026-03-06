@@ -6,12 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 15:32:56 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/02 16:12:52 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/05 20:30:00 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
-#include <core/tensr_debug.h>
+#include <utils/tensr_debug.h>
 
 static void print_array(const char *fieldname, size_t *arr, int ndim)
 {

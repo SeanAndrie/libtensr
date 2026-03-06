@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_sub.c                                        :+:      :+:    :+:   */
+/*   tensr_norm.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgadinga <sgadinga@student.42abudhabi.ae>  i#i  i:i       i#i        */
+/*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/03 22:59:23 by sgadinga          #i#    #i#             */
-/*   Updated: 2026/03/05 20:36:55 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/06 02:32:04 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/06 02:39:13 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
 #include <core/tensr_math.h>
-#include <utils/tensr_callbacks.h>
 
-t_tensr *tensr_sub(const t_tensr *a, const t_tensr *b)
+t_tensr *tensr_norm(const t_tensr *t)
 {
+    t_tensr *dot;
     t_tensr *out;
 
-    if (!a || !b)
+    if (!t)
         return (NULL);
-    out = tensr_elementwise(a, b, sub_func);
+    dot = tensr_dot(t, t);
+    if (!dot)
+        return (NULL);
+    out = tensr_sqrt(dot);
+    tensr_free(dot);
     if (!out)
         return (NULL);
     return (out);

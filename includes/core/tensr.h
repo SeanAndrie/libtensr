@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/04 21:31:31 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/05 22:31:34 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_tensr
 	bool					owns_data;
 }							t_tensr;
 
-/* Tensor slice descriptor */
+/* Slice descriptor */
 typedef struct s_slice
 {
 	int						axis;
@@ -77,7 +77,7 @@ typedef struct s_iter
 	size_t					indices[MAX_NDIM];
 }							t_iter;
 
-/* Tensor reduction operation descriptor */
+/* Reduction operation descriptor */
 typedef struct s_reduce_op
 {
 	void					(*init)(void *acc, t_dtype dtype);
@@ -86,7 +86,7 @@ typedef struct s_reduce_op
 	void					(*finalize)(void *acc, size_t count, t_dtype dtype);
 }							t_reduce_op;
 
-/* Tensor reduction context */
+/* Reduction context */
 typedef struct s_reduce_ctx
 {
 	const struct s_tensr	*src;
@@ -347,6 +347,16 @@ bool						layout_alloc(const int ndim, t_layout *l);
 bool						layout_copy(t_layout *dst, const t_layout *src);
 
 /*
+ ** Compares the shapes of two tensor layouts.
+ **
+ ** @param a        Pointer to layout A.
+ ** @param b        Pointer to layout B.
+ **
+ ** @return         true if shapes are equal, false if otherwise
+ */
+bool                        layout_shape_eq(const t_layout *a, const t_layout *b);
+
+/*
  ** Frees the memory allocated for a layout.
  **
  ** @param l         Pointer to the layout to free.
@@ -365,8 +375,13 @@ void						layout_free(t_layout *l);
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
+
+// t_tensr						*tensr_elementwise(const t_tensr *a,
+// 								const t_tensr *b, void *(*f)(void *a, void *b,
+// 									t_dtype dtype));
+
 t_tensr						*tensr_elementwise(const t_tensr *a,
-								const t_tensr *b, void *(*f)(void *a, void *b,
+								const t_tensr *b, void (*f)(void *a, void *b, void *out,
 									t_dtype dtype));
 
 /*
@@ -408,5 +423,7 @@ t_array						arr_i64(long long int *data, const size_t len);
  ** @return          A typed array structure.
  */
 t_array						arr_f64(double *data, const size_t len);
+
+bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
 
 #endif
