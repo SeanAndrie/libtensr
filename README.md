@@ -26,7 +26,6 @@
 
 | Feature | Description |
 |---------|-------------|
-| `tensr_matmul` | Matrix multiplication |
 | `tensr_mean` | Arithmetic mean over axis |
 | `tensr_abs` | Element-wise absolute value |
 | `tensr_clamp` | Clamp tensor values to a range |
@@ -84,6 +83,7 @@
 
 - **Dot Product** - Inner product of vectors/matrices
 - **Cross Product** - Cross product for 3D vectors
+- **Matrix multiplication** - Multiply matrices/tensors
 - **Norm** - Compute vector/matrix norms
 
 ### Reductions
