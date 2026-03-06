@@ -76,7 +76,8 @@
 - Subtraction (`-`)
 - Multiplication (`*`)
 - Division (`/`)
-- Negation (`-`)
+- Square Root (`√`)
+- Negation
 - Custom callback support via `tensr_elementwise`
 
 ### Linear Algebra
@@ -96,10 +97,6 @@
 - **Iterator Init** - Initialize tensor iterator
 - **Iterator Next** - Advance to next element
 - **Iterator Reset** - Reset iterator to beginning
-
-### Generic Math
-
-- **Square Root** - Element-wise square root
 
 ### Debugging
 
