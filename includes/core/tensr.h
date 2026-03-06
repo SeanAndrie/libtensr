@@ -59,7 +59,7 @@ typedef struct s_tensr
 	bool					owns_data;
 }							t_tensr;
 
-/* Tensor slice descriptor */
+/* Slice descriptor */
 typedef struct s_slice
 {
 	int						axis;
@@ -77,7 +77,7 @@ typedef struct s_iter
 	size_t					indices[MAX_NDIM];
 }							t_iter;
 
-/* Tensor reduction operation descriptor */
+/* Reduction operation descriptor */
 typedef struct s_reduce_op
 {
 	void					(*init)(void *acc, t_dtype dtype);
@@ -86,7 +86,7 @@ typedef struct s_reduce_op
 	void					(*finalize)(void *acc, size_t count, t_dtype dtype);
 }							t_reduce_op;
 
-/* Tensor reduction context */
+/* Reduction context */
 typedef struct s_reduce_ctx
 {
 	const struct s_tensr	*src;
