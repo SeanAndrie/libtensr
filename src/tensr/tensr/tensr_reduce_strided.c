@@ -18,7 +18,7 @@ static void	create_reduce_ctx(t_reduce_ctx *ctx, const t_tensr *src,
 	int	i;
 	int	j;
 
-	ft_memset(ctx, 0, sizeof(ctx));
+	ft_memset(ctx, 0, sizeof(t_reduce_ctx));
 	i = 0;
 	while (i < n_axes)
 		ctx->is_reduced[axes[i++]] = true;
