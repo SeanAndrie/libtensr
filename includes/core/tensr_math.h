@@ -30,6 +30,8 @@ t_tensr					*tensr_max(const t_tensr *t, const int n_axes,
 							const size_t *axes);
 t_tensr					*tensr_min(const t_tensr *t, const int n_axes,
 							const size_t *axes);
+t_tensr                 *tensr_mean(const t_tensr *t, const int n_axes,
+                            const size_t *axes);
 
 // Linear Algebra Operations
 t_tensr                 *tensr_norm(const t_tensr *t);

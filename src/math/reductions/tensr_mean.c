@@ -12,7 +12,7 @@
 
 #include <core/tensr.h>
 #include <core/tensr_math.h>
-#include <utils/tensr_calbacks.h>
+#include <utils/tensr_callbacks.h>
 
 t_tensr *tensr_mean(const t_tensr *t, const int n_axes, const size_t *axes)
 {
