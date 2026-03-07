@@ -26,7 +26,6 @@
 
 | Feature | Description |
 |---------|-------------|
-| `tensr_abs` | Element-wise absolute value |
 | `tensr_clamp` | Clamp tensor values to a range |
 | `tensr_cast` | Cast tensor to different data type |
 | `tensr_linspace` | Create evenly spaced tensor |
@@ -76,6 +75,7 @@
 - Division (`/`)
 - Square Root (`√`)
 - Negation
+- Absolute Value (`tensr_abs`)
 - Custom callback support via `tensr_elementwise`
 
 ### Linear Algebra
