@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:30:45 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/07 02:33:26 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/07 16:16:14 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ void    min_init(void *acc, t_dtype dtype);
 void	sum_apply(void *acc, const void *value, t_dtype dtype);
 void	max_apply(void *acc, const void *value, t_dtype dtype);
 void	min_apply(void *acc, const void *value, t_dtype dtype);
+
+void    mean_finalize(void *acc, size_t count, t_dtype dtype);
 
 #endif
