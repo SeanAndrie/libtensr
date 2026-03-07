@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 22:31:34 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/07 02:16:05 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,9 @@ size_t						tensr_offset(const t_layout *l,
  */
 bool						tensr_is_contiguous(const t_tensr *t);
 
+bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
+bool	            tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon);
+
 /*
  ** Frees the memory allocated for a tensor.
  **
@@ -423,7 +426,5 @@ t_array						arr_i64(long long int *data, const size_t len);
  ** @return          A typed array structure.
  */
 t_array						arr_f64(double *data, const size_t len);
-
-bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
 
 #endif

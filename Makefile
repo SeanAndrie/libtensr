@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/03/06 13:56:53 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/03/07 02:31:58 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix iterator/, iter_init.c iter_next.c iter_reset.c) \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
 					$(addprefix layout/, layout_alloc.c layout_copy.c layout_shape_eq.c layout_free.c) \
-					$(addprefix tensr/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c ))
+					$(addprefix tensr/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c))
 
 TENSR_MATH_MODULES := $(addprefix math/, \
-						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c) \
+						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c) \
   						$(addprefix elementwise/, tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c) \
 						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c) \
 						$(addprefix linalg/, tensr_dot.c tensr_cross.c tensr_norm.c tensr_matmul.c))
