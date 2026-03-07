@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:30:45 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/07 16:16:14 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/08 03:12:08 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 typedef enum e_dtype t_dtype;
 typedef struct s_tensr t_tensr;
 
+void    abs_func(void *value, void *out, t_dtype dtype);
 void	add_func(void *a, void *b, void *out, t_dtype dtype);
 void	sub_func(void *a, void *b, void *out, t_dtype dtype);
 void	mul_func(void *a, void *b, void *out, t_dtype dtype);

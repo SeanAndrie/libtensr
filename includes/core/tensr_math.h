@@ -16,6 +16,7 @@
 typedef struct s_tensr	t_tensr;
 
 // Elementwise Operations
+t_tensr                 *tensr_abs(const t_tensr *t);
 t_tensr					*tensr_neg(const t_tensr *t);
 t_tensr					*tensr_sqrt(const t_tensr *t);
 t_tensr					*tensr_add(const t_tensr *a, const t_tensr *b);
