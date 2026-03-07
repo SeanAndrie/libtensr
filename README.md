@@ -26,7 +26,6 @@
 
 | Feature | Description |
 |---------|-------------|
-| `tensr_mean` | Arithmetic mean over axis |
 | `tensr_abs` | Element-wise absolute value |
 | `tensr_clamp` | Clamp tensor values to a range |
 | `tensr_cast` | Cast tensor to different data type |
@@ -91,6 +90,7 @@
 - **Sum** - Sum all elements along specified axes
 - **Min** - Minimum value along specified axes
 - **Max** - Maximum value along specified axes
+- **Mean** - Arithmetic mean along specified axes
 
 ### Iteration
 
