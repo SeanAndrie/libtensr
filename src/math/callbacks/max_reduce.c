@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <float.h>
 #include <core/tensr.h>
 #include <utils/tensr_callbacks.h>
 

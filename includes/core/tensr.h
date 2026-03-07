@@ -13,7 +13,6 @@
 #ifndef TENSR_H
 # define TENSR_H
 
-# include <float.h>
 # include <libft.h>
 # include <stdbool.h>
 
