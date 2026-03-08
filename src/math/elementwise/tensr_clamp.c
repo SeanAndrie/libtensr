@@ -33,9 +33,9 @@ t_tensr *tensr_clamp(const t_tensr *t, double min, double max)
         if (t->dtype == DT_I32)
             *(int *)dst = fmax(min, fmin(*(int *)src, max));
         else if (t->dtype == DT_I64)
-            *(long long *) = fmax(min, fmin(*(long long *)src, max));
+            *(long long *)dst = fmax(min, fmin(*(long long *)src, max));
         else if (t->dtype == DT_F32)
-            *(float *) = fmaxf(min, fmin(*(float *)src, max));
+            *(float *)dst = fmaxf(min, fmin(*(float *)src, max));
         else if (t->dtype == DT_F64)
             *(double *)dst = fmax(min, fmin(*(double *)src, max));
     }
