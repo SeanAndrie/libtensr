@@ -16,7 +16,6 @@
 typedef enum e_dtype t_dtype;
 typedef struct s_tensr t_tensr;
 
-void    abs_func(void *value, void *out, t_dtype dtype);
 void	add_func(void *a, void *b, void *out, t_dtype dtype);
 void	sub_func(void *a, void *b, void *out, t_dtype dtype);
 void	mul_func(void *a, void *b, void *out, t_dtype dtype);

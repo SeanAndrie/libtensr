@@ -27,7 +27,7 @@ TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix tensr/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c))
 
 TENSR_MATH_MODULES := $(addprefix math/, \
-						$(addprefix callbacks/, abs_func.c add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \
+						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \
   						$(addprefix elementwise/, tensr_abs.c tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c) \
 						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c tensr_mean.c) \
 						$(addprefix linalg/, tensr_dot.c tensr_cross.c tensr_norm.c tensr_matmul.c))

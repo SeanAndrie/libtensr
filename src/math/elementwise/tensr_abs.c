@@ -21,11 +21,11 @@ t_tensr	*tensr_abs(const t_tensr *t)
     void            *src;
     void            *dst;
 
-    if (!t)
-        return (NULL);
     out = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
-    if (!out || !iter_init(&out->layout, &it))
+    if (!out)
         return (NULL);
+    if (!iter_init(&out->layout, &it))
+        return (tensr_free(out), NULL);
     while (iter_next(&it))
     {
         src = tensr_get(t, it.indices);
