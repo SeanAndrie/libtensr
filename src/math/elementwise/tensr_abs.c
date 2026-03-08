@@ -31,7 +31,7 @@ t_tensr	*tensr_abs(const t_tensr *t)
         src = tensr_get(t, it.indices);
         dst = tensr_get(out, it.indices);
         if (t->dtype == DT_I32)
-            *(int *)tensr_get(out, it.indices) = abs(*(int *)src);
+            *(int *)dst = abs(*(int *)src);
         else if (t->dtype == DT_I64)
             *(long long *)dst = llabs(*(long long *)src);
         else if (t->dtype == DT_F32)
