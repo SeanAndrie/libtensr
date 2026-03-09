@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:44:39 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 19:57:14 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:36:56 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b,
 
 	if (!a || !b || a->dtype != b->dtype)
 		return (NULL);
-	out = tensr_bcast(&a->layout, &b->layout, a->dtype);
+	out = tensr_broadcast(&a->layout, &b->layout, a->dtype);
 	if (!out)
 		return (NULL);
 	if (!iter_init(&out->layout, &it))

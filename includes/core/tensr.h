@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/09 15:42:19 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:38:55 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,23 @@ typedef struct s_reduce_ctx
 t_tensr						*tensr_alloc(const int ndim, const size_t *shape,
 								t_dtype dtype);
 
+/*
+ ** Creates a deep copy of a tensor.
+ **
+ ** @param t         Pointer to the tensor to copy.
+ **
+ ** @return          A pointer to the copied tensor, or NULL on failure.
+ */
 t_tensr                     *tensr_copy(const t_tensr *t);
+
+/*
+ ** Casts a tensor to a different data type.
+ **
+ ** @param t         Pointer to the tensor to cast.
+ ** @param dtype     Target data type.
+ **
+ ** @return          A pointer to the cast tensor, or NULL on failure.
+ */
 t_tensr                     *tensr_cast(const t_tensr *t, t_dtype dtype);
 /*
  ** Converts a typed array into a tensor.
@@ -136,7 +152,7 @@ t_tensr						*tensr_from_arr(const t_array *arr, const int ndim,
  **
  ** @return          A pointer to the broadcasted tensor, or NULL on failure.
  */
-t_tensr						*tensr_bcast(const t_layout *a, const t_layout *b,
+t_tensr						*tensr_broadcast(const t_layout *a, const t_layout *b,
 								t_dtype dtype);
 
 /*
@@ -260,7 +276,27 @@ size_t						tensr_offset(const t_layout *l,
  */
 bool						tensr_is_contiguous(const t_tensr *t);
 
+/*
+ ** Checks if two tensors are exactly equal.
+ **
+ ** Both tensors must have the same shape, dtype, and data values.
+ **
+ ** @param a         Pointer to the first tensor.
+ ** @param b         Pointer to the second tensor.
+ **
+ ** @return          true if equal, false otherwise.
+ */
 bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
+
+/*
+ ** Checks if two tensors are equal within a tolerance.
+ **
+ ** @param a         Pointer to the first tensor.
+ ** @param b         Pointer to the second tensor.
+ ** @param epsilon   Tolerance value for comparison.
+ **
+ ** @return          true if equal within epsilon, false otherwise.
+ */
 bool	            tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon);
 
 /*
