@@ -188,4 +188,13 @@ t_tensr					*tensr_cross(const t_tensr *a, const t_tensr *b);
  */
 t_tensr                 *tensr_matmul(const t_tensr *a, const t_tensr *b);
 
+/*
+ ** Normalizes the tensor to unit length (L2 norm = 1).
+ **
+ ** @param t         Pointer to the input tensor.
+ **
+ ** @return          A pointer to the normalized tensor, or NULL on failure.
+ */
+t_tensr                 *tensr_normalize(const t_tensr *t);
+
 #endif

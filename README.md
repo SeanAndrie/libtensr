@@ -22,16 +22,6 @@
 
 ---
 
-## Planned Features
-
-| Feature | Description |
-|---------|-------------|
-| `tensr_clamp` | Clamp tensor values to a range |
-| `tensr_cast` | Cast tensor to different data type |
-| `tensr_linspace` | Create evenly spaced tensor |
-
----
-
 ## Features
 
 ### Data Types
@@ -46,6 +36,7 @@
 ### Core Tensor Operations
 
 - **Allocation** - Create tensors with custom shapes and strides
+- **Linspace** - Create evenly spaced values with `tensr_linspace`
 - **Broadcasting** - Efficiently expand tensors during operations
 - **Array Conversion** - Convert between C arrays and tensors
 - **Element Access** - Get and set individual elements
@@ -84,6 +75,7 @@
 - **Cross Product** - Cross product for 3D vectors
 - **Matrix multiplication** - Multiply matrices/tensors
 - **Norm** - Compute vector/matrix norms
+- **Normalize** - Normalize tensor to unit length
 
 ### Reductions
 

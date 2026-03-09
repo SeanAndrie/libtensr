@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/09 23:53:30 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/10 01:15:37 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,18 @@ t_tensr                     *tensr_cast(const t_tensr *t, t_dtype dtype);
  */
 t_tensr						*tensr_from_arr(const t_array *arr, const int ndim,
 								const size_t *shape, t_dtype dtype);
+
+/*
+ ** Creates a 1D tensor with evenly spaced values between start and end.
+ **
+ ** @param start     Starting value of the sequence.
+ ** @param end       Ending value of the sequence.
+ ** @param n         Number of elements in the tensor.
+ ** @param dtype     Data type for the tensor (DT_I32, DT_I64, DT_F32, DT_F64).
+ **
+ ** @return          A pointer to the created tensor, or NULL on failure.
+ */
+t_tensr *tensr_linspace(double start, double end, const size_t n, t_dtype dtype);
 
 /*
  ** Creates a new tensor by broadcasting two tensors together.
@@ -465,7 +477,5 @@ t_array						arr_i64(long long int *data, const size_t len);
  ** @return          A typed array structure.
  */
 t_array						arr_f64(double *data, const size_t len);
-
-t_tensr *tensr_linspace(double start, double end, const size_t n, t_dtype dtype);
 
 #endif
