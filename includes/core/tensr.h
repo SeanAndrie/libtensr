@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/09 16:38:55 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/09 23:53:30 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ t_tensr                     *tensr_copy(const t_tensr *t);
  ** @return          A pointer to the cast tensor, or NULL on failure.
  */
 t_tensr                     *tensr_cast(const t_tensr *t, t_dtype dtype);
+
 /*
  ** Converts a typed array into a tensor.
  **
@@ -464,5 +465,7 @@ t_array						arr_i64(long long int *data, const size_t len);
  ** @return          A typed array structure.
  */
 t_array						arr_f64(double *data, const size_t len);
+
+t_tensr *tensr_linspace(double start, double end, const size_t n, t_dtype dtype);
 
 #endif
