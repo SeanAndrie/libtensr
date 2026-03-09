@@ -27,18 +27,19 @@ static bool	invalid_parameters(const int ndim, const size_t *shape)
 		|| (ndim > MAX_NDIM));
 }
 
-static bool	init_layout(const int ndim, t_tensr *t, const size_t *shape,
-		t_layout *l)
+static bool	init_layout(const int ndim, const size_t *shape, t_tensr *dst)
 {
-	int	i;
+	int	        i;
+    t_layout    *l;
 
+    l = &dst->layout;
 	if (!layout_alloc(ndim, l))
 		return (false);
 	i = 0;
 	while (i < l->ndim)
 	{
 		l->shape[i] = shape[i];
-		t->size *= shape[i];
+		dst->size *= shape[i];
 		i++;
 	}
 	l->stride[l->ndim - 1] = 1;
@@ -66,7 +67,7 @@ t_tensr	*tensr_alloc(const int ndim, const size_t *shape, t_dtype dtype)
 	t->elemsize = dtype_size_in_bytes(dtype);
 	if (t->elemsize == 0)
 		return (free(t), NULL);
-	if (ndim > 0 && !init_layout(ndim, t, shape, &t->layout))
+	if (ndim > 0 && !init_layout(ndim, shape, t))
 		return (tensr_free(t), NULL);
 	t->data = malloc(t->elemsize * t->size);
 	if (!t->data)

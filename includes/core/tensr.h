@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/07 02:16:05 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:42:19 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ typedef struct s_layout
 typedef struct s_tensr
 {
 	void					*data;
+	size_t					size;
 	enum e_dtype			dtype;
 	struct s_layout			layout;
-	size_t					size;
 	size_t					elemsize;
 	bool					owns_data;
 }							t_tensr;
@@ -108,6 +108,9 @@ typedef struct s_reduce_ctx
  */
 t_tensr						*tensr_alloc(const int ndim, const size_t *shape,
 								t_dtype dtype);
+
+t_tensr                     *tensr_copy(const t_tensr *t);
+t_tensr                     *tensr_cast(const t_tensr *t, t_dtype dtype);
 /*
  ** Converts a typed array into a tensor.
  **
