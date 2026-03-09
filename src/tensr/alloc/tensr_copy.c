@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_max.c                                        :+:      :+:    :+:   */
+/*   tensr_copy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/18 11:19:43 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/07 02:30:59 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/09 14:42:50 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/09 15:35:53 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <core/tensr.h>
-#include <core/tensr_math.h>
-#include <utils/tensr_callbacks.h>
 
-t_tensr	*tensr_max(const t_tensr *t, const int n_axes, const size_t *axes)
+t_tensr *tensr_copy(const t_tensr *t)
 {
-	t_reduce_op	reduce_op;
+    t_tensr *cpy;
 
-	if (!t || !axes || n_axes <= 0)
-		return (NULL);
-	reduce_op = (t_reduce_op){max_init, max_apply, NULL};
-	return (tensr_reduce(t, n_axes, axes, reduce_op));
+    if (!t)
+        return (NULL);
+    cpy = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
+    if (!cpy)
+        return (NULL);
+    ft_memcpy(cpy->data, t->data, (t->size * t->elemsize));
+    return (cpy);
 }

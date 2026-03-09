@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 00:14:30 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/02/27 17:20:03 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/07 02:32:26 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	create_reduce_ctx(t_reduce_ctx *ctx, const t_tensr *src,
 	int	i;
 	int	j;
 
-	ft_memset(ctx, 0, sizeof(ctx));
+	ft_memset(ctx, 0, sizeof(t_reduce_ctx));
 	i = 0;
 	while (i < n_axes)
 		ctx->is_reduced[axes[i++]] = true;
@@ -72,7 +72,8 @@ static void	apply_reduction(void *accum, size_t base_offset, t_reduce_ctx *ctx,
 		value = (char *)ctx->src->data + offset * ctx->src->elemsize;
 		ctx->reduce_op.apply(accum, value, ctx->src->dtype);
 	}
-	ctx->reduce_op.finalize(accum, inner->total, ctx->src->dtype);
+    if (ctx->reduce_op.finalize)
+	    ctx->reduce_op.finalize(accum, inner->total, ctx->src->dtype);
 }
 
 t_tensr	*tensr_reduce_strided(const t_tensr *t, const int n_axes,

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_bcast.c                                      :+:      :+:    :+:   */
+/*   tensr_broadcast.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 00:30:56 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/02 15:56:16 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/09 16:36:28 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	get_dim(const t_layout *l, int out_ndim, int i)
 	return (1);
 }
 
-t_tensr	*tensr_bcast(const t_layout *a, const t_layout *b, t_dtype dtype)
+t_tensr	*tensr_broadcast(const t_layout *a, const t_layout *b, t_dtype dtype)
 {
 	int			i;
 	t_tensr		*out;

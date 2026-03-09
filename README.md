@@ -22,18 +22,6 @@
 
 ---
 
-## Planned Features
-
-| Feature | Description |
-|---------|-------------|
-| `tensr_mean` | Arithmetic mean over axis |
-| `tensr_abs` | Element-wise absolute value |
-| `tensr_clamp` | Clamp tensor values to a range |
-| `tensr_cast` | Cast tensor to different data type |
-| `tensr_linspace` | Create evenly spaced tensor |
-
----
-
 ## Features
 
 ### Data Types
@@ -48,6 +36,7 @@
 ### Core Tensor Operations
 
 - **Allocation** - Create tensors with custom shapes and strides
+- **Linspace** - Create evenly spaced values with `tensr_linspace`
 - **Broadcasting** - Efficiently expand tensors during operations
 - **Array Conversion** - Convert between C arrays and tensors
 - **Element Access** - Get and set individual elements
@@ -77,6 +66,7 @@
 - Division (`/`)
 - Square Root (`√`)
 - Negation
+- Absolute Value (`tensr_abs`)
 - Custom callback support via `tensr_elementwise`
 
 ### Linear Algebra
@@ -85,12 +75,14 @@
 - **Cross Product** - Cross product for 3D vectors
 - **Matrix multiplication** - Multiply matrices/tensors
 - **Norm** - Compute vector/matrix norms
+- **Normalize** - Normalize tensor to unit length
 
 ### Reductions
 
 - **Sum** - Sum all elements along specified axes
 - **Min** - Minimum value along specified axes
 - **Max** - Maximum value along specified axes
+- **Mean** - Arithmetic mean along specified axes
 
 ### Iteration
 

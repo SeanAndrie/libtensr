@@ -6,14 +6,13 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 22:31:34 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/10 01:15:37 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TENSR_H
 # define TENSR_H
 
-# include <float.h>
 # include <libft.h>
 # include <stdbool.h>
 
@@ -52,9 +51,9 @@ typedef struct s_layout
 typedef struct s_tensr
 {
 	void					*data;
+	size_t					size;
 	enum e_dtype			dtype;
 	struct s_layout			layout;
-	size_t					size;
 	size_t					elemsize;
 	bool					owns_data;
 }							t_tensr;
@@ -109,6 +108,26 @@ typedef struct s_reduce_ctx
  */
 t_tensr						*tensr_alloc(const int ndim, const size_t *shape,
 								t_dtype dtype);
+
+/*
+ ** Creates a deep copy of a tensor.
+ **
+ ** @param t         Pointer to the tensor to copy.
+ **
+ ** @return          A pointer to the copied tensor, or NULL on failure.
+ */
+t_tensr                     *tensr_copy(const t_tensr *t);
+
+/*
+ ** Casts a tensor to a different data type.
+ **
+ ** @param t         Pointer to the tensor to cast.
+ ** @param dtype     Target data type.
+ **
+ ** @return          A pointer to the cast tensor, or NULL on failure.
+ */
+t_tensr                     *tensr_cast(const t_tensr *t, t_dtype dtype);
+
 /*
  ** Converts a typed array into a tensor.
  **
@@ -123,6 +142,18 @@ t_tensr						*tensr_from_arr(const t_array *arr, const int ndim,
 								const size_t *shape, t_dtype dtype);
 
 /*
+ ** Creates a 1D tensor with evenly spaced values between start and end.
+ **
+ ** @param start     Starting value of the sequence.
+ ** @param end       Ending value of the sequence.
+ ** @param n         Number of elements in the tensor.
+ ** @param dtype     Data type for the tensor (DT_I32, DT_I64, DT_F32, DT_F64).
+ **
+ ** @return          A pointer to the created tensor, or NULL on failure.
+ */
+t_tensr *tensr_linspace(double start, double end, const size_t n, t_dtype dtype);
+
+/*
  ** Creates a new tensor by broadcasting two tensors together.
  **
  ** Broadcasting aligns tensors of different shapes by expanding
@@ -134,7 +165,7 @@ t_tensr						*tensr_from_arr(const t_array *arr, const int ndim,
  **
  ** @return          A pointer to the broadcasted tensor, or NULL on failure.
  */
-t_tensr						*tensr_bcast(const t_layout *a, const t_layout *b,
+t_tensr						*tensr_broadcast(const t_layout *a, const t_layout *b,
 								t_dtype dtype);
 
 /*
@@ -257,6 +288,29 @@ size_t						tensr_offset(const t_layout *l,
  ** @return          true if contiguous, false otherwise.
  */
 bool						tensr_is_contiguous(const t_tensr *t);
+
+/*
+ ** Checks if two tensors are exactly equal.
+ **
+ ** Both tensors must have the same shape, dtype, and data values.
+ **
+ ** @param a         Pointer to the first tensor.
+ ** @param b         Pointer to the second tensor.
+ **
+ ** @return          true if equal, false otherwise.
+ */
+bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
+
+/*
+ ** Checks if two tensors are equal within a tolerance.
+ **
+ ** @param a         Pointer to the first tensor.
+ ** @param b         Pointer to the second tensor.
+ ** @param epsilon   Tolerance value for comparison.
+ **
+ ** @return          true if equal within epsilon, false otherwise.
+ */
+bool	            tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon);
 
 /*
  ** Frees the memory allocated for a tensor.
@@ -423,7 +477,5 @@ t_array						arr_i64(long long int *data, const size_t len);
  ** @return          A typed array structure.
  */
 t_array						arr_f64(double *data, const size_t len);
-
-bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
 
 #endif

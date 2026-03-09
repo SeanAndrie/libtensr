@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 22:18:18 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 22:33:33 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/09 15:33:58 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ static bool	is_equal(void *a, void *b, t_dtype dtype)
 		return ((*(int *)a == *(int *)b));
 	else if (dtype == DT_I64)
 		return ((*(long long *)a == *(long long *)b));
-	else if (dtype == DT_F32)
-		return ((*(float *)a == *(float *)b));
-	else if (dtype == DT_F64)
-		return ((*(double *)a == *(double *)b));
 	return (false);
 }
 
@@ -33,12 +29,14 @@ bool	tensr_equal(const t_tensr *a, const t_tensr *b)
 
 	if (!a || !b)
 		return (false);
+    if (a->dtype == DT_F32 || a->dtype == DT_F64)
+		return (false);
 	if (a->dtype != b->dtype || !layout_shape_eq(&a->layout, &b->layout))
 		return (false);
 	if (!iter_init((t_layout *)&a->layout, &it))
 	{
 		ft_dprintf(STDERR_FILENO,
-			"libtensr: tensr_equal: failed to initialize iterator\n");
+			"libtensr: tensr_equal: failed to initialize iterator.\n");
 		return (false);
 	}
 	while (iter_next(&it))
