@@ -14,7 +14,7 @@
 
 bool layout_alloc(const int ndim, t_layout *l)
 {
-    if (!l || ndim == 0)
+    if (!l)
         return (false);
     ft_memset(l, 0, sizeof(t_layout));
     l->ndim = ndim;
