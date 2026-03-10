@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/10 01:15:37 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/11 02:53:57 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_tensr						*tensr_alloc(const int ndim, const size_t *shape,
  **
  ** @return          A pointer to the copied tensor, or NULL on failure.
  */
-t_tensr                     *tensr_copy(const t_tensr *t);
+t_tensr						*tensr_copy(const t_tensr *t);
 
 /*
  ** Casts a tensor to a different data type.
@@ -126,7 +126,7 @@ t_tensr                     *tensr_copy(const t_tensr *t);
  **
  ** @return          A pointer to the cast tensor, or NULL on failure.
  */
-t_tensr                     *tensr_cast(const t_tensr *t, t_dtype dtype);
+t_tensr						*tensr_cast(const t_tensr *t, t_dtype dtype);
 
 /*
  ** Converts a typed array into a tensor.
@@ -151,7 +151,16 @@ t_tensr						*tensr_from_arr(const t_array *arr, const int ndim,
  **
  ** @return          A pointer to the created tensor, or NULL on failure.
  */
-t_tensr *tensr_linspace(double start, double end, const size_t n, t_dtype dtype);
+t_tensr						*tensr_linspace(double start, double end,
+								const size_t n, t_dtype dtype);
+
+/*
+ ** Creates a scalar tensor.
+ **
+ ** @param n        The value of the scalar.
+ ** @param t_dtype  Data type of tensor.
+ */
+t_tensr						*tensr_scalar(double n, t_dtype dtype);
 
 /*
  ** Creates a new tensor by broadcasting two tensors together.
@@ -165,8 +174,8 @@ t_tensr *tensr_linspace(double start, double end, const size_t n, t_dtype dtype)
  **
  ** @return          A pointer to the broadcasted tensor, or NULL on failure.
  */
-t_tensr						*tensr_broadcast(const t_layout *a, const t_layout *b,
-								t_dtype dtype);
+t_tensr						*tensr_broadcast(const t_layout *a,
+								const t_layout *b, t_dtype dtype);
 
 /*
  ** Creates a reduced (collapsed) tensor from a layout without data.
@@ -262,7 +271,8 @@ bool						tensr_set(const t_tensr *t, void *data,
  ** @param t         Pointer to the tensor.
  ** @param indices   Array of indices specifying the location.
  **
- ** @return          Pointer to the data at the specified index, or NULL on failure.
+ ** @return          Pointer to the data at the specified index,
+	or NULL on failure.
  */
 void						*tensr_get(const t_tensr *t, const size_t *indices);
 
@@ -299,7 +309,7 @@ bool						tensr_is_contiguous(const t_tensr *t);
  **
  ** @return          true if equal, false otherwise.
  */
-bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
+bool						tensr_equal(const t_tensr *a, const t_tensr *b);
 
 /*
  ** Checks if two tensors are equal within a tolerance.
@@ -310,7 +320,8 @@ bool	            tensr_equal(const t_tensr *a, const t_tensr *b);
  **
  ** @return          true if equal within epsilon, false otherwise.
  */
-bool	            tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon);
+bool						tensr_equal_eps(const t_tensr *a, const t_tensr *b,
+								double epsilon);
 
 /*
  ** Frees the memory allocated for a tensor.
@@ -369,7 +380,8 @@ bool						iter_init(t_layout *l, t_iter *it);
  **
  ** @param it        Pointer to the iterator.
  **
- ** @return          true if there are more elements, false if iteration is complete.
+ ** @return          true if there are more elements,
+	false if iteration is complete.
  */
 bool						iter_next(t_iter *it);
 
@@ -408,7 +420,8 @@ bool						layout_copy(t_layout *dst, const t_layout *src);
  **
  ** @return         true if shapes are equal, false if otherwise
  */
-bool                        layout_shape_eq(const t_layout *a, const t_layout *b);
+bool						layout_shape_eq(const t_layout *a,
+								const t_layout *b);
 
 /*
  ** Frees the memory allocated for a layout.
@@ -435,8 +448,8 @@ void						layout_free(t_layout *l);
 // 									t_dtype dtype));
 
 t_tensr						*tensr_elementwise(const t_tensr *a,
-								const t_tensr *b, void (*f)(void *a, void *b, void *out,
-									t_dtype dtype));
+								const t_tensr *b, void (*f)(void *a, void *b,
+									void *out, t_dtype dtype));
 
 /*
  ** Creates a typed array with 32-bit integer data.

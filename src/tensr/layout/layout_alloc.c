@@ -14,7 +14,7 @@
 
 bool layout_alloc(const int ndim, t_layout *l)
 {
-    if (!l || ndim == 0)
+    if (!l)
         return (false);
     ft_memset(l, 0, sizeof(t_layout));
     l->ndim = ndim;
@@ -27,7 +27,7 @@ bool layout_alloc(const int ndim, t_layout *l)
         if (!l->stride)
             return (free(l->shape), false);
     }
-    else
+    else if (ndim > 0)
     {
         l->shape = l->shape_buf;
         l->stride = l->stride_buf;

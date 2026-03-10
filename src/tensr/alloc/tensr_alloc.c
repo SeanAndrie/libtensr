@@ -29,12 +29,14 @@ static bool	invalid_parameters(const int ndim, const size_t *shape)
 
 static bool	init_layout(const int ndim, const size_t *shape, t_tensr *dst)
 {
-	int	        i;
-    t_layout    *l;
+	int			i;
+	t_layout	*l;
 
-    l = &dst->layout;
+	l = &dst->layout;
 	if (!layout_alloc(ndim, l))
 		return (false);
+	if (ndim == 0)
+		return (true);
 	i = 0;
 	while (i < l->ndim)
 	{
@@ -67,7 +69,7 @@ t_tensr	*tensr_alloc(const int ndim, const size_t *shape, t_dtype dtype)
 	t->elemsize = dtype_size_in_bytes(dtype);
 	if (t->elemsize == 0)
 		return (free(t), NULL);
-	if (ndim > 0 && !init_layout(ndim, shape, t))
+	if (!init_layout(ndim, shape, t))
 		return (tensr_free(t), NULL);
 	t->data = malloc(t->elemsize * t->size);
 	if (!t->data)
