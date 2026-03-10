@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 23:12:43 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/09 23:57:43 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/10 14:26:01 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_tensr	*tensr_linspace(double start, double end, const size_t n, t_dtype dtype)
 	else
 		step = ((end - start) / (double)(n - 1));
 	while (iter_next(&it))
-		set_cast(tensr_get(out, it.indices), start + it.counter * step, dtype);
+		set_cast(tensr_get(out, it.indices), start + (it.counter - 1) * step,
+			dtype);
 	return (out);
 }
