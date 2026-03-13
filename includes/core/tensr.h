@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/11 02:53:57 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/14 03:07:06 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -503,4 +503,6 @@ t_array						arr_i64(int64_t *data, const size_t len);
  */
 t_array						arr_f64(double *data, const size_t len);
 
+t_tensr	*tensr_fill(double value, const int ndim, const size_t *shape,
+		t_dtype dtype);
 #endif

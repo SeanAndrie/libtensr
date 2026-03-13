@@ -32,11 +32,13 @@
 | `DT_F64` | 64-bit floating point |
 | `DT_I32` | 32-bit signed integer |
 | `DT_I64` | 64-bit signed integer |
+| `DT_U8` | 8-bit unsigned integer |
 
 ### Core Tensor Operations
 
 - **Allocation** - Create tensors with custom shapes and strides
 - **Linspace** - Create evenly spaced values with `tensr_linspace`
+- **Fill** - Create tensor filled with a specific value with `tensr_fill`
 - **Broadcasting** - Efficiently expand tensors during operations
 - **Array Conversion** - Convert between C arrays and tensors
 - **Element Access** - Get and set individual elements
