@@ -13,6 +13,8 @@
 #ifndef TENSR_CALLBACKS
 # define TENSR_CALLBACKS
 
+#include <stddef.h>
+
 typedef enum e_dtype t_dtype;
 typedef struct s_tensr t_tensr;
 
