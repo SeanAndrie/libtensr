@@ -38,7 +38,7 @@
 
 - **Allocation** - Create tensors with custom shapes and strides
 - **Linspace** - Create evenly spaced values with `tensr_linspace`
-- **Fill** - Create tensor filled with a specific value with `tensr_fill`
+- **Fill** - Create tensor filled with a specific value with `tensr_full`
 - **Broadcasting** - Efficiently expand tensors during operations
 - **Array Conversion** - Convert between C arrays and tensors
 - **Element Access** - Get and set individual elements

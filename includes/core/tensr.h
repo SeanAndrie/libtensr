@@ -157,6 +157,19 @@ t_tensr						*tensr_linspace(double start, double end,
 								const size_t n, t_dtype dtype);
 
 /*
+ ** Creates a tensor filled with a constant value.
+ **
+ ** @param value     The constant value to fill the tensor with.
+ ** @param ndim      Number of dimensions.
+ ** @param shape     An array representing the number of dimensions per axis.
+ ** @param dtype     Data type of the tensor.
+ **
+ ** @return          A pointer to the filled tensor, or NULL on failure.
+ */
+t_tensr	*tensr_full(double value, const int ndim, const size_t *shape,
+		t_dtype dtype);
+
+/*
  ** Creates a scalar tensor.
  **
  ** @param n        The value of the scalar.
@@ -503,6 +516,4 @@ t_array						arr_i64(int64_t *data, const size_t len);
  */
 t_array						arr_f64(double *data, const size_t len);
 
-t_tensr	*tensr_fill(double value, const int ndim, const size_t *shape,
-		t_dtype dtype);
 #endif

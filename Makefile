@@ -20,7 +20,7 @@ OBJ_DIR := obj
 
 TENSR_MODULES := $(addprefix tensr/, \
 				 	$(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_f64.c) \
-				 	$(addprefix alloc/, tensr_alloc.c tensr_copy.c tensr_linspace.c tensr_broadcast.c tensr_reduced.c tensr_from_arr.c tensr_get.c tensr_set.c tensr_scalar.c tensr_fill.c ) \
+				$(addprefix alloc/, tensr_alloc.c tensr_copy.c tensr_linspace.c tensr_broadcast.c tensr_reduced.c tensr_from_arr.c tensr_get.c tensr_set.c tensr_scalar.c tensr_full.c ) \
 					$(addprefix iterator/, iter_init.c iter_next.c iter_reset.c) \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
 					$(addprefix layout/, layout_alloc.c layout_copy.c layout_shape_eq.c layout_free.c) \

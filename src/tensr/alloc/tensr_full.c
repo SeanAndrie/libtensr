@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_fill.c                                       :+:      :+:    :+:   */
+/*   tensr_full.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include <core/tensr.h>
 
-t_tensr	*tensr_fill(double value, const int ndim, const size_t *shape,
+t_tensr	*tensr_full(double value, const int ndim, const size_t *shape,
 		t_dtype dtype)
 {
 	t_iter	it;
