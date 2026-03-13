@@ -14,10 +14,12 @@
 
 static bool	is_equal(void *a, void *b, t_dtype dtype)
 {
-	if (dtype == DT_I32)
-		return ((*(int *)a == *(int *)b));
+	if (dtype == DT_U8)
+		return ((*(uint8_t *)a == *(uint8_t *)b));
+	else if (dtype == DT_I32)
+		return ((*(int32_t *)a == *(int32_t *)b));
 	else if (dtype == DT_I64)
-		return ((*(long long *)a == *(long long *)b));
+		return ((*(int64_t *)a == *(int64_t *)b));
 	return (false);
 }
 

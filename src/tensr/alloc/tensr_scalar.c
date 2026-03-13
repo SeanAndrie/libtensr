@@ -19,10 +19,12 @@ t_tensr	*tensr_scalar(double n, t_dtype dtype)
 	out = tensr_alloc(0, NULL, dtype);
 	if (!out)
 		return (NULL);
-	if (dtype == DT_I32)
-		*(int *)tensr_get(out, (size_t[]){0}) = (int)n;
+	if (dtype == DT_U8)
+		*(uint8_t *)tensr_get(out, (size_t[]){0}) = (uint8_t)n;
+	else if (dtype == DT_I32)
+		*(int32_t *)tensr_get(out, (size_t[]){0}) = (int32_t)n;
 	else if (dtype == DT_I64)
-		*(long long *)tensr_get(out, (size_t[]){0}) = (long long)n;
+		*(int64_t *)tensr_get(out, (size_t[]){0}) = (int64_t)n;
 	else if (dtype == DT_F32)
 		*(float *)tensr_get(out, (size_t[]){0}) = (float)n;
 	else if (dtype == DT_F64)

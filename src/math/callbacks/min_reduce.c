@@ -16,15 +16,20 @@
 
 void	typed_min(void *a, const void *b, t_dtype dtype)
 {
-	if (dtype == DT_I32)
+	if (dtype == DT_U8)
 	{
-		if (*(const int *)b < *(int *)a)
-			*(int *)a = *(const int *)b;
+		if (*(const uint8_t *)b < *(uint8_t *)a)
+			*(uint8_t *)a = *(const uint8_t *)b;
+	}
+	else if (dtype == DT_I32)
+	{
+		if (*(const int32_t *)b < *(int32_t *)a)
+			*(int32_t *)a = *(const int32_t *)b;
 	}
 	else if (dtype == DT_I64)
 	{
-		if (*(const long long *)b < *(long long *)a)
-			*(long long *)a = *(const long long *)b;
+		if (*(const int64_t *)b < *(int64_t *)a)
+			*(int64_t *)a = *(const int64_t *)b;
 	}
 	else if (dtype == DT_F32)
 	{
@@ -40,10 +45,12 @@ void	typed_min(void *a, const void *b, t_dtype dtype)
 
 void	min_init(void *acc, t_dtype dtype)
 {
-	if (dtype == DT_I32)
-		*(int *)acc = INT_MAX;
+	if (dtype == DT_U8)
+		*(uint8_t *)acc = UINT8_MAX;
+	else if (dtype == DT_I32)
+		*(int32_t *)acc = INT32_MAX;
 	else if (dtype == DT_I64)
-		*(long long *)acc = LLONG_MAX;
+		*(int64_t *)acc = INT64_MAX;
 	else if (dtype == DT_F32)
 		*(float *)acc = FLT_MAX;
 	else if (dtype == DT_F64)

@@ -29,10 +29,12 @@ t_tensr	*tensr_neg(const t_tensr *t)
 	{
 		src = tensr_get(t, it.indices);
 		dst = tensr_get(out, it.indices);
-		if (out->dtype == DT_I32)
-			*(int *)dst = -(*(int *)src);
+		if (out->dtype == DT_U8)
+			*(uint8_t *)dst = *(uint8_t *)src;
+		else if (out->dtype == DT_I32)
+			*(int32_t *)dst = -(*(int32_t *)src);
 		else if (out->dtype == DT_I64)
-			*(long long *)dst = -(*(long long *)src);
+			*(int64_t *)dst = -(*(int64_t *)src);
 		else if (out->dtype == DT_F32)
 			*(float *)dst = -(*(float *)src);
 		else if (out->dtype == DT_F64)

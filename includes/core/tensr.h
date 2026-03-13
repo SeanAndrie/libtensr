@@ -15,6 +15,7 @@
 
 # include <libft.h>
 # include <stdbool.h>
+# include <stdint.h>
 
 # define MIN_NDIM 4
 # define MAX_NDIM 32
@@ -23,6 +24,7 @@
 /* Supported Data Types */
 typedef enum e_dtype
 {
+    DT_U8,
 	DT_I32,
 	DT_I64,
 	DT_F32,
@@ -452,6 +454,16 @@ t_tensr						*tensr_elementwise(const t_tensr *a,
 									void *out, t_dtype dtype));
 
 /*
+ ** Creates a typed array with 8-bit unsigned integer data.
+ **
+ ** @param data      Pointer to the data array.
+ ** @param len       Length of the array.
+ **
+ ** @return          A typed array structure.
+ */
+t_array						arr_u8(uint8_t *data, const size_t len);
+
+/*
  ** Creates a typed array with 32-bit integer data.
  **
  ** @param data      Pointer to the data array.
@@ -459,7 +471,7 @@ t_tensr						*tensr_elementwise(const t_tensr *a,
  **
  ** @return          A typed array structure.
  */
-t_array						arr_i32(int *data, const size_t len);
+t_array						arr_i32(int32_t *data, const size_t len);
 
 /*
  ** Creates a typed array with 32-bit floating point data.
@@ -479,7 +491,7 @@ t_array						arr_f32(float *data, const size_t len);
  **
  ** @return          A typed array structure.
  */
-t_array						arr_i64(long long int *data, const size_t len);
+t_array						arr_i64(int64_t *data, const size_t len);
 
 /*
  ** Creates a typed array with 64-bit floating point data.

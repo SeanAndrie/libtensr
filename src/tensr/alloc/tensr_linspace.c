@@ -15,10 +15,12 @@
 
 static void	set_cast(void *dst, double value, t_dtype dtype)
 {
-	if (dtype == DT_I32)
-		*(int *)dst = (int)value;
+    if (dtype == DT_U8)
+        *(uint8_t *)dst = (uint8_t)value;
+    else if (dtype == DT_I32)
+		*(int32_t *)dst = (int32_t)value;
 	else if (dtype == DT_I64)
-		*(long long *)dst = (long long)value;
+		*(int64_t *)dst = (int64_t)value;
 	else if (dtype == DT_F32)
 		*(float *)dst = (float)value;
 	else if (dtype == DT_F64)

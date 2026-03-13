@@ -15,10 +15,12 @@
 
 void	sum_init(void *acc, t_dtype dtype)
 {
-	if (dtype == DT_I32)
-		*(int *)acc = 0;
+	if (dtype == DT_U8)
+		*(uint8_t *)acc = 0;
+	else if (dtype == DT_I32)
+		*(int32_t *)acc = 0;
 	else if (dtype == DT_I64)
-		*(long long *)acc = 0;
+		*(int64_t *)acc = 0;
 	else if (dtype == DT_F32)
 		*(float *)acc = 0.0f;
 	else if (dtype == DT_F64)
@@ -27,10 +29,12 @@ void	sum_init(void *acc, t_dtype dtype)
 
 void	sum_apply(void *acc, const void *value, t_dtype dtype)
 {
-	if (dtype == DT_I32)
-		*(int *)acc += *(const int *)value;
+	if (dtype == DT_U8)
+		*(uint8_t *)acc += *(const uint8_t *)value;
+	else if (dtype == DT_I32)
+		*(int32_t *)acc += *(const int32_t *)value;
 	else if (dtype == DT_I64)
-		*(long long *)acc += *(const long long *)value;
+		*(int64_t *)acc += *(const int64_t *)value;
 	else if (dtype == DT_F32)
 		*(float *)acc += *(const float *)value;
 	else if (dtype == DT_F64)

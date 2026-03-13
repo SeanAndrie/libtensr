@@ -12,7 +12,7 @@
 
 #include <core/tensr.h>
 
-t_array	arr_i32(int *data, const size_t len)
+t_array	arr_i32(int32_t *data, const size_t len)
 {
 	return ((t_array){.data = data, .len = len, .dtype = DT_I32});
 }

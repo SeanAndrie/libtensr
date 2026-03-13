@@ -30,10 +30,12 @@ t_tensr *tensr_clamp(const t_tensr *t, double min, double max)
     {
         src = tensr_get(t, it.indices);
         dst = tensr_get(out, it.indices);
-        if (t->dtype == DT_I32)
-            *(int *)dst = fmax(min, fmin(*(int *)src, max));
+        if (t->dtype == DT_U8)
+            *(uint8_t *)dst = (uint8_t)fmax(min, fmin(*(uint8_t *)src, max));
+        else if (t->dtype == DT_I32)
+            *(int32_t *)dst = (int32_t)fmax(min, fmin(*(int32_t *)src, max));
         else if (t->dtype == DT_I64)
-            *(long long *)dst = fmax(min, fmin(*(long long *)src, max));
+            *(int64_t *)dst = (int64_t)fmax(min, fmin(*(int64_t *)src, max));
         else if (t->dtype == DT_F32)
             *(float *)dst = fmaxf(min, fmin(*(float *)src, max));
         else if (t->dtype == DT_F64)

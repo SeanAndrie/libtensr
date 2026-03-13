@@ -28,7 +28,9 @@ static void print_array(const char *fieldname, size_t *arr, int ndim)
 static void print_dtype(t_dtype dtype)
 {
     printf(" + dtype: ");
-    if (dtype == DT_I32)
+    if (dtype == DT_U8)
+        printf("DT_U8");
+    else if (dtype == DT_I32)
         printf("DT_I32");
     else if (dtype == DT_F32)
         printf("DT_F32");

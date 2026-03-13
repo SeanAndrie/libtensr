@@ -17,11 +17,14 @@ void	print_element(const t_tensr *t, char *data_ptr)
 {
 	switch (t->dtype)
 	{
+	case DT_U8:
+		printf("%u", *(uint8_t *)data_ptr);
+		break ;
 	case DT_I32:
 		printf("%d", *(int32_t *)data_ptr);
 		break ;
 	case DT_I64:
-		printf("%lld", *(long long *)data_ptr);
+		printf("%ld", *(int64_t *)data_ptr);
 		break ;
 	case DT_F32:
 		printf("%f", *(float *)data_ptr);

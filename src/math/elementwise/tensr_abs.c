@@ -30,10 +30,12 @@ t_tensr	*tensr_abs(const t_tensr *t)
     {
         src = tensr_get(t, it.indices);
         dst = tensr_get(out, it.indices);
-        if (t->dtype == DT_I32)
-            *(int *)dst = abs(*(int *)src);
+        if (t->dtype == DT_U8)
+            *(uint8_t *)dst = *(uint8_t *)src;
+        else if (t->dtype == DT_I32)
+            *(int32_t *)dst = abs(*(int32_t *)src);
         else if (t->dtype == DT_I64)
-            *(long long *)dst = llabs(*(long long *)src);
+            *(int64_t *)dst = llabs(*(int64_t *)src);
         else if (t->dtype == DT_F32)
             *(float *)dst = fabsf(*(float *)src);
         else if (t->dtype == DT_F64)

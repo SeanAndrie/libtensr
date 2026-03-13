@@ -14,6 +14,8 @@
 
 static size_t	dtype_size_in_bytes(t_dtype dtype)
 {
+	if (dtype == DT_U8)
+		return (1);
 	if (dtype == DT_I32 || dtype == DT_F32)
 		return (4);
 	else if (dtype == DT_I64 || dtype == DT_F64)
