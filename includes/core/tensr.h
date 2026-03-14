@@ -516,4 +516,6 @@ t_array						arr_i64(int64_t *data, const size_t len);
  */
 t_array						arr_f64(double *data, const size_t len);
 
+bool                        tensr_fill(t_tensr *t, double value);
+
 #endif
