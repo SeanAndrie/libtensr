@@ -69,6 +69,7 @@
 - Square Root (`√`)
 - Negation
 - Absolute Value (`tensr_abs`)
+- Scale (`tensr_scale`)
 - Custom callback support via `tensr_elementwise`
 
 ### Linear Algebra

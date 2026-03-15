@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:49:08 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/08 20:40:27 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/15 21:45:16 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,5 +196,15 @@ t_tensr                 *tensr_matmul(const t_tensr *a, const t_tensr *b);
  ** @return          A pointer to the normalized tensor, or NULL on failure.
  */
 t_tensr                 *tensr_normalize(const t_tensr *t);
+
+/*
+ ** Scales each element in the tensor by a constant value.
+ **
+ ** @param t         Pointer to the input tensor.
+ ** @param value     The scaling factor.
+ **
+ ** @return          A pointer to the result tensor, or NULL on failure.
+ */
+t_tensr	                *tensr_scale(const t_tensr *t, double value);
 
 #endif
