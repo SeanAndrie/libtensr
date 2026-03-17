@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   layout_shape_eq.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/05 00:28:30 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/05 00:38:25 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr_core/core.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
+bool    layout_shape_eq(const t_layout *a, const t_layout *b)
+{
+    int i;
 
-# include <tensr_core/core_math.h>
-# include <tensr_core/core.h>
-
-#endif
+    if (!a || !b || a->ndim != b->ndim)
+        return (false);
+    i = a->ndim - 1;
+    while (i >= 0)
+    {
+        if (a->shape[i] != b->shape[i])
+            return (false);
+        i--;
+    }
+    return (true);
+}

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   vec3_cross.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/17 17:10:45 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/17 17:21:58 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr_rt/rt_math.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr_core/core_math.h>
-# include <tensr_core/core.h>
-
-#endif
+/*
+ * a[1]*b[2] - a[2]*b[1] -> [[a]
+ * a[2]*b[0] - a[0]*b[2] ->  [b]
+ * a[0]*b[1] - a[1]*b[0] ->  [c]]
+*/
+t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
+{
+	return ((t_vec3){.x = (a.y * b.z) - (a.z * b.y), .y = (a.z * b.x) - (a.x
+			* b.z), .z = (a.x * b.y) - (a.y * b.x)});
+}

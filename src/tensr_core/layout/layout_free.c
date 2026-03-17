@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   layout_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/01/31 23:59:32 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/02/27 17:49:11 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr_core/core.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr_core/core_math.h>
-# include <tensr_core/core.h>
-
-#endif
+void    layout_free(t_layout *l)
+{
+    if (!l)
+        return ;
+    if (l->ndim >= MIN_NDIM)
+    {
+        if (l->shape)
+        {
+            free(l->shape);
+            l->shape = NULL;
+        }
+        if (l->stride)
+        {
+            free(l->stride);
+            l->stride = NULL;
+        }
+    }
+    l->ndim = 0;
+}

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_sum.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/02/16 13:35:39 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/07 02:31:05 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr_core/core.h>
+#include <tensr_core/core_math.h>
+#include <utils/tensr_callbacks.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
+t_tensr	*tensr_sum(const t_tensr *t, const int n_axes, const size_t *axes)
+{
+	t_reduce_op	reduce_op;
 
-# include <tensr_core/core_math.h>
-# include <tensr_core/core.h>
-
-#endif
+	if (!t || !axes || n_axes <= 0)
+		return (NULL);
+	reduce_op = (t_reduce_op){sum_init, sum_apply, NULL};
+	return (tensr_reduce(t, n_axes, axes, reduce_op));
+}

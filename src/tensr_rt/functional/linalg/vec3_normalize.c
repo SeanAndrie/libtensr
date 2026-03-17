@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   vec3_normalize.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/17 16:42:50 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/17 17:21:51 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr_rt/rt_math.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
+t_vec3	vec3_normalize(t_vec3 v)
+{
+	float	norm;
 
-# include <tensr_core/core_math.h>
-# include <tensr_core/core.h>
-
-#endif
+	norm = sqrt(vec3_dot(v, v));
+	if (norm == 0.0f)
+		return ((t_vec3){0, 0, 0});
+	return ((t_vec3) {
+		.x = v.x / norm,
+		.y = v.y / norm,
+		.z = v.z / norm
+	});
+}

@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_div.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/02/03 23:02:44 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/05 20:42:37 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr_core/core.h>
+#include <tensr_core/core_math.h>
+#include <utils/tensr_callbacks.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
+t_tensr *tensr_div(const t_tensr *a, const t_tensr *b)
+{
+    t_tensr *out;
 
-# include <tensr_core/core_math.h>
-# include <tensr_core/core.h>
-
-#endif
+    if (!a || !b)
+        return (NULL);
+    out = tensr_elementwise(a, b, div_func);
+    if (!out)
+        return (NULL);
+    return (out);
+}
