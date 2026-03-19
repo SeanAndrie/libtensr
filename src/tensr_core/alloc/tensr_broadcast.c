@@ -6,18 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 00:30:56 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/09 16:36:28 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/19 11:45:41 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
 #include <tensr_core/core.h>
-
-static int	ft_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
 
 static int	get_dim(const t_layout *l, int out_ndim, int i)
 {
