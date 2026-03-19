@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 16:49:00 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:50:22 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/19 12:49:39 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 float   vec3_dot(t_vec3 a, t_vec3 b)
 {
-    return ((a.x * b.x) + (a.y * b.y) + (a.z * a.z));
+    return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z));
 }
