@@ -51,9 +51,4 @@ void	vec3_normalize_ip(t_vec3 *v);
 t_vec3	vec3_scale(t_vec3 v, float n);
 void	vec3_scale_ip(t_vec3 *v, float n);
 
-/* Ray Operations */
-
-t_vec3	ray_at(t_ray ray, float t);
-t_ray	ray_create(t_vec3 orig, t_vec3 dir);
-
 #endif

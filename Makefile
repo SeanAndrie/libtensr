@@ -21,8 +21,7 @@ OBJ_DIR := obj
 TENSR_RT_MODULES := $(addprefix tensr_rt/functional/elementwise/, vec3_add.c vec3_sub.c vec3_mul.c vec3_div.c vec3_neg.c vec3_abs.c) \
 					$(addprefix tensr_rt/functional/linalg/, vec3_dot.c vec3_cross.c vec3_normalize.c vec3_scale.c vec3_magnitude.c vec3_magnitude_sq.c) \
 					$(addprefix tensr_rt/inplace/elementwise/, vec3_add_ip.c vec3_sub_ip.c vec3_mul_ip.c vec3_div_ip.c vec3_neg_ip.c vec3_abs_ip.c) \
-					$(addprefix tensr_rt/inplace/linalg/, vec3_normalize_ip.c vec3_scale_ip.c) \
-					$(addprefix tensr_rt/intersect/, ray_at.c)
+					$(addprefix tensr_rt/inplace/linalg/, vec3_normalize_ip.c vec3_scale_ip.c)
 
 TENSR_MATH_MODULES := $(addprefix tensr_core/math/, \
 						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \

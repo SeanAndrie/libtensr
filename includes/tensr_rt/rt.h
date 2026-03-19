@@ -17,19 +17,11 @@
 #  include <immintrin.h>
 # endif
 
-typedef struct s_tensr	t_tensr;
-
 typedef struct s_vec3
 {
 	float				x;
 	float				y;
 	float				z;
 }						t_vec3;
-
-typedef struct s_ray
-{
-	struct s_vec3		orig;
-	struct s_vec3		dir;
-}						t_ray;
 
 #endif
