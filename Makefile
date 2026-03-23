@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/03/17 19:10:08 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/03/23 21:44:46 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ OBJ_DIR := obj
 TENSR_RT_MODULES := $(addprefix tensr_rt/functional/elementwise/, vec3_add.c vec3_sub.c vec3_mul.c vec3_div.c vec3_neg.c vec3_abs.c) \
 					$(addprefix tensr_rt/functional/linalg/, vec3_dot.c vec3_cross.c vec3_normalize.c vec3_scale.c vec3_magnitude.c vec3_magnitude_sq.c) \
 					$(addprefix tensr_rt/inplace/elementwise/, vec3_add_ip.c vec3_sub_ip.c vec3_mul_ip.c vec3_div_ip.c vec3_neg_ip.c vec3_abs_ip.c) \
-					$(addprefix tensr_rt/inplace/linalg/, vec3_normalize_ip.c vec3_scale_ip.c)
+					$(addprefix tensr_rt/inplace/linalg/, vec3_normalize_ip.c vec3_scale_ip.c) \
+					$(addprefix tensr_rt/convert/, vec3_to_tensr.c)
 
 TENSR_MATH_MODULES := $(addprefix tensr_core/math/, \
 						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \
