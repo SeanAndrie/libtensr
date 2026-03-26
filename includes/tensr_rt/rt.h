@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +:++:+         +:      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 16:00:00 by sgadinga          #+#   #+        #+#    */
-/*   Updated: 2026/03/23 23:54:01 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/26 12:10:36 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # ifdef TENSR_SIMD
 #  include <immintrin.h>
 # endif
+
+# include <stdbool.h>
 
 typedef struct s_tensr t_tensr;
 
