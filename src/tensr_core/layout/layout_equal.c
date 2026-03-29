@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   layout_shape_eq.c                                  :+:      :+:    :+:   */
+/*   layout_equal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 00:28:30 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 00:38:25 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/30 01:13:29 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr_core/core.h>
 
-bool    layout_shape_eq(const t_layout *a, const t_layout *b)
+bool    layout_equal(const t_layout *a, const t_layout *b)
 {
     int i;
 
