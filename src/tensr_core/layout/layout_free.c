@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/31 23:59:32 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/02/27 17:49:11 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/30 00:16:53 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ void    layout_free(t_layout *l)
             l->stride = NULL;
         }
     }
+    else
+        ft_memset(l, 0, sizeof(t_layout));
     l->ndim = 0;
 }

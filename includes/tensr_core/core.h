@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/26 14:19:36 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/30 01:14:52 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@
 /* Supported Data Types */
 typedef enum e_dtype
 {
-    DT_U8,
+	DT_U8,
 	DT_I32,
 	DT_I64,
 	DT_F32,
 	DT_F64,
-    DT_CUSTOM
+	DT_CUSTOM
 }							t_dtype;
 
 /* Typed Array */
@@ -167,8 +167,8 @@ t_tensr						*tensr_linspace(double start, double end,
  **
  ** @return          A pointer to the filled tensor, or NULL on failure.
  */
-t_tensr	*tensr_full(double value, const int ndim, const size_t *shape,
-		t_dtype dtype);
+t_tensr						*tensr_full(double value, const int ndim,
+								const size_t *shape, t_dtype dtype);
 
 /*
  ** Creates a scalar tensor.
@@ -268,6 +268,21 @@ t_tensr						*tensr_reshape(const t_tensr *t, const int ndim,
  */
 t_tensr						*tensr_slice(const t_tensr *t, const int n_slices,
 								const t_slice *slices);
+
+/*
+ ** Expands the dimensions of a tensor by inserting a new axis at
+ ** the specified position.
+ **
+ ** Similar to NumPy's np.expand_dims(), this function adds a dimension
+ ** of size 1 at the given axis without modifying the underlying data.
+ **
+ ** @param t         Pointer to the tensor to expand.
+ ** @param axis      Position at which to insert the new dimension
+ **					(0 to ndim inclusive).
+ **
+ ** @return          true on success, false on failure.
+ */
+bool						tensr_expand_dims(t_tensr *t, const int axis);
 
 /*
  ** Sets the value at a specific index in the tensor.
@@ -419,6 +434,22 @@ void						iter_reset(t_iter *it);
 bool						layout_alloc(const int ndim, t_layout *l);
 
 /*
+ ** Initializes a tensor layout with the given shape and computes strides.
+ **
+ ** This function allocates memory for the layout and computes row-major
+ ** strides based on the provided shape.
+ **
+ ** @param l         Pointer to the layout to initialize.
+ ** @param ndim      Number of dimensions.
+ ** @param shape     Array representing the number of elements per axis.
+ **
+ ** @return          The total number of elements (product of shape),
+ **					or 0 on failure.
+ */
+size_t						layout_init(t_layout *l, const int ndim,
+								const size_t *shape);
+
+/*
  ** Copies a layout from source to destination.
  **
  ** @param dst       Pointer to the destination layout.
@@ -436,8 +467,7 @@ bool						layout_copy(t_layout *dst, const t_layout *src);
  **
  ** @return         true if shapes are equal, false if otherwise
  */
-bool						layout_shape_eq(const t_layout *a,
-								const t_layout *b);
+bool						layout_equal(const t_layout *a, const t_layout *b);
 
 /*
  ** Frees the memory allocated for a layout.
@@ -517,6 +547,14 @@ t_array						arr_i64(int64_t *data, const size_t len);
  */
 t_array						arr_f64(double *data, const size_t len);
 
-bool                        tensr_fill(t_tensr *t, double value);
+/*
+ ** Fills a tensor with a constant value.
+ **
+ ** @param t         Pointer to the tensor to fill.
+ ** @param value     The constant value to fill the tensor with.
+ **
+ ** @return          true on success, false on failure.
+ */
+bool						tensr_fill(t_tensr *t, double value);
 
 #endif

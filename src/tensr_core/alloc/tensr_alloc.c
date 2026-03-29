@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 00:00:34 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/02/27 15:41:13 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/29 22:58:22 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr_core/core.h>
+#include <utils/tensr_debug.h>
 
 static size_t	dtype_size_in_bytes(t_dtype dtype)
 {
@@ -29,33 +30,6 @@ static bool	invalid_parameters(const int ndim, const size_t *shape)
 		|| (ndim > MAX_NDIM));
 }
 
-static bool	init_layout(const int ndim, const size_t *shape, t_tensr *dst)
-{
-	int			i;
-	t_layout	*l;
-
-	l = &dst->layout;
-	if (!layout_alloc(ndim, l))
-		return (false);
-	if (ndim == 0)
-		return (true);
-	i = 0;
-	while (i < l->ndim)
-	{
-		l->shape[i] = shape[i];
-		dst->size *= shape[i];
-		i++;
-	}
-	l->stride[l->ndim - 1] = 1;
-	i = l->ndim - 2;
-	while (i >= 0)
-	{
-		l->stride[i] = l->stride[i + 1] * l->shape[i + 1];
-		i--;
-	}
-	return (true);
-}
-
 t_tensr	*tensr_alloc(const int ndim, const size_t *shape, t_dtype dtype)
 {
 	t_tensr	*t;
@@ -65,14 +39,12 @@ t_tensr	*tensr_alloc(const int ndim, const size_t *shape, t_dtype dtype)
 	t = malloc(sizeof(t_tensr));
 	if (!t)
 		return (NULL);
-	t->size = 1;
 	t->dtype = dtype;
 	t->owns_data = true;
 	t->elemsize = dtype_size_in_bytes(dtype);
 	if (t->elemsize == 0)
 		return (free(t), NULL);
-	if (!init_layout(ndim, shape, t))
-		return (tensr_free(t), NULL);
+    t->size = layout_init(&t->layout, ndim, shape);
 	t->data = malloc(t->elemsize * t->size);
 	if (!t->data)
 		return (tensr_free(t), NULL);
