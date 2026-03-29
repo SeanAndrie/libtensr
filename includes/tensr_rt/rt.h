@@ -23,11 +23,11 @@ typedef struct s_tensr t_tensr;
 
 typedef struct s_vec3
 {
-	float	x;
-	float	y;
-	float	z;
-}			t_vec3;
+	float				x;
+	float				y;
+	float				z;
+}						t_vec3;
 
-t_tensr		*vec3_to_tensr(const t_vec3 v, bool row);
+t_tensr					*vec3_to_tensr(const t_vec3 v, bool row);
 
 #endif
