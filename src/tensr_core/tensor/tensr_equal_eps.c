@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 02:01:02 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/09 15:34:23 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/30 01:14:08 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
 		return (false);
 	if (a->dtype == DT_I32 || a->dtype == DT_I64)
 		return (false);
-	if (a->dtype != b->dtype || !layout_shape_eq(&a->layout, &b->layout))
+	if (a->dtype != b->dtype || !layout_equal(&a->layout, &b->layout))
 		return (false);
 	if (!iter_init((t_layout *)&a->layout, &it))
 	{

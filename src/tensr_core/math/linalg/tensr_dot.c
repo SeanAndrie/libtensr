@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 21:40:00 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 00:44:14 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/30 01:13:49 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_tensr	*tensr_dot(const t_tensr *a, const t_tensr *b)
 	t_tensr	*temp;
     size_t  axes[MAX_NDIM];
 
-	if (!a || !b || !layout_shape_eq(&a->layout, &b->layout))
+	if (!a || !b || !layout_equal(&a->layout, &b->layout))
 		return (NULL);
 	temp = tensr_mul(a, b);
 	if (!temp)
