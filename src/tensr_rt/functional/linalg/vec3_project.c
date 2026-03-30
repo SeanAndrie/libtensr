@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_normalize.c                                  :+:      :+:    :+:   */
+/*   vec3_project.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/10 01:06:52 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/30 11:25:59 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/30 03:09:27 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/30 03:10:14 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr_core/core.h>
-#include <tensr_core/core_math.h>
+#include <tensr_rt/rt_math.h>
 
-t_tensr *tensr_normalize(const t_tensr *t)
+t_project	vec3_project(t_vec3 v, t_vec3 u_hat)
 {
-    t_tensr *out;
-    t_tensr *norm;
-    
-    if (!t)
-        return (NULL);
-    norm = tensr_norm(t, true);
-    if (!norm)
-        return (NULL);
-    out = tensr_div(t, norm);
-    tensr_free(norm);
-    if (!out)
-        return (NULL);
-    return (out);
+	t_project	proj;
+
+	proj.axial = vec3_dot(v, u_hat);
+	proj.perp = vec3_sub(v, vec3_scale(u_hat, proj.axial));
+	return (proj);
 }

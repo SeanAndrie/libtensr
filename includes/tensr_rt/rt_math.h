@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_rt_math.h                                    :+:      :+:    :+:   */
+/*   rt_math.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +:++:+         +:      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 16:00:00 by sgadinga          #+#   #+        #+#    */
-/*   Updated: 2026/03/17 18:00:36 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/30 03:10:26 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ void	vec3_normalize_ip(t_vec3 *v);
 
 t_vec3	vec3_scale(t_vec3 v, float n);
 void	vec3_scale_ip(t_vec3 *v, float n);
+
+t_project	vec3_project(t_vec3 v, t_vec3 u_hat);
 
 #endif

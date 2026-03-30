@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/03/30 01:14:22 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/03/30 10:30:39 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRC_DIR := src
 OBJ_DIR := obj
 
 TENSR_RT_MODULES := $(addprefix tensr_rt/functional/elementwise/, vec3_add.c vec3_sub.c vec3_mul.c vec3_div.c vec3_neg.c vec3_abs.c) \
-					$(addprefix tensr_rt/functional/linalg/, vec3_dot.c vec3_cross.c vec3_normalize.c vec3_scale.c vec3_magnitude.c vec3_magnitude_sq.c) \
+					$(addprefix tensr_rt/functional/linalg/, vec3_dot.c vec3_cross.c vec3_normalize.c vec3_scale.c vec3_magnitude.c vec3_magnitude_sq.c vec3_project.c) \
 					$(addprefix tensr_rt/inplace/elementwise/, vec3_add_ip.c vec3_sub_ip.c vec3_mul_ip.c vec3_div_ip.c vec3_neg_ip.c vec3_abs_ip.c) \
 					$(addprefix tensr_rt/inplace/linalg/, vec3_normalize_ip.c vec3_scale_ip.c) \
 					$(addprefix tensr_rt/convert/, vec3_to_tensr.c)
@@ -28,7 +28,7 @@ TENSR_MATH_MODULES := $(addprefix tensr_core/math/, \
 						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \
   						$(addprefix elementwise/, tensr_abs.c tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c tensr_clamp.c tensr_scale.c) \
  						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c tensr_mean.c) \
- 						$(addprefix linalg/, tensr_dot.c tensr_cross.c tensr_norm.c tensr_matmul.c tensr_normalize.c ))
+ 						$(addprefix linalg/, tensr_dot.c tensr_inner.c tensr_cross.c tensr_norm.c tensr_matmul.c tensr_normalize.c))
 
 TENSR_MODULES := $(addprefix tensr_core/, \
 					$(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_f64.c) \
