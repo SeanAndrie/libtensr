@@ -129,7 +129,7 @@ t_tensr						*tensr_copy(const t_tensr *t);
  **
  ** @return          A pointer to the cast tensor, or NULL on failure.
  */
-t_tensr						*tensr_cast(const t_tensr *t, t_dtype dtype);
+t_tensr						*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out);
 
 /*
  ** Converts a typed array into a tensor.
