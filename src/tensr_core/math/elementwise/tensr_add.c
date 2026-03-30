@@ -14,13 +14,11 @@
 #include <tensr_core/core_math.h>
 #include <utils/tensr_callbacks.h>
 
-t_tensr *tensr_add(const t_tensr *a, const t_tensr *b)
+t_tensr *tensr_add(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {
-    t_tensr *out;
-
     if (!a || !b)
         return (NULL);
-    out = tensr_elementwise(a, b, add_func);
+    out = tensr_elementwise(a, b, out, add_func);
     if (!out)
         return (NULL);
     return (out);

@@ -21,9 +21,7 @@ t_tensr	*tensr_dot(const t_tensr *a, const t_tensr *b)
 	if (!a || !b)
 		return (NULL);
 	ndim_a = a->layout.ndim;
-	ndim_b = b->layout.ndim;
-	if (ndim_a == 0 && ndim_b == 0)
-		return (tensr_mul(a, b));
+		return (tensr_mul(a, b, NULL));
 	if (ndim_a == 1 && ndim_b == 1)
 		return (tensr_inner(a, b, 1, (size_t[]){0}));
 	if (ndim_a == 2 && ndim_b == 2)

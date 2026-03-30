@@ -494,7 +494,8 @@ void						layout_free(t_layout *l);
 // 									t_dtype dtype));
 
 t_tensr						*tensr_elementwise(const t_tensr *a,
-								const t_tensr *b, void (*f)(void *a, void *b,
+								const t_tensr *b, t_tensr *out,
+								void (*f)(void *a, void *b,
 									void *out, t_dtype dtype));
 
 /*

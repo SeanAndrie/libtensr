@@ -20,7 +20,7 @@ t_tensr	*tensr_inner(const t_tensr *a, const t_tensr *b, const size_t n_axes,
 
 	if (!a || !b || !layout_equal(&a->layout, &b->layout))
 		return (NULL);
-	temp = tensr_mul(a, b);
+	temp = tensr_mul(a, b, NULL);
 	if (!temp)
 		return (NULL);
 	out = tensr_sum(temp, n_axes, axes);

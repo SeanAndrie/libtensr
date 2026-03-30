@@ -43,28 +43,47 @@ static void	init_indices(size_t *a_indices, size_t *b_indices, int a_ndim,
 	ft_memset(b_indices, 0, sizeof(size_t) * b_ndim);
 }
 
-t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b,
-		void (*f)(void *a, void *b, void *out, t_dtype dtype))
+static t_tensr	*tensr_out(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {
-	t_iter	it;
-	t_tensr	*out;
-	size_t	a_indices[MAX_NDIM];
-	size_t	b_indices[MAX_NDIM];
+	t_tensr	*res;
 
 	if (!a || !b || a->dtype != b->dtype)
 		return (NULL);
-	out = tensr_broadcast(&a->layout, &b->layout, a->dtype);
-	if (!out)
+	if (out)
+		res = out;
+	else
+	{
+		res = tensr_broadcast(&a->layout, &b->layout, a->dtype);
+		if (!res)
+			return (NULL);
+	}
+	return (res);
+}
+
+t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b, t_tensr *out,
+		void (*f)(void *a, void *b, void *out, t_dtype dtype))
+{
+	t_iter	it;
+	t_tensr	*res;
+	size_t	a_indices[MAX_NDIM];
+	size_t	b_indices[MAX_NDIM];
+
+	res = tensr_out(a, b, out);
+	if (!res)
 		return (NULL);
-	if (!iter_init(&out->layout, &it))
-		return (tensr_free(out), NULL);
+	if (!iter_init(&res->layout, &it))
+	{
+		if (!out)
+			tensr_free(res);
+		return (NULL);
+	}
 	init_indices(a_indices, b_indices, a->layout.ndim, b->layout.ndim);
 	while (iter_next(&it))
 	{
-		map_indices(out->layout.ndim, &a->layout, a_indices, it.indices);
-		map_indices(out->layout.ndim, &b->layout, b_indices, it.indices);
-		f(tensr_get(a, a_indices), tensr_get(b, b_indices), tensr_get(out,
+		map_indices(res->layout.ndim, &a->layout, a_indices, it.indices);
+		map_indices(res->layout.ndim, &b->layout, b_indices, it.indices);
+		f(tensr_get(a, a_indices), tensr_get(b, b_indices), tensr_get(res,
 				it.indices), a->dtype);
 	}
-	return (out);
+	return (res);
 }

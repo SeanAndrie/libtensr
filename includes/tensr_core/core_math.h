@@ -21,68 +21,75 @@
  ** Computes the absolute value of each element in the tensor.
  **
  ** @param t         Pointer to the input tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_abs(const t_tensr *t);
+t_tensr	*tensr_abs(const t_tensr *t, t_tensr *out);
 
 /*
  ** Negates each element in the tensor.
  **
  ** @param t         Pointer to the input tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_neg(const t_tensr *t);
+t_tensr	*tensr_neg(const t_tensr *t, t_tensr *out);
 
 /*
  ** Computes the square root of each element in the tensor.
  **
  ** @param t         Pointer to the input tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_sqrt(const t_tensr *t);
+t_tensr	*tensr_sqrt(const t_tensr *t, t_tensr *out);
 
 /*
  ** Adds two tensors element-wise (broadcasting supported).
  **
  ** @param a         Pointer to the first tensor.
  ** @param b         Pointer to the second tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_add(const t_tensr *a, const t_tensr *b);
+t_tensr	*tensr_add(const t_tensr *a, const t_tensr *b, t_tensr *out);
 
 /*
  ** Multiplies two tensors element-wise (broadcasting supported).
  **
  ** @param a         Pointer to the first tensor.
  ** @param b         Pointer to the second tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_mul(const t_tensr *a, const t_tensr *b);
+t_tensr	*tensr_mul(const t_tensr *a, const t_tensr *b, t_tensr *out);
 
 /*
  ** Subtracts tensor b from tensor a element-wise (broadcasting supported).
  **
  ** @param a         Pointer to the first tensor.
  ** @param b         Pointer to the second tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_sub(const t_tensr *a, const t_tensr *b);
+t_tensr	*tensr_sub(const t_tensr *a, const t_tensr *b, t_tensr *out);
 
 /*
  ** Divides tensor a by tensor b element-wise (broadcasting supported).
  **
  ** @param a         Pointer to the numerator tensor.
  ** @param b         Pointer to the denominator tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_div(const t_tensr *a, const t_tensr *b);
+t_tensr	*tensr_div(const t_tensr *a, const t_tensr *b, t_tensr *out);
 
 /*
  ** Clamps each element in the tensor between min and max values.
@@ -90,10 +97,11 @@ t_tensr	*tensr_div(const t_tensr *a, const t_tensr *b);
  ** @param t         Pointer to the input tensor.
  ** @param min       Minimum value (inclusive).
  ** @param max       Maximum value (inclusive).
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_clamp(const t_tensr *t, double min, double max);
+t_tensr	*tensr_clamp(const t_tensr *t, double min, double max, t_tensr *out);
 
 // Reductions Operations
 
@@ -147,10 +155,11 @@ t_tensr	*tensr_mean(const t_tensr *t, const int n_axes, const size_t *axes);
  ** Computes the L2 norm (Euclidean norm) of the tensor.
  **
  ** @param t         Pointer to the input tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the scalar result tensor, or NULL on failure.
  */
-t_tensr	*tensr_norm(const t_tensr *t, bool keepdims);
+t_tensr	*tensr_norm(const t_tensr *t, bool keepdims, t_tensr *out);
 
 t_tensr	*tensr_inner(const t_tensr *a, const t_tensr *b, const size_t n_axes,
 			const size_t *axes);
@@ -179,20 +188,22 @@ t_tensr	*tensr_matmul(const t_tensr *a, const t_tensr *b);
  ** Normalizes the tensor to unit length (L2 norm = 1).
  **
  ** @param t         Pointer to the input tensor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the normalized tensor, or NULL on failure.
  */
-t_tensr	*tensr_normalize(const t_tensr *t);
+t_tensr	*tensr_normalize(const t_tensr *t, t_tensr *out);
 
 /*
  ** Scales each element in the tensor by a constant value.
  **
  ** @param t         Pointer to the input tensor.
  ** @param value     The scaling factor.
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr	*tensr_scale(const t_tensr *t, double value);
+t_tensr	*tensr_scale(const t_tensr *t, double value, t_tensr *out);
 
 /*
  ** Computes the dot product of two tensors.

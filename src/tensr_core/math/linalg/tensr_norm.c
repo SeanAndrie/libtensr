@@ -14,10 +14,9 @@
 #include <tensr_core/core_math.h>
 #include <libft.h>
 
-t_tensr	*tensr_norm(const t_tensr *t, bool keepdims)
+t_tensr	*tensr_norm(const t_tensr *t, bool keepdims, t_tensr *out)
 {
 	t_tensr	*dot;
-	t_tensr	*out;
 	size_t	axis;
 
 	if (!t)
@@ -26,7 +25,7 @@ t_tensr	*tensr_norm(const t_tensr *t, bool keepdims)
 	dot = tensr_inner(t, t, 1, &axis);
 	if (!dot)
 		return (NULL);
-	out = tensr_sqrt(dot);
+	out = tensr_sqrt(dot, out);
 	tensr_free(dot);
 	if (!out)
 		return (NULL);
