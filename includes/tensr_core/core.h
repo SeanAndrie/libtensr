@@ -129,7 +129,8 @@ t_tensr						*tensr_copy(const t_tensr *t);
  **
  ** @return          A pointer to the cast tensor, or NULL on failure.
  */
-t_tensr						*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out);
+t_tensr						*tensr_cast(const t_tensr *t, t_dtype dtype,
+								t_tensr *out);
 
 /*
  ** Converts a typed array into a tensor.
@@ -488,15 +489,9 @@ void						layout_free(t_layout *l);
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-
-// t_tensr						*tensr_elementwise(const t_tensr *a,
-// 								const t_tensr *b, void *(*f)(void *a, void *b,
-// 									t_dtype dtype));
-
 t_tensr						*tensr_elementwise(const t_tensr *a,
-								const t_tensr *b, t_tensr *out,
-								void (*f)(void *a, void *b,
-									void *out, t_dtype dtype));
+								const t_tensr *b, void (*f)(void *a, void *b,
+									void *out, t_dtype dtype), t_tensr *out);
 
 /*
  ** Creates a typed array with 8-bit unsigned integer data.

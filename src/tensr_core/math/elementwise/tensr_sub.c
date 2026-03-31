@@ -18,7 +18,7 @@ t_tensr *tensr_sub(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {
     if (!a || !b)
         return (NULL);
-    out = tensr_elementwise(a, b, out, sub_func);
+    out = tensr_elementwise(a, b, sub_func, out);
     if (!out)
         return (NULL);
     return (out);

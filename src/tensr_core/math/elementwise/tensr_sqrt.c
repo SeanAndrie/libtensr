@@ -14,6 +14,30 @@
 #include <tensr_core/core.h>
 #include <tensr_core/core_math.h>
 
+static t_tensr *initialize(const t_tensr *t, t_tensr *out, t_iter *it)
+{
+    t_tensr *ret;
+    bool    alloc;
+
+    alloc = false;
+    if (out)
+        ret = out;
+    else
+    {
+        ret = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
+        if (!ret)
+            return (NULL);
+        alloc = true;
+    }
+    if (!iter_init(&ret->layout, it))
+    {
+        if (alloc)
+            tensr_free(ret);
+        return (NULL);
+    }
+    return (ret);
+}
+
 t_tensr *tensr_sqrt(const t_tensr *t, t_tensr *out)
 {
     t_iter  it;
@@ -22,13 +46,8 @@ t_tensr *tensr_sqrt(const t_tensr *t, t_tensr *out)
 
     if (!t)
         return (NULL);
+    out = initialize(t, out, &it);
     if (!out)
-    {
-        out = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
-        if (!out)
-            return (NULL);
-    }
-    if (!iter_init(&out->layout, &it))
         return (NULL);
     while (iter_next(&it))
     {

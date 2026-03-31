@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:20:57 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/30 14:20:58 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/30 22:17:47 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,6 @@ static void	cast_from_double(void *dst, double val, t_dtype dst_type)
 		*(double *)dst = val;
 }
 
-static t_tensr	*tensr_out(t_tensr *out, const t_tensr *t, t_dtype dtype)
-{
-	if (out)
-		return (out);
-	return (tensr_alloc(t->layout.ndim, t->layout.shape, dtype));
-}
-
 static t_tensr	*cast_same_dtype(const t_tensr *t, t_tensr *out)
 {
 	if (out)
@@ -58,27 +51,46 @@ static t_tensr	*cast_same_dtype(const t_tensr *t, t_tensr *out)
 	return (tensr_copy(t));
 }
 
+static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
+{
+	t_tensr	*ret;
+	bool	alloc;
+
+    alloc = false;
+	if (out)
+		ret = out;
+	else
+	{
+		ret = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
+		if (!ret)
+			return (NULL);
+		alloc = true;
+	}
+	if (!iter_init(&ret->layout, it))
+	{
+		if (alloc)
+			tensr_free(ret);
+		return (NULL);
+	}
+	return (out);
+}
+
 t_tensr	*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out)
 {
 	t_iter	it;
-	bool	alloced;
+	float	value;
 
 	if (!t)
 		return (NULL);
 	if (t->dtype == dtype)
 		return (cast_same_dtype(t, out));
-	alloced = (out == NULL);
-	out = tensr_out(out, t, dtype);
+	out = initialize(t, out, &it);
 	if (!out)
 		return (NULL);
-	if (!iter_init(&out->layout, &it))
-	{
-		if (alloced)
-			tensr_free(out);
-		return (NULL);
-	}
 	while (iter_next(&it))
-		cast_from_double(tensr_get(out, it.indices), cast_to_double(tensr_get(t,
-					it.indices), t->dtype), dtype);
+	{
+		value = cast_to_double(tensr_get(t, it.indices), t->dtype);
+		cast_from_double(tensr_get(out, it.indices), value, out->dtype);
+	}
 	return (out);
 }

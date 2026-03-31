@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:49:08 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/30 10:31:03 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/03/31 00:18:04 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ t_tensr	*tensr_matmul(const t_tensr *a, const t_tensr *b);
  ** Normalizes the tensor to unit length (L2 norm = 1).
  **
  ** @param t         Pointer to the input tensor.
- ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
+ ** @param out      Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the normalized tensor, or NULL on failure.
  */

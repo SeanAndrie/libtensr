@@ -18,7 +18,7 @@ t_tensr *tensr_add(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {
     if (!a || !b)
         return (NULL);
-    out = tensr_elementwise(a, b, out, add_func);
+    out = tensr_elementwise(a, b, add_func, out);
     if (!out)
         return (NULL);
     return (out);

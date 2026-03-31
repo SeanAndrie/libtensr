@@ -18,7 +18,7 @@ t_tensr *tensr_div(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {
     if (!a || !b)
         return (NULL);
-    out = tensr_elementwise(a, b, out, div_func);
+    out = tensr_elementwise(a, b, div_func, out);
     if (!out)
         return (NULL);
     return (out);
