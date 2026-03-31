@@ -6,13 +6,13 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/03/31 19:12:34 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/04/01 01:50:13 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libtensr.a
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr_core -Iincludes/tensr_rt -I../libft/includes -O3
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr_core -Iincludes/tensr_rt -I../libft/includes
 ARCHIVE := ar rcs
 
 SRC_DIR := src
@@ -22,7 +22,7 @@ TENSR_RT_MODULES := $(addprefix tensr_rt/functional/elementwise/, vec3_add.c vec
 					$(addprefix tensr_rt/functional/linalg/, vec3_dot.c vec3_cross.c vec3_normalize.c vec3_scale.c vec3_magnitude.c vec3_magnitude_sq.c vec3_project.c) \
 					$(addprefix tensr_rt/inplace/elementwise/, vec3_add_ip.c vec3_sub_ip.c vec3_mul_ip.c vec3_div_ip.c vec3_neg_ip.c vec3_abs_ip.c) \
 					$(addprefix tensr_rt/inplace/linalg/, vec3_normalize_ip.c vec3_scale_ip.c) \
-					$(addprefix tensr_rt/convert/, vec3_to_tensr.c)
+					$(addprefix tensr_rt/convert/, vec3_to_tensr.c tensr_to_vec3.c)
 
 TENSR_MATH_MODULES := $(addprefix tensr_core/math/, \
 						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \

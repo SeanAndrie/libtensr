@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +:++:+         +:      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 16:00:00 by sgadinga          #+#   #+        #+#    */
-/*   Updated: 2026/03/30 03:37:50 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/01 02:02:18 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_project
 	float				axial;
 }						t_project;
 
-t_tensr					*vec3_to_tensr(const t_vec3 v, bool row);
+t_vec3					tensr_to_vec3(t_tensr *t);
+t_tensr					*vec3_to_tensr(const t_vec3 v);
 
 #endif

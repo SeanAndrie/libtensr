@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_to_tensr.c                                    :+:      :+:    :+:   */
+/*   tensr_to_vec3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/23 21:41:17 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/01 01:45:47 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/01 01:33:46 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/01 02:01:59 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
 #include <libtensr.h>
-#include <libtensr_rt.h>
+#include <tensr_rt/rt.h>
 
-t_tensr *vec3_to_tensr(const t_vec3 v)
+t_vec3	tensr_to_vec3(t_tensr *t)
 {
-    t_array arr;
+	t_vec3	vec;
 
-    arr = arr_f32((float[]){v.x, v.y, v.z}, 3);
-    return (tensr_from_arr(&arr, 1, (size_t[]){3}, DT_F32));
+	if (!t || t->layout.ndim != 1 || t->layout.shape[0] != 3
+		|| t->dtype != DT_F32)
+		return ((t_vec3){0.0f, 0.0f, 0.0f});
+	ft_memcpy(&vec, t->data, sizeof(t_vec3));
+	return (vec);
 }
-
