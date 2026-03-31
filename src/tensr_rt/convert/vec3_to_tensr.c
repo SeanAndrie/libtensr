@@ -6,18 +6,28 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 21:41:17 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/01 01:45:47 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/01 02:43:02 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libtensr.h>
 #include <libtensr_rt.h>
 
-t_tensr *vec3_to_tensr(const t_vec3 v)
+t_tensr *vec3_to_tensr(t_vec3 v, const int ndim, const size_t *shape)
 {
+    int     i;
     t_array arr;
+    size_t  size;
 
+    if (!shape || ndim <= 0)
+        return (NULL);
+    size = 1;
+    i = 0;
+    while (i < ndim)
+        size *= shape[i++];
+    if (size != 3)
+        return (NULL);
     arr = arr_f32((float[]){v.x, v.y, v.z}, 3);
-    return (tensr_from_arr(&arr, 1, (size_t[]){3}, DT_F32));
+    return (tensr_from_arr(&arr, ndim, shape, DT_F32));
 }
 
