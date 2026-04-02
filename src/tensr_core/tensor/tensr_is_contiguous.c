@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 16:27:00 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/31 19:08:24 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/01 23:35:57 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	tensr_is_contiguous(const t_tensr *t)
 	{
 		if (l.stride[i] != expected_stride)
 			return (false);
-		expected_stride *= l.stride[i];
+		expected_stride *= l.shape[i];
 		i--;
 	}
 	return (true);

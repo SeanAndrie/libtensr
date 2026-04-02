@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:44:39 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/09 16:36:56 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/01 23:45:14 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_tensr	*initialize(const t_tensr *a, const t_tensr *b, t_tensr *out,
 	t_tensr	*ret;
 	bool	alloc;
 
-    alloc = false;
+	alloc = false;
 	if (out)
 		ret = out;
 	else
@@ -65,6 +65,26 @@ static t_tensr	*initialize(const t_tensr *a, const t_tensr *b, t_tensr *out,
 	return (ret);
 }
 
+static void	contiguous_path(const t_tensr *a, const t_tensr *b,
+		void (*f)(void *a, void *b, void *out, t_dtype dtype), t_tensr *out)
+{
+	size_t	i;
+	char	*pa;
+	char	*pb;
+	char	*po;
+
+	i = 0;
+	pa = a->data;
+	pb = b->data;
+	po = out->data;
+	while (i < out->size)
+	{
+		f(pa + i * out->elemsize, pb + i * out->elemsize, po + i
+			* out->elemsize, out->dtype);
+		i++;
+	}
+}
+
 t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b,
 		void (*f)(void *a, void *b, void *out, t_dtype dtype), t_tensr *out)
 {
@@ -77,13 +97,19 @@ t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b,
 	out = initialize(a, b, out, &it);
 	if (!out)
 		return (NULL);
-	init_indices(a_indices, b_indices, a->layout.ndim, b->layout.ndim);
-	while (iter_next(&it))
+	if (tensr_is_contiguous(a) && tensr_is_contiguous(b)
+		&& tensr_is_contiguous(out) && layout_equal(&a->layout, &b->layout))
+		contiguous_path(a, b, f, out);
+	else
 	{
-		map_indices(out->layout.ndim, &a->layout, a_indices, it.indices);
-		map_indices(out->layout.ndim, &b->layout, b_indices, it.indices);
-		f(tensr_get(a, a_indices), tensr_get(b, b_indices), tensr_get(out,
-				it.indices), a->dtype);
+		init_indices(a_indices, b_indices, a->layout.ndim, b->layout.ndim);
+		while (iter_next(&it))
+		{
+			map_indices(out->layout.ndim, &a->layout, a_indices, it.indices);
+			map_indices(out->layout.ndim, &b->layout, b_indices, it.indices);
+			f(tensr_get(a, a_indices), tensr_get(b, b_indices), tensr_get(out,
+					it.indices), a->dtype);
+		}
 	}
 	return (out);
 }

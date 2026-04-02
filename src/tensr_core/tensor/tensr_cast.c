@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:20:57 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/30 22:17:47 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/01 23:34:56 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 			tensr_free(ret);
 		return (NULL);
 	}
-	return (out);
+	return (ret);
 }
 
 t_tensr	*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out)
