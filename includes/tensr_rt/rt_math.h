@@ -11,7 +11,6 @@
 #ifndef TENSR_RT_MATH_H
 # define TENSR_RT_MATH_H
 
-# include <math.h>
 # include <tensr_rt/rt.h>
 
 /* Elementwise Operations */
@@ -52,7 +51,12 @@ void		vec3_scale_ip(t_vec3 *v, float n);
 t_vec3		vec3_lerp(t_vec3 curr, t_vec3 target, const float t);
 void		vec3_lerp_ip(t_vec3 *curr, t_vec3 target, const float t);
 
+t_vec3		vec3_slerp(t_vec3 curr, t_vec3 target, const float t);
+void		vec3_slerp_ip(t_vec3 *curr, t_vec3 target, const float t);
+
+t_vec3		vec3_clamp(t_vec3 v, const float min, const float max);
+void		vec3_clamp_ip(t_vec3 *v, const float min, const float max);
+
 t_project	vec3_project(t_vec3 v, t_vec3 axis);
-bool		vec3_equal_eps(t_vec3 a, t_vec3 b, const float eps);
 
 #endif

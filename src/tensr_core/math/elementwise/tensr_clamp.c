@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 19:12:37 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/08 19:25:39 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/03 10:39:30 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_tensr	*tensr_clamp(const t_tensr *t, double min, double max, t_tensr *out)
 		else if (t->dtype == DT_I64)
 			*(int64_t *)dst = (int64_t)fmax(min, fmin(*(int64_t *)src, max));
 		else if (t->dtype == DT_F32)
-			*(float *)dst = fmaxf(min, fmin(*(float *)src, max));
+			*(float *)dst = fmaxf(min, fminf(*(float *)src, max));
 		else if (t->dtype == DT_F64)
 			*(double *)dst = fmax(min, fmin(*(double *)src, max));
 	}
