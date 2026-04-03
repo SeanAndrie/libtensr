@@ -6,13 +6,13 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/03 11:09:37 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/04/03 17:59:58 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libtensr.a
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr_core -Iincludes/tensr_rt -I../libft/includes -O3 -ffast-math
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr_core -Iincludes/tensr_rt -I../libft/includes -O3 -ffast-math -flto -funroll-loops -fno-signed-zeros
 ARCHIVE := ar rcs
 
 SRC_DIR := src
