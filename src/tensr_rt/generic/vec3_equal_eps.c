@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_normalize.c                                   :+:      :+:    :+:   */
+/*   vec3_equal_eps.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/17 16:42:50 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/03 00:20:28 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/02 14:37:23 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/02 14:43:37 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <float.h>
 #include <tensr_rt/rt_math.h>
 
-t_vec3	vec3_normalize(t_vec3 v)
+bool	vec3_equal_eps(t_vec3 a, t_vec3 b, const float eps)
 {
-	float	mag;
-
-	mag = vec3_magnitude(v);
-	if (mag == 0.0f)
-		return ((t_vec3){0, 0, 0});
-	return ((t_vec3) {
-		.x = v.x / mag,
-		.y = v.y / mag,
-		.z = v.z / mag 
-	});
+	return ((fabsf(a.x - b.x) < eps) && (fabsf(a.y - b.y) < eps) && (fabsf(a.z
+				- b.z) < eps));
 }

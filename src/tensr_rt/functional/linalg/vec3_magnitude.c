@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/17 17:23:46 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 17:33:33 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/03 00:20:44 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 float	vec3_magnitude(t_vec3 v)
 {
-	return (sqrtf(v.x * v.x + v.y * v.y + v.z * v.z));
+    return (sqrtf(vec3_dot(v, v)));
 }

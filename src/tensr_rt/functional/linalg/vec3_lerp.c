@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_normalize.c                                   :+:      :+:    :+:   */
+/*   vec3_lerp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/17 16:42:50 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/03 00:20:28 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/02 12:52:27 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/02 13:21:49 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr_rt/rt_math.h>
 
-t_vec3	vec3_normalize(t_vec3 v)
+t_vec3	vec3_lerp(t_vec3 curr, t_vec3 target, const float t)
 {
-	float	mag;
-
-	mag = vec3_magnitude(v);
-	if (mag == 0.0f)
-		return ((t_vec3){0, 0, 0});
-	return ((t_vec3) {
-		.x = v.x / mag,
-		.y = v.y / mag,
-		.z = v.z / mag 
-	});
+	return (vec3_add(curr, vec3_scale(vec3_sub(target, curr), t)));
 }
