@@ -92,9 +92,11 @@ t_tensr	*tensr_reduce_strided(const t_tensr *t, const int n_axes,
 		return (NULL);
 	ctx.reduce_op = op;
 	// 2. Initialize outer and inner iterators
-	if (!iter_init(&ctx.dst->layout, &outer))
+	// For inner iterator, create a view with reduced layout pointing to src data
+	if (!iter_init(ctx.dst, &outer))
 		return (tensr_free(ctx.dst), NULL);
-	if (!iter_init(&ctx.reduced_l, &inner))
+	tensr_view(ctx.src, ctx.src->data, &ctx.reduced_l);
+	if (!iter_init((t_tensr *)ctx.src, &inner))
 		return (tensr_free(ctx.dst), NULL);
 	// 3. Iterate over reduced dimensions
 	while (iter_next(&outer))

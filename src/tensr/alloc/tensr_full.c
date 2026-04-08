@@ -22,11 +22,11 @@ t_tensr	*tensr_full(double value, const int ndim, const size_t *shape,
 	if (!shape || ndim < 0)
 		return (NULL);
 	t = tensr_alloc(ndim, shape, dtype);
-	if (!t || !iter_init(&t->layout, &it))
+	if (!t || !iter_init(t, &it))
 		return (tensr_free(t), NULL);
 	while (iter_next(&it))
 	{
-		dst = tensr_get(t, it.indices);
+		dst = iter_get(&it);
 		if (dtype == DT_U8)
 			*(uint8_t *)dst = (uint8_t)value;
 		else if (dtype == DT_I32)

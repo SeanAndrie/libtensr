@@ -56,33 +56,13 @@ static t_tensr	*initialize(const t_tensr *a, const t_tensr *b, t_tensr *out,
 			return (NULL);
 		alloc = true;
 	}
-	if (!iter_init(&ret->layout, it))
+	if (!iter_init(ret, it))
 	{
 		if (alloc)
 			tensr_free(ret);
 		return (NULL);
 	}
 	return (ret);
-}
-
-static void	contiguous_path(const t_tensr *a, const t_tensr *b,
-		void (*f)(void *a, void *b, void *out, t_dtype dtype), t_tensr *out)
-{
-	size_t	i;
-	char	*pa;
-	char	*pb;
-	char	*po;
-
-	i = 0;
-	pa = a->data;
-	pb = b->data;
-	po = out->data;
-	while (i < out->size)
-	{
-		f(pa + i * out->elemsize, pb + i * out->elemsize, po + i
-			* out->elemsize, out->dtype);
-		i++;
-	}
 }
 
 t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b,
@@ -97,19 +77,13 @@ t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b,
 	out = initialize(a, b, out, &it);
 	if (!out)
 		return (NULL);
-	if (tensr_is_contiguous(a) && tensr_is_contiguous(b)
-		&& tensr_is_contiguous(out) && layout_equal(&a->layout, &b->layout))
-		contiguous_path(a, b, f, out);
-	else
+	init_indices(a_indices, b_indices, a->layout.ndim, b->layout.ndim);
+	while (iter_next(&it))
 	{
-		init_indices(a_indices, b_indices, a->layout.ndim, b->layout.ndim);
-		while (iter_next(&it))
-		{
-			map_indices(out->layout.ndim, &a->layout, a_indices, it.indices);
-			map_indices(out->layout.ndim, &b->layout, b_indices, it.indices);
-			f(tensr_get(a, a_indices), tensr_get(b, b_indices), tensr_get(out,
-					it.indices), a->dtype);
-		}
+		map_indices(out->layout.ndim, &a->layout, a_indices, it.indices);
+		map_indices(out->layout.ndim, &b->layout, b_indices, it.indices);
+		f(tensr_get(a, a_indices), tensr_get(b, b_indices), iter_get(&it),
+			a->dtype);
 	}
 	return (out);
 }

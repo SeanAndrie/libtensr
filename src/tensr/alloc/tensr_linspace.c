@@ -36,14 +36,14 @@ t_tensr	*tensr_linspace(double start, double end, const size_t n, t_dtype dtype)
 	if (n == 0)
 		return (NULL);
 	out = tensr_alloc(1, (size_t[]){n}, dtype);
-	if (!out || !iter_init(&out->layout, &it))
+	if (!out || !iter_init(out, &it))
 		return (tensr_free(out), NULL);
 	if (n == 1)
 		step = 0.0;
 	else
 		step = ((end - start) / (double)(n - 1));
 	while (iter_next(&it))
-		set_cast(tensr_get(out, it.indices), start + (it.counter - 1) * step,
+		set_cast(iter_get(&it), start + (it.counter - 1) * step,
 			dtype);
 	return (out);
 }
