@@ -17,7 +17,6 @@
 # include <stdbool.h>
 # include <stdint.h>
 
-# define MIN_NDIM 4
 # define MAX_NDIM 32
 # define MAX_ACC_SIZE 8
 
@@ -46,8 +45,8 @@ typedef struct s_layout
 	int						ndim;
 	size_t					*shape;
 	size_t					*stride;
-	size_t					shape_buf[MIN_NDIM];
-	size_t					stride_buf[MIN_NDIM];
+	size_t					shape_buf[MAX_NDIM];
+	size_t					stride_buf[MAX_NDIM];
 }							t_layout;
 
 /* Main Tensor Structure */
