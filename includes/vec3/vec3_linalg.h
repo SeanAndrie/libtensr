@@ -14,7 +14,7 @@
 # define VEC3_LINALG_H
 
 # include <vec3/vec3.h>
-# include <vec3/vec3_elementwise.h>
+# include <vec3/vec3_elem.h>
 
 float		vec3_dot(t_vec3 a, t_vec3 b);
 

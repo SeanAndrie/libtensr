@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vec3/vec3_elementwise.h>
+#include <vec3/vec3_elem.h>
 
 void    vec3_div_ip(t_vec3 *a, t_vec3 b)
 {

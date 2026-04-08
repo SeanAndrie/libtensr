@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/callbacks.h>
+#include <tensr/tensr_callbacks.h>
 
 static void	set_cross_entry(const t_tensr *a, const t_tensr *b, void *data,
 		const size_t *indices)

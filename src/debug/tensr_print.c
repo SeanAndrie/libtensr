@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/debug.h>
+#include <tensr/tensr_debug.h>
 
 void	print_element(const t_tensr *t, char *data_ptr)
 {

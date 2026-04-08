@@ -14,7 +14,7 @@
 # define LIBVEC3_H
 
 # include <vec3/vec3.h>
-# include <vec3/vec3_elementwise.h>
+# include <vec3/vec3_elem.h>
 # include <vec3/vec3_linalg.h>
 
 #endif

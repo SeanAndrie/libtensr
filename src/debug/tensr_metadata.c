@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/debug.h>
+#include <tensr/tensr_debug.h>
 
 static void print_array(const char *fieldname, size_t *arr, int ndim)
 {

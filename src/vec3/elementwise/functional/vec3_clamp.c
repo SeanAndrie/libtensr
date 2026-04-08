@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include <vec3/vec3_elementwise.h>
+#include <vec3/vec3_elem.h>
 
 t_vec3  vec3_clamp(t_vec3 v, const float min, const float max)
 {

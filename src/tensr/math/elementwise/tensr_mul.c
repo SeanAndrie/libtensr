@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/callbacks.h>
+#include <tensr/tensr_callbacks.h>
 
 t_tensr *tensr_mul(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {

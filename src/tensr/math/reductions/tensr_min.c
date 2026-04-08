@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/callbacks.h>
+#include <tensr/tensr_callbacks.h>
 
 t_tensr	*tensr_min(const t_tensr *t, const int n_axes, const size_t *axes)
 {

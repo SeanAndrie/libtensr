@@ -14,9 +14,9 @@
 # define LIBTENSR_H
 
 # include <tensr/tensr.h>
-# include <tensr/elementwise.h>
-# include <tensr/linalg.h>
-# include <tensr/callbacks.h>
-# include <tensr/debug.h>
+# include <tensr/tensr_elem.h>
+# include <tensr/tensr_linalg.h>
+# include <tensr/tensr_callbacks.h>
+# include <tensr/tensr_debug.h>
 
 #endif

@@ -12,7 +12,7 @@
 
 #include <float.h>
 #include <tensr/tensr.h>
-#include <tensr/callbacks.h>
+#include <tensr/tensr_callbacks.h>
 
 void	typed_min(void *a, const void *b, t_dtype dtype)
 {

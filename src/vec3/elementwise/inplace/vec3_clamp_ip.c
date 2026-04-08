@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vec3/vec3_elementwise.h>
+#include <vec3/vec3_elem.h>
 
 void    vec3_clamp_ip(t_vec3 *v, const float min, const float max)
 {

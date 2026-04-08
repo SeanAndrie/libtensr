@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/callbacks.h>
+#include <tensr/tensr_callbacks.h>
 
 void    mean_finalize(void *acc, size_t count, t_dtype dtype)
 {

@@ -13,7 +13,8 @@
 #ifndef LINALG_H
 # define LINALG_H
 
-# include <tensr/linalg.h>
+# include <tensr/tensr.h>
+# include <tensr/tensr_elem.h>
 
 // Elementwise Operations
 

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/debug.h>
+#include <tensr/tensr_debug.h>
 
 static size_t	dtype_size_in_bytes(t_dtype dtype)
 {

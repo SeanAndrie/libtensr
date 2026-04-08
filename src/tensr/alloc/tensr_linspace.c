@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/debug.h>
+#include <tensr/tensr_debug.h>
 
 static void	set_cast(void *dst, double value, t_dtype dtype)
 {

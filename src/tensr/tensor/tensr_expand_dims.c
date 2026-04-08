@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/debug.h>
+#include <tensr/tensr_debug.h>
 
 bool	tensr_expand_dims(t_tensr *t, const int axis)
 {
