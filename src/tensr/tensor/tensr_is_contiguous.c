@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_is_contiguous.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/01/29 16:27:00 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/01 23:35:57 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/core.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
+bool	tensr_is_contiguous(const t_tensr *t)
+{
+	int		    i;
+    t_layout    l;
+	size_t	    expected_stride;
 
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+	if (!t)
+		return (false);
+    l = t->layout;
+	i = l.ndim - 1;
+    expected_stride = 1;
+	while (i >= 0)
+	{
+		if (l.stride[i] != expected_stride)
+			return (false);
+		expected_stride *= l.shape[i];
+		i--;
+	}
+	return (true);
+}

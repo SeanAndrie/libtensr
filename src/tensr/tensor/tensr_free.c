@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/02/27 15:04:10 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/02/27 15:08:58 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/core.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+void    tensr_free(t_tensr *t)
+{
+    if (!t)
+        return ;
+    layout_free(&t->layout);
+    if (t->data && t->owns_data)
+        free(t->data);
+    free(t);
+}

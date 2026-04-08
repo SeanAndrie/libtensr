@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   arr_f64.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/01/26 23:41:54 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/02/02 14:48:02 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/core.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+t_array	arr_f64(double *data, const size_t len)
+{
+	return ((t_array){.data = data, .len = len, .dtype = DT_F64});
+}

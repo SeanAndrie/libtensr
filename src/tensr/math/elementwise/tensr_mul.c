@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_mul.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/02/03 22:37:59 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/05 20:43:44 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/core.h>
+#include <tensr/core_math.h>
+#include <utils/tensr_callbacks.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+t_tensr *tensr_mul(const t_tensr *a, const t_tensr *b, t_tensr *out)
+{
+    if (!a || !b)
+        return (NULL);
+    out = tensr_elementwise(a, b, mul_func, out);
+    if (!out)
+        return (NULL);
+    return (out);
+}

@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_offset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/01/26 14:38:23 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/24 21:39:51 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/core.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+size_t  tensr_offset(const t_layout *l, const size_t *indices)
+{
+    int     i;
+    size_t  offset;
+    
+    if (!l || !indices)
+        return ((size_t)-1);
+    i = 0;
+    offset = 0;
+    while (i < l->ndim)
+    {
+        if (indices[i] >= l->shape[i])
+            return ((size_t)-1);
+        offset += indices[i] * l->stride[i];
+        i++;
+    }
+    return (offset);
+}

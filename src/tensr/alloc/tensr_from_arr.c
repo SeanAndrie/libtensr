@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_from_arr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/01/26 22:33:23 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/02/17 15:38:00 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/core.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
+t_tensr	*tensr_from_arr(const t_array *arr, const int ndim, const size_t *shape,
+		t_dtype dtype)
+{
+	t_tensr	*t;
 
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+	if (!arr || arr->len == 0 || arr->dtype != dtype)
+		return (NULL);
+	t = tensr_alloc(ndim, shape, dtype);
+	if (!t || t->size != arr->len)
+		return (NULL);
+	ft_memcpy(t->data, arr->data, t->elemsize * t->size);
+	return (t);
+}

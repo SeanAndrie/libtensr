@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   vec3_mul.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/17 16:32:42 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/17 16:34:13 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <vec3/rt_math.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+t_vec3    vec3_mul(t_vec3 a, t_vec3 b)
+{
+    return ((t_vec3){.x = a.x * b.x, .y = a.y * b.y, .z = a.z * b.z});
+}

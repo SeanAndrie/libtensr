@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_normalize.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/10 01:06:52 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/03/31 00:17:35 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/core.h>
+#include <tensr/core_math.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+t_tensr *tensr_normalize(const t_tensr *t, t_tensr *out)
+{
+    t_tensr *res;
+    t_tensr *norm;
+    
+    if (!t)
+        return (NULL);
+    norm = tensr_norm(t, true, NULL);
+    if (!norm)
+        return (NULL);
+    res = tensr_div(t, norm, out);
+    tensr_free(norm);
+    if (!res)
+        return (NULL);
+    return (res);
+}

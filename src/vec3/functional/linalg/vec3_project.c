@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   vec3_project.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/17 16:15:16 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/03/30 03:09:27 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/03 01:22:43 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <vec3/rt_math.h>
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
+t_project	vec3_project(t_vec3 v, t_vec3 axis)
+{
+	t_project	proj;
+	t_vec3		u_hat;
 
-# include <tensr/core_math.h>
-# include <tensr/core.h>
-
-#endif
+	u_hat = vec3_normalize(axis);
+	proj.axial = vec3_dot(v, u_hat);
+	proj.perp = vec3_sub(v, vec3_scale(u_hat, proj.axial));
+	return (proj);
+}
