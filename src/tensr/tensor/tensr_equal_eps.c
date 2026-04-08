@@ -34,7 +34,7 @@ bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
 		return (false);
 	if (a->dtype != b->dtype || !layout_equal(&a->layout, &b->layout))
 		return (false);
-	if (!iter_init(a, &it))
+	if (!iter_init(&a->layout, &it))
 	{
 		ft_dprintf(STDERR_FILENO,
 			"libtensr: tensr_equal_eps: failed to initialize iterator.\n");
@@ -42,7 +42,7 @@ bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
 	}
 	while (iter_next(&it))
 	{
-		a_v = iter_get(&it);
+		a_v = tensr_get(a, it.indices);
 		b_v = tensr_get(b, it.indices);
 		if (!a_v || !b_v || !is_equal(a_v, b_v, epsilon, a->dtype))
 			return (false);

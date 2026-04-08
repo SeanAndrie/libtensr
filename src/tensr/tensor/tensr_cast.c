@@ -66,7 +66,7 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 			return (NULL);
 		alloc = true;
 	}
-	if (!iter_init(ret, it))
+	if (!iter_init(&ret->layout, it))
 	{
 		if (alloc)
 			tensr_free(ret);
@@ -90,7 +90,7 @@ t_tensr	*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out)
 	while (iter_next(&it))
 	{
 		value = cast_to_double(tensr_get(t, it.indices), t->dtype);
-		cast_from_double(iter_get(&it), value, out->dtype);
+		cast_from_double(tensr_get(out, it.indices), value, out->dtype);
 	}
 	return (out);
 }

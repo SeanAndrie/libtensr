@@ -76,9 +76,6 @@ typedef struct s_iter
 	size_t					counter;
 	t_layout				*layout;
 	size_t					indices[MAX_NDIM];
-	bool					contiguous;
-	const t_tensr			*tensor;
-	char					*data_ptr;
 }							t_iter;
 
 /* Reduction operation descriptor */
@@ -407,16 +404,7 @@ t_tensr						*tensr_reduce(const t_tensr *t, const int n_axes,
  **
  ** @return          true on success, false on failure.
  */
-bool						iter_init(const t_tensr *t, t_iter *it);
-
-/*
- ** Gets the current element from the iterator.
- **
- ** @param it        Pointer to the iterator.
- **
- ** @return          Pointer to the current element.
- */
-void						*iter_get(t_iter *it);
+bool						iter_init(const t_layout *l, t_iter *it);
 
 /*
  ** Advances the iterator to the next element.

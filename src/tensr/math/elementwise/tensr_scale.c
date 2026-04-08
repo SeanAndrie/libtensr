@@ -27,7 +27,7 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 			return (NULL);
 		alloc = true;
 	}
-	if (!iter_init(ret, it))
+	if (!iter_init(&ret->layout, it))
 	{
 		if (alloc)
 			tensr_free(ret);
@@ -50,7 +50,7 @@ t_tensr	*tensr_scale(const t_tensr *t, double value, t_tensr *out)
 	while (iter_next(&it))
 	{
 		src = tensr_get(t, it.indices);
-		dst = iter_get(&it);
+		dst = tensr_get(out, it.indices);
 		if (t->dtype == DT_U8)
 			*(uint8_t *)dst = *(uint8_t *)src * (uint8_t)value;
 		else if (t->dtype == DT_I32)

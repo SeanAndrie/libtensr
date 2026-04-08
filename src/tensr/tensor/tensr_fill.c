@@ -17,11 +17,11 @@ bool    tensr_fill(t_tensr *t, double value)
     t_iter  it;
     void    *dst;
 
-    if (!t || !iter_init(t, &it))
+    if (!t || !iter_init(&t->layout, &it))
         return (false);
     while (iter_next(&it))
     {
-		dst = iter_get(&it);
+		dst = tensr_get(t, it.indices);
 		if (t->dtype == DT_U8)
 			*(uint8_t *)dst = (uint8_t)value;
 		else if (t->dtype == DT_I32)

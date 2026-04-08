@@ -18,7 +18,7 @@ bool    iter_next(t_iter *it)
 
     if (it->counter >= it->total)
         return (false);
-    if (it->counter == 0 || it->contiguous)
+    if (it->counter == 0)
     {
         it->counter++;
         return (true);
