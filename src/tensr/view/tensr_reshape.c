@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 t_tensr *tensr_reshape(const t_tensr *t, const int ndim, size_t *shape)
 {

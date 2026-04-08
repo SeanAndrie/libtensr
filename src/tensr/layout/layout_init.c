@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 size_t  layout_init(t_layout *l, const int ndim, const size_t *shape)
 {

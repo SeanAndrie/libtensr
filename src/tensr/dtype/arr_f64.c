@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 t_array	arr_f64(double *data, const size_t len)
 {

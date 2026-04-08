@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 t_tensr *tensr_copy(const t_tensr *t)
 {

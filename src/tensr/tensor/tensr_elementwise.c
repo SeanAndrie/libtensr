@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 static void	map_indices(const int out_ndim, const t_layout *t_l,
 		size_t *t_indices, const size_t *out_indices)

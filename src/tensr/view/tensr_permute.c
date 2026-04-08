@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 t_tensr	*tensr_permute(const t_tensr *t, const size_t *perm)
 {

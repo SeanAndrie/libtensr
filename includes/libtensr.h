@@ -13,10 +13,10 @@
 #ifndef LIBTENSR_H
 # define LIBTENSR_H
 
-# include <utils/tensr_callbacks.h>
-# include <utils/tensr_debug.h>
-
-# include <tensr/core_math.h>
-# include <tensr/core.h>
+# include <tensr/tensr.h>
+# include <tensr/elementwise.h>
+# include <tensr/linalg.h>
+# include <tensr/callbacks.h>
+# include <tensr/debug.h>
 
 #endif

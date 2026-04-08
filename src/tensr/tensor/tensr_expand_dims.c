@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <utils/tensr_debug.h>
+#include <tensr/tensr.h>
+#include <tensr/debug.h>
 
 bool	tensr_expand_dims(t_tensr *t, const int axis)
 {

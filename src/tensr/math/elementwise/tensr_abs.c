@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include <math.h>
-#include <tensr/core.h>
-#include <tensr/core_math.h>
+#include <tensr/tensr.h>
 
 static t_tensr *initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 {

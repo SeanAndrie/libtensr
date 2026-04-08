@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <tensr/core_math.h>
+#include <tensr/tensr.h>
+#include <tensr/linalg.h>
 
 t_tensr *tensr_normalize(const t_tensr *t, t_tensr *out)
 {

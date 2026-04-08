@@ -10,9 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <tensr/core_math.h>
-#include <utils/tensr_callbacks.h>
+#include <tensr/tensr.h>
+#include <tensr/callbacks.h>
 
 static void	set_cross_entry(const t_tensr *a, const t_tensr *b, void *data,
 		const size_t *indices)

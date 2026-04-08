@@ -12,7 +12,7 @@
 
 #include <libft.h>
 #include <libtensr.h>
-#include <vec3/rt.h>
+#include <vec3/vec3.h>
 
 t_vec3	tensr_to_vec3(t_tensr *t)
 {

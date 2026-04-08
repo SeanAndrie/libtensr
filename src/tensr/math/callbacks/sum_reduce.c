@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <utils/tensr_callbacks.h>
+#include <tensr/tensr.h>
+#include <tensr/callbacks.h>
 
 void	sum_init(void *acc, t_dtype dtype)
 {

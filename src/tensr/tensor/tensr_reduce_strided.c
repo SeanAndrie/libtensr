@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 static void	create_reduce_ctx(t_reduce_ctx *ctx, const t_tensr *src,
 		const int n_axes, const size_t *axes)

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <libft.h>
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 static int	get_dim(const t_layout *l, int out_ndim, int i)
 {

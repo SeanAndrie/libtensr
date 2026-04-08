@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 #include <math.h>
 
 static bool	is_equal(void *a, void *b, double epsilon, t_dtype dtype)

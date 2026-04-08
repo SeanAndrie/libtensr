@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <utils/tensr_debug.h>
+#include <tensr/tensr.h>
+#include <tensr/debug.h>
 
 static void print_array(const char *fieldname, size_t *arr, int ndim)
 {

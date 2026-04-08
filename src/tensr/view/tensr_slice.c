@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 static bool	slices_are_valid(const t_tensr *t, const int n_slices,
 		const t_slice *slices)

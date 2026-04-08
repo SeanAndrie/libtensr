@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <utils/tensr_callbacks.h>
+#include <tensr/tensr.h>
+#include <tensr/callbacks.h>
 
 void	div_func(void *a, void *b, void *out, t_dtype dtype)
 {

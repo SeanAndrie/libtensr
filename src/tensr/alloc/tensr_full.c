@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 t_tensr	*tensr_full(double value, const int ndim, const size_t *shape,
 		t_dtype dtype)

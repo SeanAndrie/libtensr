@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 t_tensr	*tensr_reduce(const t_tensr *t, const int n_axes, const size_t *axes,
 		t_reduce_op op)

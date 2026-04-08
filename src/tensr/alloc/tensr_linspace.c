@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <utils/tensr_debug.h>
+#include <tensr/tensr.h>
+#include <tensr/debug.h>
 
 static void	set_cast(void *dst, double value, t_dtype dtype)
 {

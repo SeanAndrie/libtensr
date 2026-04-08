@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <float.h>
-#include <tensr/core.h>
-#include <utils/tensr_callbacks.h>
+#include <tensr/tensr.h>
+#include <tensr/callbacks.h>
 
 static void	typed_max(void *a, const void *b, t_dtype dtype)
 {

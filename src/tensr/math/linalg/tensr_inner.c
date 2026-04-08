@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core_math.h>
+# include <tensr/tensr.h>
+# include <tensr/linalg.h>
 
 t_tensr	*tensr_inner(const t_tensr *a, const t_tensr *b, const size_t n_axes,
 		const size_t *axes)

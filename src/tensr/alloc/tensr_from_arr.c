@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
+#include <tensr/tensr.h>
 
 t_tensr	*tensr_from_arr(const t_array *arr, const int ndim, const size_t *shape,
 		t_dtype dtype)

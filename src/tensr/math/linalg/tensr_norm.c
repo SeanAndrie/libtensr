@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <tensr/core_math.h>
+#include <tensr/tensr.h>
+#include <tensr/linalg.h>
 #include <libft.h>
 
 t_tensr	*tensr_norm(const t_tensr *t, bool keepdims, t_tensr *out)

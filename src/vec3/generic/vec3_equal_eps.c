@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <float.h>
-#include <vec3/rt.h>
+#include <vec3/vec3.h>
 
 bool	vec3_equal_eps(t_vec3 a, t_vec3 b, const float eps)
 {

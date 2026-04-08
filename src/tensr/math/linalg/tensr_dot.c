@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <tensr/core_math.h>
+#include <tensr/tensr.h>
+#include <tensr/linalg.h>
 
 t_tensr	*tensr_dot(const t_tensr *a, const t_tensr *b)
 {

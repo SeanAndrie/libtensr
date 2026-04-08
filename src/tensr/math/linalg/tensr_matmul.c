@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <tensr/core_math.h>
-#include <utils/tensr_debug.h>
+#include <tensr/tensr.h>
+#include <tensr/linalg.h>
+#include <tensr/debug.h>
 
 static bool	is_compatible(const t_layout *a, const t_layout *b)
 {

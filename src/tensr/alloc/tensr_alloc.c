@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/core.h>
-#include <utils/tensr_debug.h>
+#include <tensr/tensr.h>
+#include <tensr/debug.h>
 
 static size_t	dtype_size_in_bytes(t_dtype dtype)
 {
