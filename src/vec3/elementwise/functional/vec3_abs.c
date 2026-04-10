@@ -15,9 +15,5 @@
 
 t_vec3	vec3_abs(t_vec3 v)
 {
-	return ((t_vec3){
-		.x = fabsf(v.x),
-		.y = fabsf(v.y),
-		.z = fabsf(v.z)
-	});
+	return ((t_vec3){.x = fabsf(v.x), .y = fabsf(v.y), .z = fabsf(v.z)});
 }

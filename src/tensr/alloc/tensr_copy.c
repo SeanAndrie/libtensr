@@ -12,15 +12,15 @@
 
 #include <tensr/tensr.h>
 
-t_tensr *tensr_copy(const t_tensr *t)
+t_tensr	*tensr_copy(const t_tensr *t)
 {
-    t_tensr *cpy;
+	t_tensr	*cpy;
 
-    if (!t)
-        return (NULL);
-    cpy = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
-    if (!cpy)
-        return (NULL);
-    ft_memcpy(cpy->data, t->data, (t->size * t->elemsize));
-    return (cpy);
+	if (!t)
+		return (NULL);
+	cpy = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
+	if (!cpy)
+		return (NULL);
+	ft_memcpy(cpy->data, t->data, (t->size * t->elemsize));
+	return (cpy);
 }

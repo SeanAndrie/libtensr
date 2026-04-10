@@ -12,18 +12,18 @@
 
 #include <tensr/tensr.h>
 
-bool    layout_equal(const t_layout *a, const t_layout *b)
+bool	layout_equal(const t_layout *a, const t_layout *b)
 {
-    int i;
+	int	i;
 
-    if (!a || !b || a->ndim != b->ndim)
-        return (false);
-    i = a->ndim - 1;
-    while (i >= 0)
-    {
-        if (a->shape[i] != b->shape[i])
-            return (false);
-        i--;
-    }
-    return (true);
+	if (!a || !b || a->ndim != b->ndim)
+		return (false);
+	i = a->ndim - 1;
+	while (i >= 0)
+	{
+		if (a->shape[i] != b->shape[i])
+			return (false);
+		i--;
+	}
+	return (true);
 }

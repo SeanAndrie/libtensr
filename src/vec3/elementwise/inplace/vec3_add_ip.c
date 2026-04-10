@@ -12,9 +12,9 @@
 
 #include <vec3/vec3_elem.h>
 
-void    vec3_add_ip(t_vec3 *a, t_vec3 b)
+void	vec3_add_ip(t_vec3 *a, t_vec3 b)
 {
-    a->x += b.x;
-    a->y += b.y;
-    a->z += b.z;
+	a->x += b.x;
+	a->y += b.y;
+	a->z += b.z;
 }

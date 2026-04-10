@@ -18,7 +18,7 @@ t_vec3	vec3_slerp(t_vec3 curr, t_vec3 target, const float t)
 	t_vec3	perp;
 	float	angle;
 
-    dot = fmaxf(-1.0f, fminf(vec3_dot(curr, target), 1.0f));
+	dot = fmaxf(-1.0f, fminf(vec3_dot(curr, target), 1.0f));
 	if (dot > 0.9999f)
 		return (vec3_normalize(vec3_lerp(curr, target, t)));
 	perp = vec3_normalize(vec3_sub(target, vec3_scale(curr, dot)));

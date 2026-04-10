@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3_linalg.h                                      :::      :::     */
-/*                                                    :::       */
-/*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +:++:+                   */
-/*                                                +:++:+                   */
-/*   Created: 2026/04/08 23:00:00 by sgadinga          #+#   #+              */
-/*   Updated: 2026/04/08 23:00:00 by sgadinga         ###   ########.fr        */
+/*   vec3_linalg.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/10 21:20:18 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/10 21:23:27 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <vec3/vec3_elem.h>
 
 float		vec3_dot(t_vec3 a, t_vec3 b);
-
 t_vec3		vec3_cross(t_vec3 a, t_vec3 b);
 
 float		vec3_magnitude(t_vec3 v);

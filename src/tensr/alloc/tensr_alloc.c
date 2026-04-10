@@ -44,7 +44,7 @@ t_tensr	*tensr_alloc(const int ndim, const size_t *shape, t_dtype dtype)
 	t->elemsize = dtype_size_in_bytes(dtype);
 	if (t->elemsize == 0)
 		return (free(t), NULL);
-    t->size = layout_init(&t->layout, ndim, shape);
+	t->size = layout_init(&t->layout, ndim, shape);
 	t->data = malloc(t->elemsize * t->size);
 	if (!t->data)
 		return (tensr_free(t), NULL);

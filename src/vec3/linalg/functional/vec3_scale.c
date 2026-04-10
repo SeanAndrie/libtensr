@@ -14,9 +14,5 @@
 
 t_vec3	vec3_scale(t_vec3 v, float n)
 {
-	return ((t_vec3) {
-		.x = v.x * n,
-		.y = v.y * n,
-		.z = v.z * n
-	});
+	return ((t_vec3){.x = v.x * n, .y = v.y * n, .z = v.z * n});
 }

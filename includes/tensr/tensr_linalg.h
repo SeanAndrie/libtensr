@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linalg.h                                           :+:      :+:    :+:   */
+/*   tensr_linalg.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 17:49:08 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/09 00:14:15 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/10 21:14:13 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LINALG_H
-# define LINALG_H
+#ifndef TENSR_LINALG_H
+# define TENSR_LINALG_H
 
 # include <tensr/tensr.h>
 # include <tensr/tensr_elem.h>
-
-// Elementwise Operations
 
 /*
  ** Computes the absolute value of each element in the tensor.

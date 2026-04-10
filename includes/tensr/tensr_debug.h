@@ -13,13 +13,13 @@
 #ifndef TENSR_DEBUG_H
 # define TENSR_DEBUG_H
 
-#include <stdio.h>
+# include <stdio.h>
 
 // IMPORTANT: Remove debug header and directory when submitting!
 
-typedef struct s_tensr t_tensr;
+typedef struct s_tensr	t_tensr;
 
-void    tensr_metadata(const char *name, t_tensr *t);
-void    tensr_print(const t_tensr *t);
+void					tensr_metadata(const char *name, t_tensr *t);
+void					tensr_print(const t_tensr *t);
 
 #endif

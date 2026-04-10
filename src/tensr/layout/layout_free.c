@@ -12,12 +12,12 @@
 
 #include <tensr/tensr.h>
 
-void    layout_free(t_layout *l)
+void	layout_free(t_layout *l)
 {
-    if (!l)
-        return ;
-    ft_memset(l, 0, sizeof(t_layout));
-    l->ndim = 0;
-    l->shape = NULL;
-    l->stride = NULL;
+	if (!l)
+		return ;
+	ft_memset(l, 0, sizeof(t_layout));
+	l->ndim = 0;
+	l->shape = NULL;
+	l->stride = NULL;
 }

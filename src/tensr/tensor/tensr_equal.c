@@ -31,7 +31,7 @@ bool	tensr_equal(const t_tensr *a, const t_tensr *b)
 
 	if (!a || !b)
 		return (false);
-    if (a->dtype == DT_F32 || a->dtype == DT_F64)
+	if (a->dtype == DT_F32 || a->dtype == DT_F64)
 		return (false);
 	if (a->dtype != b->dtype || !layout_equal(&a->layout, &b->layout))
 		return (false);

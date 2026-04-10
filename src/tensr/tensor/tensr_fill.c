@@ -12,15 +12,15 @@
 
 #include <tensr/tensr.h>
 
-bool    tensr_fill(t_tensr *t, double value)
+bool	tensr_fill(t_tensr *t, double value)
 {
-    t_iter  it;
-    void    *dst;
+	t_iter	it;
+	void	*dst;
 
-    if (!t || !iter_init(&t->layout, &it))
-        return (false);
-    while (iter_next(&it))
-    {
+	if (!t || !iter_init(&t->layout, &it))
+		return (false);
+	while (iter_next(&it))
+	{
 		dst = tensr_get(t, it.indices);
 		if (t->dtype == DT_U8)
 			*(uint8_t *)dst = (uint8_t)value;
@@ -32,6 +32,6 @@ bool    tensr_fill(t_tensr *t, double value)
 			*(float *)dst = (float)value;
 		else if (t->dtype == DT_F64)
 			*(double *)dst = value;
-    }
-    return (true);
+	}
+	return (true);
 }

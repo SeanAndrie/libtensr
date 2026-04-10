@@ -12,9 +12,9 @@
 
 #include <vec3/vec3_elem.h>
 
-void    vec3_clamp_ip(t_vec3 *v, const float min, const float max)
+void	vec3_clamp_ip(t_vec3 *v, const float min, const float max)
 {
-    v->x = fmaxf(min, fminf(v->x, max));
-    v->y = fmaxf(min, fminf(v->y, max));
-    v->z = fmaxf(min, fminf(v->z, max));
+	v->x = fmaxf(min, fminf(v->x, max));
+	v->y = fmaxf(min, fminf(v->y, max));
+	v->z = fmaxf(min, fminf(v->z, max));
 }

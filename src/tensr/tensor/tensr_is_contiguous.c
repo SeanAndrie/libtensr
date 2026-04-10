@@ -14,15 +14,15 @@
 
 bool	tensr_is_contiguous(const t_tensr *t)
 {
-	int		    i;
-    t_layout    l;
-	size_t	    expected_stride;
+	int			i;
+	t_layout	l;
+	size_t		expected_stride;
 
 	if (!t)
 		return (false);
-    l = t->layout;
+	l = t->layout;
 	i = l.ndim - 1;
-    expected_stride = 1;
+	expected_stride = 1;
 	while (i >= 0)
 	{
 		if (l.stride[i] != expected_stride)

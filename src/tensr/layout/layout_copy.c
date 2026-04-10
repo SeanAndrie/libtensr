@@ -12,21 +12,21 @@
 
 #include <tensr/tensr.h>
 
-bool    layout_copy(t_layout *dst, const t_layout *src)
+bool	layout_copy(t_layout *dst, const t_layout *src)
 {
-    int i;
+	int	i;
 
-    if (!dst || !src || src->ndim == 0)
-        return (false);
-    layout_free(dst);
-    if (!layout_alloc(src->ndim, dst))
-        return (false);
-    i = 0;
-    while (i < src->ndim)
-    {
-        dst->shape[i] = src->shape[i];
-        dst->stride[i] = src->stride[i];
-        i++;
-    }
-    return (true);
+	if (!dst || !src || src->ndim == 0)
+		return (false);
+	layout_free(dst);
+	if (!layout_alloc(src->ndim, dst))
+		return (false);
+	i = 0;
+	while (i < src->ndim)
+	{
+		dst->shape[i] = src->shape[i];
+		dst->stride[i] = src->stride[i];
+		i++;
+	}
+	return (true);
 }

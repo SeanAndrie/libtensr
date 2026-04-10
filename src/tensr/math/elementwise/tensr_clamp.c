@@ -13,28 +13,28 @@
 #include <math.h>
 #include <tensr/tensr.h>
 
-static t_tensr *initialize(const t_tensr *t, t_tensr *out, t_iter *it)
+static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 {
-    t_tensr *ret;
-    bool    alloc;
+	t_tensr	*ret;
+	bool	alloc;
 
-    alloc = false;
-    if (out)
-        ret = out;
-    else
-    {
-        ret = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
-        if (!ret)
-            return (NULL);
-        alloc = true;
-    }
-    if (!iter_init(&ret->layout, it))
-    {
-        if (alloc)
-            tensr_free(ret);
-        return (NULL);
-    }
-    return (ret);
+	alloc = false;
+	if (out)
+		ret = out;
+	else
+	{
+		ret = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
+		if (!ret)
+			return (NULL);
+		alloc = true;
+	}
+	if (!iter_init(&ret->layout, it))
+	{
+		if (alloc)
+			tensr_free(ret);
+		return (NULL);
+	}
+	return (ret);
 }
 
 t_tensr	*tensr_clamp(const t_tensr *t, double min, double max, t_tensr *out)

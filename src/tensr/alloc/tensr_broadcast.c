@@ -34,17 +34,17 @@ t_tensr	*tensr_broadcast(const t_layout *a, const t_layout *b, t_dtype dtype)
 	if (!a || !b)
 		return (NULL);
 	if (!layout_alloc(ft_max(a->ndim, b->ndim), &layout))
-        return (NULL);
-    i = layout.ndim - 1;
-    while (i >= 0)
-    {
+		return (NULL);
+	i = layout.ndim - 1;
+	while (i >= 0)
+	{
 		dim_a = get_dim(a, layout.ndim, i);
 		dim_b = get_dim(b, layout.ndim, i);
 		if (!(dim_a == dim_b || dim_a == 1 || dim_b == 1))
-            return (layout_free(&layout), NULL);
+			return (layout_free(&layout), NULL);
 		layout.shape[i--] = ft_max(dim_a, dim_b);
-    }
-    out = tensr_alloc(layout.ndim, layout.shape, dtype);
-    layout_free(&layout);
-    return (out);
+	}
+	out = tensr_alloc(layout.ndim, layout.shape, dtype);
+	layout_free(&layout);
+	return (out);
 }

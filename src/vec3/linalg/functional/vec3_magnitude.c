@@ -15,5 +15,5 @@
 
 float	vec3_magnitude(t_vec3 v)
 {
-    return (sqrtf(vec3_dot(v, v)));
+	return (sqrtf(vec3_dot(v, v)));
 }

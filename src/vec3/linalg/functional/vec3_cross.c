@@ -16,7 +16,7 @@
  * a[1]*b[2] - a[2]*b[1] -> [[a]
  * a[2]*b[0] - a[0]*b[2] ->  [b]
  * a[0]*b[1] - a[1]*b[0] ->  [c]]
-*/
+ */
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 {
 	return ((t_vec3){.x = (a.y * b.z) - (a.z * b.y), .y = (a.z * b.x) - (a.x

@@ -14,9 +14,5 @@
 
 t_vec3	vec3_neg(t_vec3 v)
 {
-	return ((t_vec3){
-		.x = -v.x,
-		.y = -v.y,
-		.z = -v.z
-	});
+	return ((t_vec3){.x = -v.x, .y = -v.y, .z = -v.z});
 }

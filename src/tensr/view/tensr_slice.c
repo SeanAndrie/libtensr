@@ -81,6 +81,6 @@ t_tensr	*tensr_slice(const t_tensr *t, const int n_slices,
 			layout.stride);
 	v = tensr_view(t, (void *)((char *)t->data + offset * t->elemsize),
 			&layout);
-    layout_free(&layout);
+	layout_free(&layout);
 	return (v);
 }

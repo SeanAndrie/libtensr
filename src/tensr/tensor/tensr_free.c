@@ -12,12 +12,12 @@
 
 #include <tensr/tensr.h>
 
-void    tensr_free(t_tensr *t)
+void	tensr_free(t_tensr *t)
 {
-    if (!t)
-        return ;
-    layout_free(&t->layout);
-    if (t->data && t->owns_data)
-        free(t->data);
-    free(t);
+	if (!t)
+		return ;
+	layout_free(&t->layout);
+	if (t->data && t->owns_data)
+		free(t->data);
+	free(t);
 }

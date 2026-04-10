@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/tensr_linalg.h>
 #include <tensr/tensr_debug.h>
+#include <tensr/tensr_linalg.h>
 
 static bool	is_compatible(const t_layout *a, const t_layout *b)
 {

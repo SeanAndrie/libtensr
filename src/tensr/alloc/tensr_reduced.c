@@ -17,7 +17,7 @@ t_tensr	*tensr_reduced(const t_tensr *t, const int n_axes, t_bool *reduce_mask)
 {
 	int		i;
 	int		j;
-    int     ndim;
+	int		ndim;
 	size_t	shape[MAX_NDIM];
 
 	if (n_axes <= 0 || !t || !reduce_mask)

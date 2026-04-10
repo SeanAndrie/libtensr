@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_norm.c                                       :::      :(        :+    */
-/*                                                    +:+ +:       +#          */
-/*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#  +:     +#           */
-/*                                                +#    +#    +#            */
-/*   Created: 2026/03/06 02:32:04 by sgadinga          #+#   #+    #+#        */
-/*   Updated: 2026/03/30 07:24:17 by sgadinga         ###   ########.fr       */
+/*   tensr_norm.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/10 21:32:52 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/10 21:32:54 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
 #include <tensr/tensr.h>
 #include <tensr/tensr_linalg.h>
-#include <libft.h>
 
 t_tensr	*tensr_norm(const t_tensr *t, bool keepdims, t_tensr *out)
 {

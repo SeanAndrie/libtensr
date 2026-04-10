@@ -15,9 +15,9 @@
 
 static void	set_cast(void *dst, double value, t_dtype dtype)
 {
-    if (dtype == DT_U8)
-        *(uint8_t *)dst = (uint8_t)value;
-    else if (dtype == DT_I32)
+	if (dtype == DT_U8)
+		*(uint8_t *)dst = (uint8_t)value;
+	else if (dtype == DT_I32)
 		*(int32_t *)dst = (int32_t)value;
 	else if (dtype == DT_I64)
 		*(int64_t *)dst = (int64_t)value;

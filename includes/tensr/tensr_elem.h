@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   elementwise.h                                      :+:      :+:    :+:   */
+/*   tensr_elem.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/08 23:49:13 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/08 23:49:40 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/10 21:13:34 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ELEMENTWISE_H
-# define ELEMENTWISE_H
+#ifndef TENSR_ELEM_H
+# define TENSR_ELEM_H
 
 /*
  ** Computes the absolute value of each element in the tensor.

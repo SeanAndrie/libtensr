@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec3.h                                               :+:      :+:    :+:   */
+/*   vec3.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +:++:+         +:      */
+/*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/17 16:00:00 by sgadinga          #+#   #+        #+#    */
-/*   Updated: 2026/04/03 10:47:49 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/10 21:18:58 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/10 21:19:11 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VEC3_H
 # define VEC3_H
 
-# include <math.h>
 # include <libft.h>
+# include <math.h>
 # include <stdbool.h>
 
 typedef struct s_tensr	t_tensr;

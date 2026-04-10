@@ -19,9 +19,5 @@ t_vec3	vec3_normalize(t_vec3 v)
 	mag = vec3_magnitude(v);
 	if (mag == 0.0f)
 		return ((t_vec3){0, 0, 0});
-	return ((t_vec3) {
-		.x = v.x / mag,
-		.y = v.y / mag,
-		.z = v.z / mag 
-	});
+	return ((t_vec3){.x = v.x / mag, .y = v.y / mag, .z = v.z / mag});
 }

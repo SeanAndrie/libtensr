@@ -12,9 +12,9 @@
 
 #include <vec3/vec3_linalg.h>
 
-void    vec3_lerp_ip(t_vec3 *curr, t_vec3 target, const float t)
+void	vec3_lerp_ip(t_vec3 *curr, t_vec3 target, const float t)
 {
-    if (!curr)
-        return ;
-    vec3_add_ip(curr, vec3_scale(vec3_sub(target, *curr), t));
+	if (!curr)
+		return ;
+	vec3_add_ip(curr, vec3_scale(vec3_sub(target, *curr), t));
 }

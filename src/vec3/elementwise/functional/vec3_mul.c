@@ -12,7 +12,7 @@
 
 #include <vec3/vec3_elem.h>
 
-t_vec3    vec3_mul(t_vec3 a, t_vec3 b)
+t_vec3	vec3_mul(t_vec3 a, t_vec3 b)
 {
-    return ((t_vec3){.x = a.x * b.x, .y = a.y * b.y, .z = a.z * b.z});
+	return ((t_vec3){.x = a.x * b.x, .y = a.y * b.y, .z = a.z * b.z});
 }
