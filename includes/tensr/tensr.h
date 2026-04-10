@@ -74,7 +74,7 @@ typedef struct s_iter
 {
 	size_t					total;
 	size_t					counter;
-	t_layout				*layout;
+	struct s_layout			*layout;
 	size_t					indices[MAX_NDIM];
 }							t_iter;
 
@@ -87,17 +87,15 @@ typedef struct s_reduce_op
 	void					(*finalize)(void *acc, size_t count, t_dtype dtype);
 }							t_reduce_op;
 
-/* Reduction context */
 typedef struct s_reduce_ctx
 {
-	const struct s_tensr	*src;
-	struct s_tensr			*dst;
-	struct s_reduce_op		reduce_op;
-	struct s_layout			reduced_l;
-	bool					is_reduced[MAX_NDIM];
-	size_t					reduced_shape[MAX_NDIM];
-	size_t					reduced_stride[MAX_NDIM];
-}							t_reduce_ctx;
+    struct s_iter           inner;
+    struct s_iter           outer;
+    size_t                  base_off;
+    struct s_layout         reduced_l;
+    struct s_reduce_op      reduce_op;
+    enum e_bool             is_reduced[MAX_NDIM];
+}                           t_reduce_ctx;
 
 /*
  ** Allocates and initializes an empty base tensor.
@@ -206,8 +204,8 @@ t_tensr						*tensr_broadcast(const t_layout *a,
  **
  ** @return          A pointer to the reduced tensor, or NULL on failure.
  */
-t_tensr						*tensr_reduced(const t_layout *l, const int n_axes,
-								const size_t *axes, t_dtype dtype);
+
+t_tensr	*tensr_reduced(const t_tensr *t, const int n_axes, t_bool *reduce_mask);
 
 /*
  ** Creates a view of a parent tensor.
@@ -376,9 +374,12 @@ void						tensr_free(t_tensr *t);
  **
  ** @return          A pointer to the reduced tensor, or NULL on failure.
  */
-t_tensr						*tensr_reduce_strided(const t_tensr *t,
-								const int n_axes, const size_t *axes,
-								t_reduce_op op);
+
+// t_tensr						*tensr_reduce_strided(const t_tensr *t,
+// 								const int n_axes, const size_t *axes,
+// 								t_reduce_op op);
+
+t_tensr	*tensr_reduce_strided(const t_tensr *t, const int n_axes, const size_t *axes, t_reduce_ctx *ctx);
 
 /*
  ** Reduces a tensor along specified axes.

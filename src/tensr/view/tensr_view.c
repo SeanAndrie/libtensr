@@ -14,7 +14,7 @@
 
 t_tensr	*tensr_view(const t_tensr *t, void *data, const t_layout *l)
 {
-    int     i;
+	int		i;
 	t_tensr	*v;
 
 	v = malloc(sizeof(t_tensr));
@@ -23,20 +23,17 @@ t_tensr	*tensr_view(const t_tensr *t, void *data, const t_layout *l)
 	v->size = 1;
 	v->data = data;
 	v->owns_data = false;
-    if (t)
-    {
-        v->dtype = t->dtype;
-        v->elemsize = t->elemsize;
-    }
-    i = 0;
-    while (i < l->ndim)
-        v->size *= l->shape[i++];
-    if (!layout_alloc(l->ndim, &v->layout))
-        return (free(v), NULL);
-    if (!layout_copy(&v->layout, l))
-    {
-        layout_free(&v->layout);
-        return (free(v), NULL);
-    }
+	if (t)
+	{
+		v->dtype = t->dtype;
+		v->elemsize = t->elemsize;
+	}
+	i = 0;
+	while (i < l->ndim)
+		v->size *= l->shape[i++];
+	if (!layout_alloc(l->ndim, &v->layout))
+		return (free(v), NULL);
+	if (!layout_copy(&v->layout, l))
+		return (free(v), NULL);
 	return (v);
 }

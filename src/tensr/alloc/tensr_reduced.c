@@ -6,36 +6,32 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:28:37 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 20:48:48 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/10 20:58:42 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <tensr/tensr.h>
 
-t_tensr	*tensr_reduced(const t_layout *l, const int n_axes, const size_t *axes,
-		t_dtype dtype)
+t_tensr	*tensr_reduced(const t_tensr *t, const int n_axes, t_bool *reduce_mask)
 {
-	int			i;
-	int			j;
-	t_tensr		*out;
-	t_layout	layout;
-	int			out_dim;
+	int		i;
+	int		j;
+    int     ndim;
+	size_t	shape[MAX_NDIM];
 
-	if (!l || !axes || n_axes <= 0)
+	if (n_axes <= 0 || !t || !reduce_mask)
 		return (NULL);
-	if (!layout_alloc(l->ndim - n_axes, &layout))
-		return (tensr_alloc(0, NULL, dtype));
-	i = -1;
+	ndim = t->layout.ndim - n_axes;
 	j = 0;
-	out_dim = 0;
-	while (++i < l->ndim)
+	i = -1;
+	while (++i < t->layout.ndim)
 	{
-		if (j < n_axes && (int)axes[j] == i)
-			j++;
-		else
-			layout.shape[out_dim++] = l->shape[i];
+		if (reduce_mask[i])
+			continue ;
+		shape[j++] = t->layout.shape[i];
 	}
-	out = tensr_alloc(layout.ndim, layout.shape, dtype);
-	layout_free(&layout);
-	return (out);
+	if (j == 0)
+		return (tensr_alloc(0, NULL, t->dtype));
+	return (tensr_alloc(ndim, shape, t->dtype));
 }
