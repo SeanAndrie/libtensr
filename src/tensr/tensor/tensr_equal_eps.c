@@ -13,7 +13,7 @@
 #include <math.h>
 #include <tensr/tensr.h>
 
-static bool	is_equal(void *a, void *b, double epsilon, t_dtype dtype)
+static t_bool	is_equal(void *a, void *b, double epsilon, t_dtype dtype)
 {
 	if (dtype == DT_F32)
 		return (fabsf(*(float *)a - *(float *)b) < (float)epsilon);
@@ -22,7 +22,7 @@ static bool	is_equal(void *a, void *b, double epsilon, t_dtype dtype)
 	return (false);
 }
 
-bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
+t_bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
 {
 	t_iter	it;
 	void	*a_v;

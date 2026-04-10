@@ -14,7 +14,7 @@
 #include <tensr/tensr_debug.h>
 #include <tensr/tensr_linalg.h>
 
-static bool	is_compatible(const t_layout *a, const t_layout *b)
+static t_bool	is_compatible(const t_layout *a, const t_layout *b)
 {
 	if (a->ndim != 2 || b->ndim != 2)
 		return (false);
@@ -54,7 +54,7 @@ static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
 	return (dot);
 }
 
-static bool	fill_out(const t_tensr *a, const t_tensr *b, t_tensr *out)
+static t_bool	fill_out(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {
 	int		i;
 	int		j;

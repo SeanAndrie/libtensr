@@ -15,7 +15,6 @@
 
 # include <libft.h>
 # include <math.h>
-# include <stdbool.h>
 
 typedef struct s_tensr	t_tensr;
 
@@ -35,6 +34,6 @@ typedef struct s_project
 t_vec3					tensr_to_vec3(t_tensr *t);
 t_tensr					*vec3_to_tensr(t_vec3 v, const int ndim,
 							const size_t *shape);
-bool					vec3_equal_eps(t_vec3 a, t_vec3 b, const float eps);
+t_bool					vec3_equal_eps(t_vec3 a, t_vec3 b, const float eps);
 
 #endif

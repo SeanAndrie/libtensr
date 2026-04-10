@@ -12,7 +12,7 @@
 
 #include <tensr/tensr.h>
 
-bool	iter_next(t_iter *it)
+t_bool	iter_next(t_iter *it)
 {
 	int	i;
 

@@ -158,7 +158,7 @@ t_tensr	*tensr_mean(const t_tensr *t, const int n_axes, const size_t *axes);
  **
  ** @return          A pointer to the scalar result tensor, or NULL on failure.
  */
-t_tensr	*tensr_norm(const t_tensr *t, bool keepdims, t_tensr *out);
+t_tensr	*tensr_norm(const t_tensr *t, t_bool keepdims, t_tensr *out);
 
 t_tensr	*tensr_inner(const t_tensr *a, const t_tensr *b, const size_t n_axes,
 			const size_t *axes);

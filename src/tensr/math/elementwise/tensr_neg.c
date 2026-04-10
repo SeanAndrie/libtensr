@@ -15,7 +15,7 @@
 static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 {
 	t_tensr	*ret;
-	bool	alloc;
+	t_bool	alloc;
 
 	alloc = false;
 	if (out)

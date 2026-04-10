@@ -60,7 +60,7 @@ typedef struct s_tensr
 	enum e_dtype		dtype;
 	struct s_layout		layout;
 	size_t				elemsize;
-	bool				owns_data;
+	t_bool				owns_data;
 }						t_tensr;
 
 /* Slice descriptor */
@@ -96,7 +96,7 @@ typedef struct s_reduce_ctx
 	size_t				base_off;
 	struct s_layout		reduced_l;
 	struct s_reduce_op	reduce_op;
-	enum e_bool			is_reduced[MAX_NDIM];
+	t_bool				is_reduced[MAX_NDIM];
 }						t_reduce_ctx;
 
 /*
@@ -280,7 +280,7 @@ t_tensr					*tensr_slice(const t_tensr *t, const int n_slices,
  **
  ** @return          true on success, false on failure.
  */
-bool					tensr_expand_dims(t_tensr *t, const int axis);
+t_bool					tensr_expand_dims(t_tensr *t, const int axis);
 
 /*
  ** Sets the value at a specific index in the tensor.
@@ -291,7 +291,7 @@ bool					tensr_expand_dims(t_tensr *t, const int axis);
  **
  ** @return          true on success, false on failure.
  */
-bool					tensr_set(const t_tensr *t, void *data,
+t_bool					tensr_set(const t_tensr *t, void *data,
 							const size_t *indices);
 
 /*
@@ -325,7 +325,7 @@ size_t					tensr_offset(const t_layout *l, const size_t *indices);
  **
  ** @return          true if contiguous, false otherwise.
  */
-bool					tensr_is_contiguous(const t_tensr *t);
+t_bool					tensr_is_contiguous(const t_tensr *t);
 
 /*
  ** Checks if two tensors are exactly equal.
@@ -337,7 +337,7 @@ bool					tensr_is_contiguous(const t_tensr *t);
  **
  ** @return          true if equal, false otherwise.
  */
-bool					tensr_equal(const t_tensr *a, const t_tensr *b);
+t_bool					tensr_equal(const t_tensr *a, const t_tensr *b);
 
 /*
 ** Checks if two tensors are equal within a tolerance.
@@ -348,7 +348,7 @@ bool					tensr_equal(const t_tensr *a, const t_tensr *b);
 **
 ** @return          true if equal within epsilon, false otherwise.
 */
-bool					tensr_equal_eps(const t_tensr *a, const t_tensr *b,
+t_bool					tensr_equal_eps(const t_tensr *a, const t_tensr *b,
 							double epsilon);
 
 /*
@@ -400,7 +400,7 @@ t_tensr					*tensr_reduce(const t_tensr *t, const int n_axes,
  **
  ** @return          true on success, false on failure.
  */
-bool					iter_init(const t_layout *l, t_iter *it);
+t_bool					iter_init(const t_layout *l, t_iter *it);
 
 /*
  ** Advances the iterator to the next element.
@@ -410,7 +410,7 @@ bool					iter_init(const t_layout *l, t_iter *it);
  ** @return          true if there are more elements,
 	false if iteration is complete.
  */
-bool					iter_next(t_iter *it);
+t_bool					iter_next(t_iter *it);
 
 /*
  ** Resets the iterator to the beginning.
@@ -427,7 +427,7 @@ void					iter_reset(t_iter *it);
  **
  ** @return          true on success, false on failure.
  */
-bool					layout_alloc(const int ndim, t_layout *l);
+t_bool					layout_alloc(const int ndim, t_layout *l);
 
 /*
  ** Initializes a tensor layout with the given shape and computes strides.
@@ -453,7 +453,7 @@ size_t					layout_init(t_layout *l, const int ndim,
  **
  ** @return          true on success, false on failure.
  */
-bool					layout_copy(t_layout *dst, const t_layout *src);
+t_bool					layout_copy(t_layout *dst, const t_layout *src);
 
 /*
  ** Compares the shapes of two tensor layouts.
@@ -463,7 +463,7 @@ bool					layout_copy(t_layout *dst, const t_layout *src);
  **
  ** @return         true if shapes are equal, false if otherwise
  */
-bool					layout_equal(const t_layout *a, const t_layout *b);
+t_bool					layout_equal(const t_layout *a, const t_layout *b);
 
 /*
  ** Frees the memory allocated for a layout.
@@ -546,6 +546,6 @@ t_array					arr_f64(double *data, const size_t len);
  **
  ** @return          true on success, false on failure.
  */
-bool					tensr_fill(t_tensr *t, double value);
+t_bool					tensr_fill(t_tensr *t, double value);
 
 #endif

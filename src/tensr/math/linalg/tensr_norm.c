@@ -14,7 +14,7 @@
 #include <tensr/tensr.h>
 #include <tensr/tensr_linalg.h>
 
-t_tensr	*tensr_norm(const t_tensr *t, bool keepdims, t_tensr *out)
+t_tensr	*tensr_norm(const t_tensr *t, t_bool keepdims, t_tensr *out)
 {
 	t_tensr	*dot;
 	size_t	axis;

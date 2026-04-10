@@ -12,7 +12,7 @@
 
 #include <tensr/tensr.h>
 
-bool	layout_copy(t_layout *dst, const t_layout *src)
+t_bool	layout_copy(t_layout *dst, const t_layout *src)
 {
 	int	i;
 

@@ -12,7 +12,7 @@
 
 #include <tensr/tensr.h>
 
-bool	layout_alloc(const int ndim, t_layout *l)
+t_bool	layout_alloc(const int ndim, t_layout *l)
 {
 	if (!l)
 		return (false);

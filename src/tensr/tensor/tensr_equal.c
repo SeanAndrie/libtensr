@@ -12,7 +12,7 @@
 
 #include <tensr/tensr.h>
 
-static bool	is_equal(void *a, void *b, t_dtype dtype)
+static t_bool	is_equal(void *a, void *b, t_dtype dtype)
 {
 	if (dtype == DT_U8)
 		return ((*(uint8_t *)a == *(uint8_t *)b));
@@ -23,7 +23,7 @@ static bool	is_equal(void *a, void *b, t_dtype dtype)
 	return (false);
 }
 
-bool	tensr_equal(const t_tensr *a, const t_tensr *b)
+t_bool	tensr_equal(const t_tensr *a, const t_tensr *b)
 {
 	t_iter	it;
 	void	*a_v;

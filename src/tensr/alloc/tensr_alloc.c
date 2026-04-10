@@ -24,7 +24,7 @@ static size_t	dtype_size_in_bytes(t_dtype dtype)
 	return (0);
 }
 
-static bool	invalid_parameters(const int ndim, const size_t *shape)
+static t_bool	invalid_parameters(const int ndim, const size_t *shape)
 {
 	return (ndim < 0 || (ndim > 0 && !shape) || (ndim == 0 && shape)
 		|| (ndim > MAX_NDIM));

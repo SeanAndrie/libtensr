@@ -13,7 +13,7 @@
 #include <tensr/tensr.h>
 #include <tensr/tensr_debug.h>
 
-bool	tensr_expand_dims(t_tensr *t, const int axis)
+t_bool	tensr_expand_dims(t_tensr *t, const int axis)
 {
 	int		i;
 	int		j;

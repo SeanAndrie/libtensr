@@ -12,12 +12,12 @@
 
 #include <tensr/tensr.h>
 
-static bool	slices_are_valid(const t_tensr *t, const int n_slices,
+static t_bool	slices_are_valid(const t_tensr *t, const int n_slices,
 		const t_slice *slices)
 {
 	int		i;
 	int		axis;
-	bool	used_axes[MAX_NDIM];
+	t_bool	used_axes[MAX_NDIM];
 
 	ft_memset(used_axes, 0, sizeof(used_axes));
 	i = 0;

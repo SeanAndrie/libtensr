@@ -12,7 +12,7 @@
 
 #include <tensr/tensr.h>
 
-bool	tensr_is_contiguous(const t_tensr *t)
+t_bool	tensr_is_contiguous(const t_tensr *t)
 {
 	int			i;
 	t_layout	l;
