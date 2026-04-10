@@ -19,9 +19,15 @@
 # define MAX_NDIM 32
 # define MAX_ACC_SIZE 8
 
-# define FLT_MAX 3.402823466e+38F
-# define FLT_MIN 1.17549435E-38F
-# define DBL_MAX 1.79769e+308
+# ifndef FLT_MAX
+#  define FLT_MAX 3.402823466e+38F
+# endif
+# ifndef FLT_MIN
+#  define FLT_MIN 1.17549435E-38F
+# endif
+# ifndef DBL_MAX
+#  define DBL_MAX 1.79769e+308
+# endif
 
 /* Supported Data Types */
 typedef enum e_dtype
@@ -60,7 +66,7 @@ typedef struct s_tensr
 	enum e_dtype		dtype;
 	struct s_layout		layout;
 	size_t				elemsize;
-	t_bool				owns_data;
+	enum e_bool			owns_data;
 }						t_tensr;
 
 /* Slice descriptor */
@@ -96,7 +102,7 @@ typedef struct s_reduce_ctx
 	size_t				base_off;
 	struct s_layout		reduced_l;
 	struct s_reduce_op	reduce_op;
-	t_bool				is_reduced[MAX_NDIM];
+	enum e_bool			is_reduced[MAX_NDIM];
 }						t_reduce_ctx;
 
 /*
