@@ -6,12 +6,11 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 23:02:48 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/30 01:36:52 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/12 01:55:03 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/tensr_debug.h>
 
 t_bool	tensr_expand_dims(t_tensr *t, const int axis)
 {

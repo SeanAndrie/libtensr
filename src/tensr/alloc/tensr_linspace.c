@@ -6,12 +6,11 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/09 23:12:43 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/10 14:26:01 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/12 01:54:46 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/tensr_debug.h>
 
 static void	set_cast(void *dst, double value, t_dtype dtype)
 {

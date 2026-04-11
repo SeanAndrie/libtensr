@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/10 21:43:12 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/12 01:48:15 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,6 @@
 
 # define MAX_NDIM 32
 # define MAX_ACC_SIZE 8
-
-# ifndef FLT_MAX
-#  define FLT_MAX 3.402823466e+38F
-# endif
-# ifndef FLT_MIN
-#  define FLT_MIN 1.17549435E-38F
-# endif
-# ifndef DBL_MAX
-#  define DBL_MAX 1.79769e+308
-# endif
 
 /* Supported Data Types */
 typedef enum e_dtype

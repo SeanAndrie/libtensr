@@ -6,12 +6,11 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 00:00:34 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/29 22:58:22 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/12 01:54:39 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/tensr_debug.h>
 
 static size_t	dtype_size_in_bytes(t_dtype dtype)
 {

@@ -6,12 +6,11 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:44:10 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/03 10:47:53 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/12 01:55:10 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/tensr_debug.h>
 #include <tensr/tensr_linalg.h>
 
 static t_bool	is_compatible(const t_layout *a, const t_layout *b)
