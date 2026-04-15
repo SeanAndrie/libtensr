@@ -25,8 +25,7 @@ static size_t	dtype_size_in_bytes(t_dtype dtype)
 
 static t_bool	invalid_parameters(const int ndim, const size_t *shape)
 {
-	return (ndim < 0 || (ndim > 0 && !shape) || (ndim == 0 && shape)
-		|| (ndim > MAX_NDIM));
+	return (ndim < 0 || (ndim > 0 && !shape) || (ndim > MAX_NDIM));
 }
 
 t_tensr	*tensr_alloc(const int ndim, const size_t *shape, t_dtype dtype)
