@@ -54,7 +54,12 @@ void	tensr_info(const char *name, t_tensr *t)
 	if (name)
 	{
 		ft_printf("%s\n", name);
-		ft_printf("-------------\n");
+        while (*name)
+        {
+            ft_printf("-");
+            name++;
+        }
+        ft_printf("\n");
 	}
 	ft_printf("size: %u\n", t->size);
 	ft_printf("elemsize: %u\n", t->elemsize);
