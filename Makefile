@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/12 01:54:28 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/04/15 18:06:01 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ VEC_MODULES := $(addprefix vec3/elementwise/functional/, vec3_add.c vec3_sub.c v
 					$(addprefix vec3/linalg/inplace/, vec3_normalize_ip.c vec3_scale_ip.c vec3_lerp_ip.c vec3_slerp_ip.c) \
 					$(addprefix vec3/generic/, vec3_to_tensr.c tensr_to_vec3.c vec3_equal_eps.c)
 
+TENSR_DEBUG_MODULES := $(addprefix debug/, tensr_info.c tensr_print.c)
+
 TENSR_MATH_MODULES := $(addprefix tensr/math/, \
 						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \
    						$(addprefix elementwise/, tensr_abs.c tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c tensr_clamp.c tensr_scale.c) \
@@ -38,7 +40,7 @@ TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix layout/, layout_alloc.c layout_init.c layout_copy.c layout_equal.c layout_free.c) \
 					$(addprefix tensor/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c))
 
-SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(VEC_MODULES))
+SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(TENSR_DEBUG_MODULES) $(VEC_MODULES))
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 23:02:48 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/12 01:55:03 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/15 18:15:09 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_bool	tensr_expand_dims(t_tensr *t, const int axis)
 	size_t	shape[MAX_NDIM];
 
 	if (!t || axis < 0 || axis > t->layout.ndim)
-		return (false);
+		return (FALSE);
 	i = 0;
 	j = 0;
 	while (i < t->layout.ndim + 1)
@@ -34,5 +34,5 @@ t_bool	tensr_expand_dims(t_tensr *t, const int axis)
 	og_ndim = t->layout.ndim;
 	layout_free(&t->layout);
 	t->size = layout_init(&t->layout, og_ndim + 1, shape);
-	return (true);
+	return (TRUE);
 }

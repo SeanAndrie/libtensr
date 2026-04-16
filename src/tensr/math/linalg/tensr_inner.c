@@ -19,8 +19,8 @@ t_tensr	*tensr_inner(const t_tensr *a, const t_tensr *b, const size_t n_axes,
 	t_tensr	*out;
 	t_tensr	*temp;
 
-	if (!a || !b || !layout_equal(&a->layout, &b->layout))
-		return (NULL);
+	if (!a || !b)		
+        return (NULL);
 	temp = tensr_mul(a, b, NULL);
 	if (!temp)
 		return (NULL);
