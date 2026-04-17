@@ -16,10 +16,10 @@
 static t_bool	is_compatible(const t_layout *a, const t_layout *b)
 {
 	if (a->ndim != 2 || b->ndim != 2)
-		return (false);
+		return (FALSE);
 	if (a->shape[1] != b->shape[0])
 		return (false);
-	return (true);
+	return (TRUE);
 }
 
 static void	slices_init(t_slice *a_slices, t_slice *b_slices,
@@ -34,8 +34,7 @@ static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
 {
 	t_tensr	*a_s;
 	t_tensr	*b_s;
-	t_tensr	*a_1d;
-	t_tensr	*b_1d;
+    t_tensr *dot;
 
 	a_s = tensr_slice(a, 2, a_slices);
 	if (!a_s)
@@ -46,17 +45,10 @@ static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
 		tensr_free(a_s);
 		return (NULL);
 	}
-	a_1d = tensr_reshape(a_s, 1, (size_t[]){a_s->size});
-	b_1d = tensr_reshape(b_s, 1, (size_t[]){b_s->size});
-	tensr_free(a_s);
-	tensr_free(b_s);
-	if (!a_1d || !b_1d)
-	{
-		tensr_free(a_1d);
-		tensr_free(b_1d);
-		return (NULL);
-	}
-	return (tensr_inner(a_1d, b_1d, 1, (size_t[]){0}));
+    dot = tensr_inner(a_s, b_s, 1, (size_t[]){0});
+    tensr_free(b_s);
+    tensr_free(a_s);
+    return (dot);
 }
 
 static t_bool	fill_out(const t_tensr *a, const t_tensr *b, t_tensr *out)
