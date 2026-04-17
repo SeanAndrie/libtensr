@@ -82,7 +82,7 @@ void	tensr_print(t_tensr *t)
 {
 	if (!t || !t->data)
 		return ;
-	ft_printf("tensor(");
+	ft_printf("\ntensor(");
 	if (t->layout.ndim == 0)
 		print_elem(t->data, t->dtype, 0);
 	else

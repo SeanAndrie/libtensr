@@ -66,10 +66,11 @@ void	tensr_info(const char *name, t_tensr *t)
 	if (t->layout.ndim > 0)
 	{
 		ft_printf("ndim: %d\n", t->layout.ndim);
-		ft_printf("Shape: ");
+		ft_printf("shape: ");
 		print_arr(t->layout.ndim, t->layout.shape);
-		ft_printf("Stride: ");
+		ft_printf("stride: ");
 		print_arr(t->layout.ndim, t->layout.stride);
 	}
 	print_dtype(t->dtype);
+    tensr_print(t);
 }
