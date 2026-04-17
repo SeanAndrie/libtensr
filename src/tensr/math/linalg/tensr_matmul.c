@@ -32,9 +32,10 @@ static void	slices_init(t_slice *a_slices, t_slice *b_slices,
 static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
 		t_slice *a_slices, t_slice *b_slices)
 {
-	t_tensr	*dot;
 	t_tensr	*a_s;
 	t_tensr	*b_s;
+	t_tensr	*a_1d;
+	t_tensr	*b_1d;
 
 	a_s = tensr_slice(a, 2, a_slices);
 	if (!a_s)
@@ -45,12 +46,17 @@ static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
 		tensr_free(a_s);
 		return (NULL);
 	}
-	dot = tensr_dot(a_s, b_s);
+	a_1d = tensr_reshape(a_s, 1, (size_t[]){a_s->size});
+	b_1d = tensr_reshape(b_s, 1, (size_t[]){b_s->size});
 	tensr_free(a_s);
 	tensr_free(b_s);
-	if (!dot)
+	if (!a_1d || !b_1d)
+	{
+		tensr_free(a_1d);
+		tensr_free(b_1d);
 		return (NULL);
-	return (dot);
+	}
+	return (tensr_inner(a_1d, b_1d, 1, (size_t[]){0}));
 }
 
 static t_bool	fill_out(const t_tensr *a, const t_tensr *b, t_tensr *out)
