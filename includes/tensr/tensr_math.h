@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/19 21:31:35 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 21:31:36 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/19 21:18:59 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/19 21:19:01 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TENSR_MATH_H
 # define TENSR_MATH_H
 
-# include <tensr/tensr_callbacks.h>
 # include <tensr/tensr.h>
+# include <tensr/tensr_callbacks.h>
 
 // Elementwise Operations
 
