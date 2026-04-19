@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 21:18:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 21:19:01 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/20 00:08:48 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,22 @@
 # include <tensr/tensr_callbacks.h>
 
 // Elementwise Operations
+
+/*
+ ** Applies an element-wise binary operation to two tensors.
+ **
+ ** Both tensors must have compatible shapes (broadcastable).
+ ** The result tensor will have the broadcasted shape.
+ **
+ ** @param a         Pointer to the first tensor.
+ ** @param b         Pointer to the second tensor.
+ ** @param f         Binary operation function pointer.
+ **
+ ** @return          A pointer to the result tensor, or NULL on failure.
+ */
+t_tensr					*tensr_elementwise(const t_tensr *a, const t_tensr *b,
+							void (*f)(void *a, void *b, void *out,
+								t_dtype dtype), t_tensr *out);
 
 /*
  ** Computes the absolute value of each element in the tensor.
@@ -105,6 +121,38 @@ t_tensr	*tensr_div(const t_tensr *a, const t_tensr *b, t_tensr *out);
 t_tensr	*tensr_clamp(const t_tensr *t, double min, double max, t_tensr *out);
 
 // Reduction Operations
+
+/*
+** Reduces a tensor along specified axes using a strided reduction strategy.
+**
+** This is an internal function that handles the actual reduction logic
+** with support for non-contiguous tensors and custom reduction contexts.
+**
+** @param t         Pointer to the source tensor.
+** @param n_axes    Number of axes to reduce.
+** @param axes     Array of axis indices to reduce.
+** @param ctx      Reduction context (init, apply, finalize functions).
+** @return         A pointer to the reduced tensor, or NULL on failure.
+*/
+t_tensr					*tensr_reduce_strided(const t_tensr *t,
+							const int n_axes, const size_t *axes,
+							t_reduce_ctx *ctx);
+
+/*
+ ** Reduces a tensor along specified axes.
+ **
+ ** Reduction operations collapse one or more dimensions by applying
+ ** an aggregation function (e.g., sum, mean, min, max).
+ **
+ ** @param t         Pointer to the source tensor.
+ ** @param n_axes    Number of axes to reduce.
+ ** @param axes      Array of axis indices to reduce.
+ ** @param op        Reduction operation descriptor (init, apply, finalize).
+ **
+ ** @return          A pointer to the reduced tensor, or NULL on failure.
+ */
+t_tensr					*tensr_reduce(const t_tensr *t, const int n_axes,
+							const size_t *axes, t_reduce_op op);
 
 /*
  ** Computes the sum of elements along specified axes.

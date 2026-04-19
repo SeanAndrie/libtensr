@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 21:19:47 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/20 00:09:29 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,38 +360,6 @@ t_bool					tensr_equal_eps(const t_tensr *a, const t_tensr *b,
 void					tensr_free(t_tensr *t);
 
 /*
-** Reduces a tensor along specified axes using a strided reduction strategy.
-**
-** This is an internal function that handles the actual reduction logic
-** with support for non-contiguous tensors and custom reduction contexts.
-**
-** @param t         Pointer to the source tensor.
-** @param n_axes    Number of axes to reduce.
-** @param axes     Array of axis indices to reduce.
-** @param ctx      Reduction context (init, apply, finalize functions).
-** @return         A pointer to the reduced tensor, or NULL on failure.
-*/
-t_tensr					*tensr_reduce_strided(const t_tensr *t,
-							const int n_axes, const size_t *axes,
-							t_reduce_ctx *ctx);
-
-/*
- ** Reduces a tensor along specified axes.
- **
- ** Reduction operations collapse one or more dimensions by applying
- ** an aggregation function (e.g., sum, mean, min, max).
- **
- ** @param t         Pointer to the source tensor.
- ** @param n_axes    Number of axes to reduce.
- ** @param axes      Array of axis indices to reduce.
- ** @param op        Reduction operation descriptor (init, apply, finalize).
- **
- ** @return          A pointer to the reduced tensor, or NULL on failure.
- */
-t_tensr					*tensr_reduce(const t_tensr *t, const int n_axes,
-							const size_t *axes, t_reduce_op op);
-
-/*
  ** Initializes a tensor iterator for iterating over all elements.
  **
  ** @param t         Pointer to the tensor.
@@ -470,22 +438,6 @@ t_bool					layout_equal(const t_layout *a, const t_layout *b);
  ** @param l         Pointer to the layout to free.
  */
 void					layout_free(t_layout *l);
-
-/*
- ** Applies an element-wise binary operation to two tensors.
- **
- ** Both tensors must have compatible shapes (broadcastable).
- ** The result tensor will have the broadcasted shape.
- **
- ** @param a         Pointer to the first tensor.
- ** @param b         Pointer to the second tensor.
- ** @param f         Binary operation function pointer.
- **
- ** @return          A pointer to the result tensor, or NULL on failure.
- */
-t_tensr					*tensr_elementwise(const t_tensr *a, const t_tensr *b,
-							void (*f)(void *a, void *b, void *out,
-								t_dtype dtype), t_tensr *out);
 
 /*
  ** Creates a typed array with 8-bit unsigned integer data.

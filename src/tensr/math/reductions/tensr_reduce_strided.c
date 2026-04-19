@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 00:14:30 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/10 20:59:04 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/20 00:09:27 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
+#include <tensr/tensr_math.h>
 
 static size_t	calculate_base_offset(const t_layout *l,
 		const size_t *outer_indices, const t_bool *is_reduced)

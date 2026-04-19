@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:44:39 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/01 23:45:14 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/20 00:06:47 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
+#include <tensr/tensr_math.h>
 
 static void	map_indices(const int out_ndim, const t_layout *t_l,
 		size_t *t_indices, const size_t *out_indices)

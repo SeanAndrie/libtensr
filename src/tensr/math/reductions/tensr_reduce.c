@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/18 00:32:56 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/02/18 01:47:26 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/20 00:09:02 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
+#include <tensr/tensr_math.h>
 
 static t_reduce_ctx	*reduce_ctx_init(const int n_axes, const size_t *axes,
 		t_reduce_op op)
