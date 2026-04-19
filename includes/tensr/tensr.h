@@ -544,7 +544,19 @@ t_array					arr_f64(double *data, const size_t len);
  */
 t_bool					tensr_fill(t_tensr *t, double value);
 
+/*
+ ** Prints information about a tensor including shape, stride, dtype, and data pointer.
+ **
+ ** @param name      Optional name to display with the tensor info (can be NULL).
+ ** @param t        Pointer to the tensor to inspect.
+ */
 void					tensr_info(const char *name, t_tensr *t);
+
+/*
+ ** Prints the tensor's data to stdout in a readable format.
+ **
+ ** @param t        Pointer to the tensor to print.
+ */
 void					tensr_print(t_tensr *t);
 
 #endif
