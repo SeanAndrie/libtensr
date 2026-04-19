@@ -1,6 +1,5 @@
 <p align="center">
   <h1 align="center">libtensr</h1>
-  <!-- <img src="" alt="libtensr" width="200" /> -->
 </p>
 
 <p align="center">
@@ -12,132 +11,98 @@
   <a href="#features">Features</a> ·
   <a href="#installation">Installation</a> ·
   <a href="#usage">Usage</a> ·
+  <a href="#documentation">Documentation</a>
 </p>
 
 ---
 
 ## Overview
 
-`libtensr` is a lightweight multi-dimensional tensor library written in C, designed for numerical and linear algebra operations in small-scale projects. It provides a simple API for creating, managing, and accessing N-dimensional arrays with stride-based memory layout.
+`libtensr` is a lightweight multi-dimensional tensor library written in C, designed for numerical and linear algebra operations. It provides a simple API for creating, managing, and accessing N-dimensional arrays with stride-based memory layout.
+
+### Key Characteristics
+
+- **Zero-copy views** - Create lightweight views without copying data
+- **Broadcasting** - Automatic shape expansion during operations
+- **Multiple data types** - Support for f32, f64, i32, i64, u8
+- **Strided memory** - Row-major layout with customizable strides
+- **Custom operations** - Extend via callbacks
 
 ---
 
 ## Features
 
-### Data Types
+| Category | Description |
+|----------|-------------|
+| Allocation | Create tensors from scratch, data, or existing arrays |
+| Views | Transpose, permute, reshape, slice without copying |
+| Element-wise | Add, subtract, multiply, divide, abs, sqrt, clamp |
+| Reductions | Sum, min, max, mean along specified axes |
+| Linear Algebra | Dot, cross, matmul, norm, normalize |
+| Iteration | Traverse tensor elements efficiently |
 
-| Type | Description |
-|------|-------------|
-| `DT_F32` | 32-bit floating point |
-| `DT_F64` | 64-bit floating point |
-| `DT_I32` | 32-bit signed integer |
-| `DT_I64` | 64-bit signed integer |
-| `DT_U8` | 8-bit unsigned integer |
+For a complete list of functions and types, see the [API documentation](./docs/api.md).
 
-### Core Tensor Operations
-
-- **Allocation** - Create tensors with custom shapes and strides
-- **Linspace** - Create evenly spaced values with `tensr_linspace`
-- **Fill** - Create tensor filled with a specific value with `tensr_full`
-- **Broadcasting** - Efficiently expand tensors during operations
-- **Array Conversion** - Convert between C arrays and tensors
-- **Element Access** - Get and set individual elements
-- **Contiguity Check** - Verify if tensor data is contiguous in memory
-- **Offset Calculation** - Compute memory offsets for indices
-- **Tensor Equality** - Compare tensors for equality
-
-### Views & Transformations
-
-- **View** - Create lightweight views into existing tensor data
-- **Transpose** - Reverse or permute tensor dimensions
-- **Slice** - Extract sub-tensors along specified dimensions
-- **Reshape** - Change tensor shape without copying data
-- **Permute** - Reorder tensor dimensions
-
-### Layout Management
-
-- **Shape Equality** - Compare tensor shapes
-- **Layout Copy** - Copy layout information between tensors
-- **Memory Layout** - Manage stride-based memory layouts
-
-### Element-wise Operations
-
-- Addition (`+`)
-- Subtraction (`-`)
-- Multiplication (`*`)
-- Division (`/`)
-- Square Root (`√`)
-- Negation
-- Absolute Value (`tensr_abs`)
-- Scale (`tensr_scale`)
-- Custom callback support via `tensr_elementwise`
-
-### Linear Algebra
-
-- **Dot Product** - Inner product of vectors/matrices
-- **Cross Product** - Cross product for 3D vectors
-- **Matrix multiplication** - Multiply matrices/tensors
-- **Norm** - Compute vector/matrix norms
-- **Normalize** - Normalize tensor to unit length
-
-### Reductions
-
-- **Sum** - Sum all elements along specified axes
-- **Min** - Minimum value along specified axes
-- **Max** - Maximum value along specified axes
-- **Mean** - Arithmetic mean along specified axes
-
-### Iteration
-
-- **Iterator Init** - Initialize tensor iterator
-- **Iterator Next** - Advance to next element
-- **Iterator Reset** - Reset iterator to beginning
-
-### Debugging
-
-- **Print** - Print tensor contents and metadata
-- **Metadata** - Display tensor shape, stride, and type information
-
-## Dependencies
-
-- [libft](https://github.com/SeanAndrie/libft-adapt) - Utility library for C
+---
 
 ## Installation
 
 ```bash
-# Clone libft first
+# Clone dependencies
 git clone https://github.com/SeanAndrie/libft-adapt libft
 
-# Clone libtensr
+# Clone this library
 git clone https://github.com/SeanAndrie/libtensr.git
 
-# Navigate to repository
-cd libtensr
-
-make
+# Build
+cd libtensr && make
 ```
 
 This produces a static library `libtensr.a`.
 
+---
+
 ## Usage
 
 ```c
+#include <libft.h>
 #include <libtensr.h>
 
 int main() {
+    // Create a 1D tensor with values 0, 1, 2
+    t_tensr *a = tensr_linspace(0.0, 2.0, 3, DT_F64);
 
-    // Create a typed array
-    t_array vec_a = arr_i32((int[]{1, 2, 3}), 3);
+    // Create another tensor
+    t_tensr *b = tensr_full(1.0, 1, (size_t[]){3}, DT_F64);
 
-    // Create a vector
-    tensr_t *a = tensr_from_arr(&vec_a, 1, (size_t[]){3}, DT_I32);
-    
-    // ... use the tensor ...
-    
+    // Element-wise addition
+    t_tensr *c = tensr_add(a, b, NULL);
+
+    // Print result
+    tensr_print(c);
+
+    // Cleanup
     tensr_free(a);
+    tensr_free(b);
+    tensr_free(c);
+
     return 0;
 }
 ```
+
+Compile with:
+```bash
+cc -o program program.c -I/path/to/libft/includes -I/path/to/libtensr/includes -L/path/to/libtensr -ltensr -L/path/to/libft -lft -lm
+```
+
+---
+
+## Documentation
+
+- [API Reference](./docs/api.md) - Complete function reference
+- [Data Types](./docs/dtypes.md) - Type system overview
+
+---
 
 <p align="center">
   Built for numerical computing in C
