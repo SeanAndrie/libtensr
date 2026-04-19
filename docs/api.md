@@ -32,7 +32,7 @@
 | `tensr_full` | Create tensor filled with constant value |
 | `tensr_scalar` | Create scalar tensor |
 | `tensr_linspace` | Create evenly spaced values |
-| `tensr_from_data` | Create tensor from existing data |
+| `tensr_from_arr` | Create tensor from array with dtype validation |
 | `tensr_copy` | Deep copy tensor |
 | `tensr_cast` | Convert between data types |
 | `tensr_broadcast` | Apply broadcasting rules |

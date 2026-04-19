@@ -136,7 +136,7 @@ t_tensr					*tensr_cast(const t_tensr *t, t_dtype dtype,
  **
  ** @return          A pointer to the converted tensor.
  */
-t_tensr					*tensr_from_data(void *data, const int ndim,
+t_tensr					*tensr_from_arr(t_array *arr, const int ndim,
 							const size_t *shape, t_dtype dtype);
 
 /*
