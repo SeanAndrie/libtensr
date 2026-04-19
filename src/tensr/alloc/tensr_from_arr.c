@@ -17,9 +17,7 @@ t_tensr	*tensr_from_arr(t_array *arr, const int ndim, const size_t *shape,
 {
 	t_tensr	*t;
 
-	if (!arr || !arr->data || ndim <= 0 || !shape)
-		return (NULL);
-	if (arr->dtype != dtype)
+	if (!arr || !arr->data || arr->dtype != dtype)
 		return (NULL);
 	t = tensr_alloc(ndim, shape, dtype);
 	if (!t)
