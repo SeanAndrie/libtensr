@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/15 20:43:56 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/19 19:07:51 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,8 @@ t_tensr					*tensr_cast(const t_tensr *t, t_dtype dtype,
  **
  ** @return          A pointer to the converted tensor.
  */
-// t_tensr					*tensr_from_arr(const t_array *arr, const int ndim,
-// 							const size_t *shape, t_dtype dtype);
-//
-t_tensr	*tensr_from_arr(void *data, const int ndim, const size_t *shape,
-		t_dtype dtype);
+t_tensr					*tensr_from_data(void *data, const int ndim,
+							const size_t *shape, t_dtype dtype);
 
 /*
  ** Creates a 1D tensor with evenly spaced values between start and end.

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_from_arr.c                                   :+:      :+:    :+:   */
+/*   tensr_from_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 22:33:23 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/15 20:44:38 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/19 18:50:51 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
 
-t_tensr	*tensr_from_arr(void *data, const int ndim, const size_t *shape,
+t_tensr	*tensr_from_data(void *data, const int ndim, const size_t *shape,
 		t_dtype dtype)
 {
 	t_tensr	*t;
