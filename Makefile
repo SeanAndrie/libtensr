@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/19 19:12:52 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/04/20 00:05:38 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,16 @@ VEC_MODULES := $(addprefix vec3/elementwise/functional/, vec3_add.c vec3_sub.c v
 
 TENSR_DEBUG_MODULES := $(addprefix debug/, tensr_info.c tensr_print.c)
 
-TENSR_MATH_MODULES := $(addprefix tensr/math/, \
-						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \
-    						$(addprefix elementwise/, tensr_abs.c tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c tensr_clamp.c tensr_scale.c) \
-   						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c tensr_mean.c) \
-   						$(addprefix ops/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c) \
+TENSR_CALLBACKS := $(addprefix callbacks/, \
+					$(addprefix func/, add_func.c sub_func.c mul_func.c div_func.c) \
+					$(addprefix sum/, sum_init.c sum_apply.c) \
+					$(addprefix max/, max_init.c max_apply.c) \
+					$(addprefix mean/, mean_finalize.c) \
+					$(addprefix min/, min_init.c min_apply.c))
+
+TENSR_MATH_MODULES := $(addprefix tensr/math/, $(TENSR_CALLBACKS) \
+    					$(addprefix elementwise/, tensr_elementwise.c tensr_abs.c tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c tensr_clamp.c tensr_scale.c) \
+   						$(addprefix reductions/, tensr_reduce.c tensr_reduce_strided.c tensr_sum.c tensr_max.c tensr_min.c tensr_mean.c) \
    						$(addprefix linalg/, tensr_dot.c tensr_inner.c tensr_cross.c tensr_norm.c tensr_matmul.c tensr_normalize.c))
 
 TENSR_MODULES := $(addprefix tensr/, \

@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/tensr.h>
-#include <tensr/tensr_callbacks.h>
+#include <tensr/tensr_math.h>
 
 t_tensr	*tensr_add(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {

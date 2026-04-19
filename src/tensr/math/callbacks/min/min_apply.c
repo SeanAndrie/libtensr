@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mean_reduce.c                                      :+:      :+:    :+:   */
+/*   min_apply.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/07 16:10:22 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/07 16:16:21 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/19 23:45:40 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/19 23:57:20 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
 #include <tensr/tensr_callbacks.h>
 
-void	mean_finalize(void *acc, size_t count, t_dtype dtype)
+void	min_apply(void *a, const void *b, t_dtype dtype)
 {
 	if (dtype == DT_U8)
-		*(uint8_t *)acc /= (uint8_t)count;
+	{
+		if (*(const uint8_t *)b < *(uint8_t *)a)
+			*(uint8_t *)a = *(const uint8_t *)b;
+	}
 	else if (dtype == DT_I32)
-		*(int32_t *)acc /= (int32_t)count;
+	{
+		if (*(const int32_t *)b < *(int32_t *)a)
+			*(int32_t *)a = *(const int32_t *)b;
+	}
 	else if (dtype == DT_I64)
-		*(int64_t *)acc /= (int64_t)count;
+	{
+		if (*(const int64_t *)b < *(int64_t *)a)
+			*(int64_t *)a = *(const int64_t *)b;
+	}
 	else if (dtype == DT_F32)
-		*(float *)acc /= (float)count;
+	{
+		if (*(const float *)b < *(float *)a)
+			*(float *)a = *(const float *)b;
+	}
 	else if (dtype == DT_F64)
-		*(double *)acc /= (double)count;
+	{
+		if (*(const double *)b < *(double *)a)
+			*(double *)a = *(const double *)b;
+	}
 }

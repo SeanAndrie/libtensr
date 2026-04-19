@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/tensr.h>
-#include <tensr/tensr_callbacks.h>
+#include <tensr/tensr_math.h>
 
 t_tensr	*tensr_max(const t_tensr *t, const int n_axes, const size_t *axes)
 {
