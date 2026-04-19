@@ -34,7 +34,7 @@ static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
 {
 	t_tensr	*a_s;
 	t_tensr	*b_s;
-    t_tensr *dot;
+	t_tensr	*dot;
 
 	a_s = tensr_slice(a, 2, a_slices);
 	if (!a_s)
@@ -45,10 +45,10 @@ static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
 		tensr_free(a_s);
 		return (NULL);
 	}
-    dot = tensr_inner(a_s, b_s, 1, (size_t[]){0});
-    tensr_free(b_s);
-    tensr_free(a_s);
-    return (dot);
+	dot = tensr_inner(a_s, b_s, 1, (size_t[]){0});
+	tensr_free(b_s);
+	tensr_free(a_s);
+	return (dot);
 }
 
 static t_bool	fill_out(const t_tensr *a, const t_tensr *b, t_tensr *out)

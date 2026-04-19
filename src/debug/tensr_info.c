@@ -54,12 +54,12 @@ void	tensr_info(const char *name, t_tensr *t)
 	if (name)
 	{
 		ft_printf("%s\n", name);
-        while (*name)
-        {
-            ft_printf("-");
-            name++;
-        }
-        ft_printf("\n");
+		while (*name)
+		{
+			ft_printf("-");
+			name++;
+		}
+		ft_printf("\n");
 	}
 	ft_printf("size: %u\n", t->size);
 	ft_printf("elemsize: %u\n", t->elemsize);
@@ -72,5 +72,5 @@ void	tensr_info(const char *name, t_tensr *t)
 		print_arr(t->layout.ndim, t->layout.stride);
 	}
 	print_dtype(t->dtype);
-    tensr_print(t);
+	tensr_print(t);
 }
