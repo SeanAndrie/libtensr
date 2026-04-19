@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/tensr_linalg.h>
+#include <tensr/tensr_math.h>
 
 t_tensr	*tensr_normalize(const t_tensr *t, t_tensr *out)
 {

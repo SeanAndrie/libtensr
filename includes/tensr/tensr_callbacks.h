@@ -6,14 +6,14 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:30:45 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/10 21:14:36 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/19 19:32:08 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TENSR_CALLBACKS_H
 # define TENSR_CALLBACKS_H
 
-# include <stddef.h>
+# include <libft.h>
 
 typedef enum e_dtype	t_dtype;
 typedef struct s_tensr	t_tensr;

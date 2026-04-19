@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
-#include <tensr/tensr_linalg.h>
+#include <tensr/tensr_math.h>
 
 t_tensr	*tensr_dot(const t_tensr *a, const t_tensr *b)
 {

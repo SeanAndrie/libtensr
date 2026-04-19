@@ -12,7 +12,7 @@
 
 #include <libft.h>
 #include <tensr/tensr.h>
-#include <tensr/tensr_linalg.h>
+#include <tensr/tensr_math.h>
 
 t_tensr	*tensr_norm(const t_tensr *t, t_bool keepdims, t_tensr *out)
 {

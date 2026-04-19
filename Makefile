@@ -28,9 +28,10 @@ TENSR_DEBUG_MODULES := $(addprefix debug/, tensr_info.c tensr_print.c)
 
 TENSR_MATH_MODULES := $(addprefix tensr/math/, \
 						$(addprefix callbacks/, add_func.c sub_func.c mul_func.c div_func.c sum_reduce.c max_reduce.c min_reduce.c mean_reduce.c) \
-   						$(addprefix elementwise/, tensr_abs.c tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c tensr_clamp.c tensr_scale.c) \
-  						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c tensr_mean.c) \
-  						$(addprefix linalg/, tensr_dot.c tensr_inner.c tensr_cross.c tensr_norm.c tensr_matmul.c tensr_normalize.c))
+    						$(addprefix elementwise/, tensr_abs.c tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c tensr_clamp.c tensr_scale.c) \
+   						$(addprefix reductions/, tensr_sum.c tensr_max.c tensr_min.c tensr_mean.c) \
+   						$(addprefix ops/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c) \
+   						$(addprefix linalg/, tensr_dot.c tensr_inner.c tensr_cross.c tensr_norm.c tensr_matmul.c tensr_normalize.c))
 
 TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_f64.c) \
@@ -38,7 +39,7 @@ TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix iter/, iter_init.c iter_next.c iter_reset.c) \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
 					$(addprefix layout/, layout_alloc.c layout_init.c layout_copy.c layout_equal.c layout_free.c) \
-					$(addprefix tensor/, tensr_elementwise.c tensr_reduce.c tensr_reduce_strided.c tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c))
+					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c))
 
 SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(TENSR_DEBUG_MODULES) $(VEC_MODULES))
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
