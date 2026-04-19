@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 19:07:51 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/19 21:32:55 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -545,7 +545,7 @@ t_array					arr_f64(double *data, const size_t len);
 t_bool					tensr_fill(t_tensr *t, double value);
 
 /*
- ** Prints information about a tensor including shape, stride, dtype, and data pointer.
+ ** Prints information about a tensor (shape, stride, dtype, and data pointer).
  **
  ** @param name      Optional name to display with the tensor info (can be NULL).
  ** @param t        Pointer to the tensor to inspect.
