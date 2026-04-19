@@ -12,17 +12,11 @@
 
 NAME := libtensr.a
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr -Iincludes/vec3 -I../libft/includes -O3 -ffast-math -flto -funroll-loops -fno-signed-zeros
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr -I../libft/includes -O3 -ffast-math -flto -funroll-loops -fno-signed-zeros
 ARCHIVE := ar rcs
 
 SRC_DIR := src
 OBJ_DIR := obj
-
-VEC_MODULES := $(addprefix vec3/elementwise/functional/, vec3_add.c vec3_sub.c vec3_mul.c vec3_div.c vec3_neg.c vec3_abs.c vec3_clamp.c) \
-					$(addprefix vec3/linalg/functional/, vec3_dot.c vec3_cross.c vec3_normalize.c vec3_scale.c vec3_magnitude.c vec3_magnitude_sq.c vec3_project.c vec3_lerp.c vec3_slerp.c) \
-					$(addprefix vec3/elementwise/inplace/, vec3_add_ip.c vec3_sub_ip.c vec3_mul_ip.c vec3_div_ip.c vec3_neg_ip.c vec3_abs_ip.c vec3_clamp_ip.c) \
-					$(addprefix vec3/linalg/inplace/, vec3_normalize_ip.c vec3_scale_ip.c vec3_lerp_ip.c vec3_slerp_ip.c) \
-					$(addprefix vec3/generic/, vec3_to_tensr.c tensr_to_vec3.c vec3_equal_eps.c)
 
 TENSR_DEBUG_MODULES := $(addprefix debug/, tensr_info.c tensr_print.c)
 
@@ -41,7 +35,7 @@ TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix layout/, layout_alloc.c layout_init.c layout_copy.c layout_equal.c layout_free.c) \
 					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c))
 
-SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(TENSR_DEBUG_MODULES) $(VEC_MODULES))
+SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(TENSR_DEBUG_MODULES))
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
