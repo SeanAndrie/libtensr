@@ -12,8 +12,6 @@
 
 #include <tensr/tensr.h>
 
-static void	print_recursive(const t_tensr *t, size_t base_off, int dim);
-
 static void	print_elem(const void *data, t_dtype dtype, size_t byte_off)
 {
 	const char	*ptr;
@@ -45,19 +43,30 @@ static void	print_indent(int depth)
 	}
 }
 
+static void	print_sep(int is_last_dim)
+{
+	ft_printf(",");
+	if (is_last_dim)
+		ft_printf(" ");
+	else
+		ft_printf("\n");
+}
+
 static void	print_recursive(const t_tensr *t, size_t base_off, int dim)
 {
 	size_t	i;
 	size_t	step;
 	size_t	last;
+	int		is_last_dim;
 
 	step = t->layout.stride[dim] * t->elemsize;
 	last = t->layout.shape[dim];
+	is_last_dim = (dim == t->layout.ndim - 1);
 	ft_printf("[");
 	i = 0;
 	while (i < last)
 	{
-		if (dim == t->layout.ndim - 1)
+		if (is_last_dim)
 			print_elem(t->data, t->dtype, base_off + i * step);
 		else
 		{
@@ -65,15 +74,8 @@ static void	print_recursive(const t_tensr *t, size_t base_off, int dim)
 				print_indent(7 + dim + 1);
 			print_recursive(t, base_off + i * step, dim + 1);
 		}
-		if (i < last - 1)
-		{
-			ft_printf(",");
-			if (dim == t->layout.ndim - 1)
-				ft_printf(" ");
-			else
-				ft_printf("\n");
-		}
-		i++;
+		if (i++ < last - 1)
+			print_sep(is_last_dim);
 	}
 	ft_printf("]");
 }

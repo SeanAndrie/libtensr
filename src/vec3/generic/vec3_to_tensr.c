@@ -26,5 +26,5 @@ t_tensr	*vec3_to_tensr(t_vec3 v, const int ndim, const size_t *shape)
 		size *= shape[i++];
 	if (size != 3)
 		return (NULL);
-	return (tensr_from_data((float[]){v.x, v.y, v.z}, ndim, shape, DT_F32));
+	return (tensr_from_data((float []){v.x, v.y, v.z}, ndim, shape, DT_F32));
 }
