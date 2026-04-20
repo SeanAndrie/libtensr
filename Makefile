@@ -12,6 +12,7 @@
 
 NAME := libtensr.a
 CC := cc
+OPTIM_FLAGS := -O3 -ffast-math -funroll-loops -fno-signed-zeros -march=native
 CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr -I../libft/includes -O3 -ffast-math -flto -funroll-loops -fno-signed-zeros
 ARCHIVE := ar rcs
 

@@ -18,7 +18,7 @@ static t_bool	is_compatible(const t_layout *a, const t_layout *b)
 	if (a->ndim != 2 || b->ndim != 2)
 		return (FALSE);
 	if (a->shape[1] != b->shape[0])
-		return (false);
+		return (FALSE);
 	return (TRUE);
 }
 
@@ -70,13 +70,13 @@ static t_bool	fill_out(const t_tensr *a, const t_tensr *b, t_tensr *out)
 			b_slices[0] = (t_slice){0, j, j + 1, 1};
 			dot = calculate_entry(a, b, a_slices, b_slices);
 			if (!dot)
-				return (false);
+				return (FALSE);
 			if (!tensr_set(out, dot->data, (size_t[]){i, j}))
-				return (tensr_free(dot), false);
+				return (tensr_free(dot), FALSE);
 			tensr_free(dot);
 		}
 	}
-	return (true);
+	return (TRUE);
 }
 
 t_tensr	*tensr_matmul(const t_tensr *a, const t_tensr *b)

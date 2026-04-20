@@ -19,16 +19,16 @@ t_bool	tensr_is_contiguous(const t_tensr *t)
 	size_t		expected_stride;
 
 	if (!t)
-		return (false);
+		return (FALSE);
 	l = t->layout;
 	i = l.ndim - 1;
 	expected_stride = 1;
 	while (i >= 0)
 	{
 		if (l.stride[i] != expected_stride)
-			return (false);
+			return (FALSE);
 		expected_stride *= l.shape[i];
 		i--;
 	}
-	return (true);
+	return (TRUE);
 }

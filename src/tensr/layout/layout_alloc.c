@@ -15,10 +15,10 @@
 t_bool	layout_alloc(const int ndim, t_layout *l)
 {
 	if (!l)
-		return (false);
+		return (FALSE);
 	ft_memset(l, 0, sizeof(t_layout));
 	l->ndim = ndim;
 	l->shape = l->shape_buf;
 	l->stride = l->stride_buf;
-	return (true);
+	return (TRUE);
 }

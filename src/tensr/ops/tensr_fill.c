@@ -18,7 +18,7 @@ t_bool	tensr_fill(t_tensr *t, double value)
 	void	*dst;
 
 	if (!t || !iter_init(&t->layout, &it))
-		return (false);
+		return (FALSE);
 	while (iter_next(&it))
 	{
 		dst = tensr_get(t, it.indices);
@@ -33,5 +33,5 @@ t_bool	tensr_fill(t_tensr *t, double value)
 		else if (t->dtype == DT_F64)
 			*(double *)dst = value;
 	}
-	return (true);
+	return (TRUE);
 }
