@@ -19,12 +19,12 @@ t_bool	iter_init(const t_layout *l, t_iter *it)
 	if (!l)
 	{
 		ft_dprintf(STDERR_FILENO, "libtensr: iter_init: layout is missing\n");
-		return (false);
+		return (FALSE);
 	}
 	else if (!it)
 	{
 		ft_dprintf(STDERR_FILENO, "libtensr: iter_init: iterator is missing\n");
-		return (false);
+		return (FALSE);
 	}
 	it->total = 1;
 	i = 0;
@@ -33,5 +33,5 @@ t_bool	iter_init(const t_layout *l, t_iter *it)
 	it->layout = (t_layout *)l;
 	it->counter = 0;
 	ft_memset(it->indices, 0, sizeof(it->indices));
-	return (true);
+	return (TRUE);
 }

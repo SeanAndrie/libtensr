@@ -20,7 +20,7 @@ t_tensr	*tensr_normalize(const t_tensr *t, t_tensr *out)
 
 	if (!t)
 		return (NULL);
-	norm = tensr_norm(t, true, NULL);
+	norm = tensr_norm(t, TRUE, NULL);
 	if (!norm)
 		return (NULL);
 	res = tensr_div(t, norm, out);

@@ -25,19 +25,19 @@ static t_bool	slices_are_valid(const t_tensr *t, const int n_slices,
 	{
 		axis = slices[i].axis;
 		if (axis < 0 || axis >= t->layout.ndim)
-			return (false);
+			return (FALSE);
 		if (used_axes[axis])
-			return (false);
+			return (FALSE);
 		if (slices[i].step == 0)
-			return (false);
+			return (FALSE);
 		if (slices[i].start >= slices[i].end)
-			return (false);
+			return (FALSE);
 		if (slices[i].end > t->layout.shape[axis])
-			return (false);
-		used_axes[axis] = true;
+			return (FALSE);
+		used_axes[axis] = TRUE;
 		i++;
 	}
-	return (true);
+	return (TRUE);
 }
 
 static size_t	calculate_base_offset(const int n_slices, const t_slice *slices,

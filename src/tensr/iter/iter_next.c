@@ -17,11 +17,11 @@ t_bool	iter_next(t_iter *it)
 	int	i;
 
 	if (it->counter >= it->total)
-		return (false);
+		return (FALSE);
 	if (it->counter == 0)
 	{
 		it->counter++;
-		return (true);
+		return (TRUE);
 	}
 	i = it->layout->ndim - 1;
 	while (i >= 0)
@@ -33,5 +33,5 @@ t_bool	iter_next(t_iter *it)
 		i--;
 	}
 	it->counter++;
-	return (true);
+	return (TRUE);
 }

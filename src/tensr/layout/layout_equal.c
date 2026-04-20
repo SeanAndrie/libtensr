@@ -17,13 +17,13 @@ t_bool	layout_equal(const t_layout *a, const t_layout *b)
 	int	i;
 
 	if (!a || !b || a->ndim != b->ndim)
-		return (false);
+		return (FALSE);
 	i = a->ndim - 1;
 	while (i >= 0)
 	{
 		if (a->shape[i] != b->shape[i])
-			return (false);
+			return (FALSE);
 		i--;
 	}
-	return (true);
+	return (TRUE);
 }

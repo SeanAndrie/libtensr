@@ -19,7 +19,7 @@ static t_bool	is_equal(void *a, void *b, double epsilon, t_dtype dtype)
 		return (fabsf(*(float *)a - *(float *)b) < (float)epsilon);
 	else if (dtype == DT_F64)
 		return (fabs(*(double *)a - *(double *)b) < epsilon);
-	return (false);
+	return (FALSE);
 }
 
 t_bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
@@ -29,23 +29,23 @@ t_bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
 	void	*b_v;
 
 	if (!a || !b)
-		return (false);
+		return (FALSE);
 	if (a->dtype == DT_I32 || a->dtype == DT_I64)
-		return (false);
+		return (FALSE);
 	if (a->dtype != b->dtype || !layout_equal(&a->layout, &b->layout))
-		return (false);
+		return (FALSE);
 	if (!iter_init(&a->layout, &it))
 	{
 		ft_dprintf(STDERR_FILENO,
 			"libtensr: tensr_equal_eps: failed to initialize iterator.\n");
-		return (false);
+		return (FALSE);
 	}
 	while (iter_next(&it))
 	{
 		a_v = tensr_get(a, it.indices);
 		b_v = tensr_get(b, it.indices);
 		if (!a_v || !b_v || !is_equal(a_v, b_v, epsilon, a->dtype))
-			return (false);
+			return (FALSE);
 	}
-	return (true);
+	return (TRUE);
 }
