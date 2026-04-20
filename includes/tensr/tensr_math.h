@@ -30,9 +30,9 @@
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr					*tensr_elementwise(const t_tensr *a, const t_tensr *b,
-							void (*f)(void *a, void *b, void *out,
-								t_dtype dtype), t_tensr *out);
+t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b,
+			void (*f)(void *a, void *b, void *out, t_dtype dtype),
+			t_tensr *out);
 
 /*
  ** Computes the absolute value of each element in the tensor.
@@ -134,9 +134,8 @@ t_tensr	*tensr_clamp(const t_tensr *t, double min, double max, t_tensr *out);
 ** @param ctx      Reduction context (init, apply, finalize functions).
 ** @return         A pointer to the reduced tensor, or NULL on failure.
 */
-t_tensr					*tensr_reduce_strided(const t_tensr *t,
-							const int n_axes, const size_t *axes,
-							t_reduce_ctx *ctx);
+t_tensr	*tensr_reduce_strided(const t_tensr *t, const int n_axes,
+			const size_t *axes, t_reduce_ctx *ctx);
 
 /*
  ** Reduces a tensor along specified axes.
@@ -151,8 +150,8 @@ t_tensr					*tensr_reduce_strided(const t_tensr *t,
  **
  ** @return          A pointer to the reduced tensor, or NULL on failure.
  */
-t_tensr					*tensr_reduce(const t_tensr *t, const int n_axes,
-							const size_t *axes, t_reduce_op op);
+t_tensr	*tensr_reduce(const t_tensr *t, const int n_axes, const size_t *axes,
+			t_reduce_op op);
 
 /*
  ** Computes the sum of elements along specified axes.
