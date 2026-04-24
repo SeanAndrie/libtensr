@@ -13,6 +13,8 @@ The library supports multiple data types for different numerical precision and m
 | `DT_I32` | int32_t | 32-bit signed integer | 4 bytes |
 | `DT_I64` | int64_t | 64-bit signed integer | 8 bytes |
 | `DT_U8` | uint8_t | 8-bit unsigned integer | 1 byte |
+| `DT_C64` | float complex | 64-bit complex float | 8 bytes |
+| `DT_C128` | double complex | 128-bit complex double | 16 bytes |
 
 ## Type Selection
 
@@ -22,6 +24,8 @@ Choose the appropriate data type based on your needs:
 - **DT_F32** (float) - Use for lower memory footprint and faster operations
 - **DT_I32** / **DT_I64** - For integer data
 - **DT_U8** - For categorical data or binary flags
+- **DT_C128** (double complex) - Default for complex computations
+- **DT_C64** (float complex) - Use for lower memory footprint
 
 ## Type Conversion
 
@@ -44,7 +48,7 @@ t_array arr = arr_f64(data, 3);
 t_tensr *t = tensr_from_arr(&arr, 1, (size_t[]){3}, DT_F64);
 ```
 
-Available: `arr_u8`, `arr_i32`, `arr_i64`, `arr_f32`, `arr_f64`
+Available: `arr_u8`, `arr_i32`, `arr_i64`, `arr_f32`, `arr_f64`, `arr_c64`, `arr_c128`
 
 ---
 
