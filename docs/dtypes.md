@@ -52,20 +52,6 @@ Available: `arr_u8`, `arr_i32`, `arr_i64`, `arr_f32`, `arr_f64`, `arr_c64`, `arr
 
 ---
 
-## Tensor Structure
-
-```c
-struct s_tensr {
-    void        *data;       // Pointer to tensor data
-    t_layout    layout;      // Shape and stride information
-    t_dtype     dtype;      // Data type
-};
-```
-
-The tensor manages its own memory and handles type-specific operations internally.
-
----
-
 ## Memory Layout
 
 Tensors use row-major (C-style) memory layout by default:
