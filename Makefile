@@ -6,20 +6,18 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/20 00:05:38 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/04/25 01:01:50 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libtensr.a
 CC := cc
 OPTIM_FLAGS := -O3 -ffast-math -funroll-loops -fno-signed-zeros -march=native
-CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr -I../libft/includes -O3 -ffast-math -flto -funroll-loops -fno-signed-zeros
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/tensr -I../libft/includes -O3 -ffast-math -flto -funroll-loops -fno-signed-zeros
 ARCHIVE := ar rcs
 
 SRC_DIR := src
 OBJ_DIR := obj
-
-TENSR_DEBUG_MODULES := $(addprefix debug/, tensr_info.c tensr_print.c)
 
 TENSR_CALLBACKS := $(addprefix callbacks/, \
 					$(addprefix func/, add_func.c sub_func.c mul_func.c div_func.c) \
@@ -39,6 +37,7 @@ TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix iter/, iter_init.c iter_next.c iter_reset.c) \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
 					$(addprefix layout/, layout_alloc.c layout_init.c layout_copy.c layout_equal.c layout_free.c) \
+					$(addprefix debug/, tensr_info.c tensr_print.c) \
 					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c))
 
 SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(TENSR_DEBUG_MODULES))

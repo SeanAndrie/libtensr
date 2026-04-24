@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 19:40:38 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 01:00:44 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 
 # include <tensr/tensr.h>
 # include <tensr/tensr_math.h>
+# include <tensr/tensr_debug.h>
 
 #endif
