@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 16:14:16 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/15 19:05:11 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:10:18 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
+#include <tensr/tensr_debug.h>
 
 static void	print_arr(const int ndim, const size_t *arr)
 {
@@ -41,6 +42,10 @@ static void	print_dtype(t_dtype dtype)
 		ft_printf("F32");
 	else if (dtype == DT_F64)
 		ft_printf("F64");
+	else if (dtype == DT_C64)
+		ft_printf("C64");
+	else if (dtype == DT_C128)
+		ft_printf("C128");
 	else
 		ft_printf("Unknown");
 	ft_printf("\n");

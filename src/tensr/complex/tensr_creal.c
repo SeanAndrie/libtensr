@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_scale.c                                      :+:      :+:    :+:   */
+/*   tensr_creal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/15 21:23:42 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 20:27:31 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/24 23:19:51 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/25 00:22:23 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
+
+static t_dtype	convert_dtype(t_dtype dtype)
+{
+	if (dtype == DT_C64)
+		return (DT_F32);
+	if (dtype == DT_C128)
+		return (DT_F64);
+	return (0);
+}
 
 static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 {
@@ -22,7 +31,8 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 		ret = out;
 	else
 	{
-		ret = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
+		ret = tensr_alloc(t->layout.ndim, t->layout.shape,
+				convert_dtype(t->dtype));
 		if (!ret)
 			return (NULL);
 		alloc = TRUE;
@@ -36,14 +46,16 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 	return (ret);
 }
 
-t_tensr	*tensr_scale(const t_tensr *t, double value, t_tensr *out)
+t_tensr	*tensr_creal(const t_tensr *t, t_tensr *out)
 {
 	t_iter	it;
-	void	*src;
 	void	*dst;
+	void	*src;
 
-	if (!t || t->dtype == DT_C64 || t->dtype == DT_C128)
+	if (!t)
 		return (NULL);
+	if (t->dtype != DT_C64 && t->dtype != DT_C128)
+		return (tensr_copy(t));
 	out = initialize(t, out, &it);
 	if (!out)
 		return (NULL);
@@ -51,16 +63,10 @@ t_tensr	*tensr_scale(const t_tensr *t, double value, t_tensr *out)
 	{
 		src = tensr_get(t, it.indices);
 		dst = tensr_get(out, it.indices);
-		if (t->dtype == DT_U8)
-			*(uint8_t *)dst = *(uint8_t *)src * (uint8_t)value;
-		else if (t->dtype == DT_I32)
-			*(int32_t *)dst = *(int32_t *)src * (int32_t)value;
-		else if (t->dtype == DT_I64)
-			*(int64_t *)dst = *(int64_t *)src * (int64_t)value;
-		else if (t->dtype == DT_F32)
-			*(float *)dst = *(float *)src * (float)value;
-		else if (t->dtype == DT_F64)
-			*(double *)dst = *(double *)src * value;
+		if (t->dtype == DT_C64)
+			*(float *)dst = crealf(*(float complex *)src);
+		else if (t->dtype == DT_C128)
+			*(double *)dst = creal(*(double complex *)src);
 	}
 	return (out);
 }

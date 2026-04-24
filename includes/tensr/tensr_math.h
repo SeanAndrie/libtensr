@@ -41,6 +41,7 @@ t_tensr	*tensr_elementwise(const t_tensr *a, const t_tensr *b,
  ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
+ **                  For complex tensors, returns the magnitude (cabs).
  */
 t_tensr	*tensr_abs(const t_tensr *t, t_tensr *out);
 

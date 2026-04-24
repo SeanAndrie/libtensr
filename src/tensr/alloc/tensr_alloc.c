@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 00:00:34 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/12 01:54:39 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 00:43:48 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ static size_t	dtype_size_in_bytes(t_dtype dtype)
 {
 	if (dtype == DT_U8)
 		return (1);
-	if (dtype == DT_I32 || dtype == DT_F32)
+	else if (dtype == DT_I32 || dtype == DT_F32)
 		return (4);
-	else if (dtype == DT_I64 || dtype == DT_F64)
+	else if (dtype == DT_I64 || dtype == DT_F64 || dtype == DT_C64)
 		return (8);
+	else if (dtype == DT_C128)
+		return (16);
 	return (0);
 }
 

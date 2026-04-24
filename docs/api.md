@@ -19,6 +19,8 @@
 | `DT_I32` | 32-bit signed integer |
 | `DT_I64` | 64-bit signed integer |
 | `DT_U8` | 8-bit unsigned integer |
+| `DT_C64` | 64-bit complex float |
+| `DT_C128` | 128-bit complex double |
 
 ---
 
@@ -136,6 +138,7 @@
 | `tensr_matmul` | Matrix multiplication |
 | `tensr_norm` | L2 norm |
 | `tensr_normalize` | Normalize to unit length |
+| `tensr_cdot` | Hermitian dot product (complex conjugate) |
 
 ---
 
@@ -179,6 +182,33 @@
 | `arr_i64` | int64_t |
 | `arr_f32` | float |
 | `arr_f64` | double |
+| `arr_c64` | float complex |
+| `arr_c128` | double complex |
+
+---
+
+## Complex Operations (`tensr.h`)
+
+| Function | Description |
+|----------|-------------|
+| `tensr_complex` | Create scalar complex tensor |
+| `tensr_cfill` | Fill tensor with complex value |
+| `tensr_cfull` | Create tensor filled with complex value |
+| `tensr_clinspace` | Create complex evenly spaced values |
+| `tensr_cscale` | Scale by complex constant |
+
+---
+
+## Complex Arithmetic (`tensr_math.h`)
+
+| Function | Description |
+|----------|-------------|
+| `tensr_conjugate` | Complex conjugate |
+| `tensr_creal` | Extract real components (with optional out) |
+| `tensr_cimag` | Extract imaginary components (with optional out) |
+| `tensr_carg` | Phase angle (argument) (with optional out) |
+| `tensr_abs` | Magnitude (cabs) |
+| `tensr_sqrt` | Complex square root |
 
 ---
 

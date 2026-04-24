@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/15 01:30:16 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/15 01:33:58 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:21:36 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ t_bool	tensr_fill(t_tensr *t, double value)
 	t_iter	it;
 	void	*dst;
 
+<<<<<<< HEAD
 	if (!t || !iter_init(&t->layout, &it))
+=======
+	if (!t || !iter_init(&t->layout, &it) || t->dtype == DT_C64
+		|| t->dtype == DT_C128)
+>>>>>>> feature/complex
 		return (FALSE);
 	while (iter_next(&it))
 	{

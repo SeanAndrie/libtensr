@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 18:31:38 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 01:00:18 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 01:04:38 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 typedef struct s_tensr	t_tensr;
 
+void					print_c64(const char *ptr);
+void					print_c128(const char *ptr);
 
 /*
  ** Prints information about a tensor (shape, stride, dtype and data pointer).

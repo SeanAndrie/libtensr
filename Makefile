@@ -6,14 +6,22 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2026/04/25 01:01:50 by sgadinga         ###   ########.fr        #
+=======
+#    Updated: 2026/04/25 00:41:58 by sgadinga         ###   ########.fr        #
+>>>>>>> feature/complex
 #                                                                              #
 # **************************************************************************** #
 
 NAME := libtensr.a
 CC := cc
 OPTIM_FLAGS := -O3 -ffast-math -funroll-loops -fno-signed-zeros -march=native
+<<<<<<< HEAD
 CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/tensr -I../libft/includes -O3 -ffast-math -flto -funroll-loops -fno-signed-zeros
+=======
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/utils/ -Iincludes/tensr -I../libft/includes 
+>>>>>>> feature/complex
 ARCHIVE := ar rcs
 
 SRC_DIR := src
@@ -32,13 +40,19 @@ TENSR_MATH_MODULES := $(addprefix tensr/math/, $(TENSR_CALLBACKS) \
    						$(addprefix linalg/, tensr_dot.c tensr_inner.c tensr_cross.c tensr_norm.c tensr_matmul.c tensr_normalize.c))
 
 TENSR_MODULES := $(addprefix tensr/, \
-					$(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_f64.c) \
-					$(addprefix alloc/, tensr_alloc.c tensr_copy.c tensr_linspace.c tensr_broadcast.c tensr_reduced.c tensr_from_data.c tensr_from_arr.c tensr_get.c tensr_set.c tensr_scalar.c tensr_full.c ) \
+					$(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_f64.c arr_c64.c arr_c128.c) \
+					$(addprefix alloc/, tensr_alloc.c tensr_copy.c tensr_linspace.c tensr_broadcast.c tensr_reduced.c tensr_from_data.c tensr_from_arr.c tensr_get.c tensr_set.c tensr_scalar.c tensr_full.c) \
 					$(addprefix iter/, iter_init.c iter_next.c iter_reset.c) \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
 					$(addprefix layout/, layout_alloc.c layout_init.c layout_copy.c layout_equal.c layout_free.c) \
+<<<<<<< HEAD
 					$(addprefix debug/, tensr_info.c tensr_print.c) \
 					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c))
+=======
+					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c) \
+					$(addprefix complex/, tensr_complex.c tensr_cfill.c tensr_cfull.c tensr_clinspace.c tensr_cscale.c tensr_conjugate.c tensr_cdot.c tensr_creal.c tensr_cimag.c tensr_carg.c) \
+					$(addprefix debug/, tensr_info.c tensr_print.c print_complex.c))
+>>>>>>> feature/complex
 
 SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(TENSR_DEBUG_MODULES))
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

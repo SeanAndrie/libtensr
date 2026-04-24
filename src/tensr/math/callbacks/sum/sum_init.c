@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 23:57:58 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 23:57:59 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 23:02:36 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,8 @@ void	sum_init(void *acc, t_dtype dtype)
 		*(float *)acc = 0.0f;
 	else if (dtype == DT_F64)
 		*(double *)acc = 0.0;
+	else if (dtype == DT_C64)
+		*(float complex *)acc = 0.0f + 0.0f * I;
+	else if (dtype == DT_C128)
+		*(double complex *)acc = 0.0 + 0.0 * I;
 }

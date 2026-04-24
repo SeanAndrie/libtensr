@@ -6,37 +6,45 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/30 14:20:57 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/01 23:34:56 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:54:03 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
 
-static double	cast_to_double(void *src, t_dtype src_type)
+static double complex	cast_to_complex(void *src, t_dtype src_type)
 {
 	if (src_type == DT_U8)
-		return ((double)*(uint8_t *)src);
-	if (src_type == DT_I32)
-		return ((double)*(int32_t *)src);
-	if (src_type == DT_I64)
-		return ((double)*(int64_t *)src);
-	if (src_type == DT_F32)
-		return ((double)*(float *)src);
-	return (*(double *)src);
+		return ((double complex) * (uint8_t *)src);
+	else if (src_type == DT_I32)
+		return ((double complex) * (int32_t *)src);
+	else if (src_type == DT_I64)
+		return ((double complex) * (int64_t *)src);
+	else if (src_type == DT_F32)
+		return ((double complex) * (float *)src);
+	else if (src_type == DT_F64)
+		return ((double complex) * (double *)src);
+	else if (src_type == DT_C64)
+		return ((double complex) * (float complex *)src);
+	return (*(double complex *)src);
 }
 
-static void	cast_from_double(void *dst, double val, t_dtype dst_type)
+static void	cast_from_complex(void *dst, double complex val, t_dtype dst_type)
 {
 	if (dst_type == DT_U8)
-		*(uint8_t *)dst = (uint8_t)val;
+		*(uint8_t *)dst = (uint8_t)creal(val);
 	else if (dst_type == DT_I32)
-		*(int32_t *)dst = (int32_t)val;
+		*(int32_t *)dst = (int32_t)creal(val);
 	else if (dst_type == DT_I64)
-		*(int64_t *)dst = (int64_t)val;
+		*(int64_t *)dst = (int64_t)creal(val);
 	else if (dst_type == DT_F32)
-		*(float *)dst = (float)val;
+		*(float *)dst = (float)creal(val);
+	else if (dst_type == DT_F64)
+		*(double *)dst = creal(val);
+	else if (dst_type == DT_C64)
+		*(float complex *)dst = (float complex)val;
 	else
-		*(double *)dst = val;
+		*(double complex *)dst = val;
 }
 
 static t_tensr	*cast_same_dtype(const t_tensr *t, t_tensr *out)
@@ -77,8 +85,8 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 
 t_tensr	*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out)
 {
-	t_iter	it;
-	float	value;
+	t_iter			it;
+	double complex	value;
 
 	if (!t)
 		return (NULL);
@@ -89,8 +97,8 @@ t_tensr	*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out)
 		return (NULL);
 	while (iter_next(&it))
 	{
-		value = cast_to_double(tensr_get(t, it.indices), t->dtype);
-		cast_from_double(tensr_get(out, it.indices), value, out->dtype);
+		value = cast_to_complex(tensr_get(t, it.indices), t->dtype);
+		cast_from_complex(tensr_get(out, it.indices), value, out->dtype);
 	}
 	return (out);
 }

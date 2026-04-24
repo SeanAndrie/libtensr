@@ -6,11 +6,12 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 21:09:33 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/15 21:12:22 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 18:44:51 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
+#include <tensr/tensr_debug.h>
 
 static void	print_elem(const void *data, t_dtype dtype, size_t byte_off)
 {
@@ -27,6 +28,10 @@ static void	print_elem(const void *data, t_dtype dtype, size_t byte_off)
 		ft_printf("%f", (double)*(const float *)ptr);
 	else if (dtype == DT_F64)
 		ft_printf("%f", *(const double *)ptr);
+	else if (dtype == DT_C64)
+		print_c64(ptr);
+	else if (dtype == DT_C128)
+		print_c128(ptr);
 	else
 		ft_printf("?");
 }
