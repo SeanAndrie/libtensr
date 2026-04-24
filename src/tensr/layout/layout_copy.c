@@ -17,10 +17,10 @@ t_bool	layout_copy(t_layout *dst, const t_layout *src)
 	int	i;
 
 	if (!dst || !src || src->ndim == 0)
-		return (false);
+		return (FALSE);
 	layout_free(dst);
 	if (!layout_alloc(src->ndim, dst))
-		return (false);
+		return (FALSE);
 	i = 0;
 	while (i < src->ndim)
 	{
@@ -28,5 +28,5 @@ t_bool	layout_copy(t_layout *dst, const t_layout *src)
 		dst->stride[i] = src->stride[i];
 		i++;
 	}
-	return (true);
+	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 00:00:34 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 18:26:09 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 00:43:48 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_tensr	*tensr_alloc(const int ndim, const size_t *shape, t_dtype dtype)
 	if (!t)
 		return (NULL);
 	t->dtype = dtype;
-	t->owns_data = true;
+	t->owns_data = TRUE;
 	t->elemsize = dtype_size_in_bytes(dtype);
 	if (t->elemsize == 0)
 		return (free(t), NULL);

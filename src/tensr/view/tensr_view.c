@@ -22,7 +22,7 @@ t_tensr	*tensr_view(const t_tensr *t, void *data, const t_layout *l)
 		return (NULL);
 	v->size = 1;
 	v->data = data;
-	v->owns_data = false;
+	v->owns_data = FALSE;
 	if (t)
 	{
 		v->dtype = t->dtype;

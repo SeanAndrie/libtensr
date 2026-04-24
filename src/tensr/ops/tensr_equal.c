@@ -20,7 +20,7 @@ static t_bool	is_equal(void *a, void *b, t_dtype dtype)
 		return ((*(int32_t *)a == *(int32_t *)b));
 	else if (dtype == DT_I64)
 		return ((*(int64_t *)a == *(int64_t *)b));
-	return (false);
+	return (FALSE);
 }
 
 t_bool	tensr_equal(const t_tensr *a, const t_tensr *b)
@@ -30,23 +30,23 @@ t_bool	tensr_equal(const t_tensr *a, const t_tensr *b)
 	void	*b_v;
 
 	if (!a || !b)
-		return (false);
+		return (FALSE);
 	if (a->dtype == DT_F32 || a->dtype == DT_F64)
-		return (false);
+		return (FALSE);
 	if (a->dtype != b->dtype || !layout_equal(&a->layout, &b->layout))
-		return (false);
+		return (FALSE);
 	if (!iter_init(&a->layout, &it))
 	{
 		ft_dprintf(STDERR_FILENO,
 			"libtensr: tensr_equal: failed to initialize iterator.\n");
-		return (false);
+		return (FALSE);
 	}
 	while (iter_next(&it))
 	{
 		a_v = tensr_get(a, it.indices);
 		b_v = tensr_get(b, it.indices);
 		if (!a_v || !b_v || !is_equal(a_v, b_v, a->dtype))
-			return (false);
+			return (FALSE);
 	}
-	return (true);
+	return (TRUE);
 }

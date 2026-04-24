@@ -26,7 +26,7 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 	t_tensr	*ret;
 	t_bool	alloc;
 
-	alloc = false;
+	alloc = FALSE;
 	if (out)
 		ret = out;
 	else
@@ -35,7 +35,7 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 				convert_dtype(t->dtype));
 		if (!ret)
 			return (NULL);
-		alloc = true;
+		alloc = TRUE;
 	}
 	if (!iter_init(&ret->layout, it))
 	{

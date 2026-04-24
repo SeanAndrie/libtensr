@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 21:23:44 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/10 21:23:45 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 00:44:56 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ t_bool	iter_next(t_iter *it)
 	int	i;
 
 	if (it->counter >= it->total)
-		return (false);
+		return (FALSE);
 	if (it->counter == 0)
 	{
 		it->counter++;
-		return (true);
+		return (TRUE);
 	}
 	i = it->layout->ndim - 1;
 	while (i >= 0)
@@ -33,5 +33,5 @@ t_bool	iter_next(t_iter *it)
 		i--;
 	}
 	it->counter++;
-	return (true);
+	return (TRUE);
 }
