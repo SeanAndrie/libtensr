@@ -23,7 +23,7 @@ static void	print_elem(const void *data, t_dtype dtype, size_t byte_off)
 	else if (dtype == DT_I32)
 		ft_printf("%d", *(const int32_t *)ptr);
 	else if (dtype == DT_I64)
-		ft_printf("%ld", *(const int64_t *)ptr);
+		ft_printf("%d", *(const int64_t *)ptr);
 	else if (dtype == DT_F32)
 		ft_printf("%f", (double)*(const float *)ptr);
 	else if (dtype == DT_F64)

@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:30:45 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 19:32:08 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 02:48:51 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,7 @@ void					min_apply(void *acc, const void *value, t_dtype dtype);
  ** @param dtype     Data type of the elements.
  */
 void					mean_finalize(void *acc, size_t count, t_dtype dtype);
+
+t_bool					is_greater(const void *a, const void *b, t_dtype dtype);
 
 #endif
