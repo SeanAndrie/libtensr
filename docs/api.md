@@ -204,9 +204,9 @@
 | Function | Description |
 |----------|-------------|
 | `tensr_conjugate` | Complex conjugate |
-| `tensr_creal` | Extract real components |
-| `tensr_cimag` | Extract imaginary components |
-| `tensr_carg` | Phase angle (argument) |
+| `tensr_creal` | Extract real components (with optional out) |
+| `tensr_cimag` | Extract imaginary components (with optional out) |
+| `tensr_carg` | Phase angle (argument) (with optional out) |
 | `tensr_abs` | Magnitude (cabs) |
 | `tensr_sqrt` | Complex square root |
 

@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 23:55:25 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 00:29:49 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -608,27 +608,30 @@ t_tensr					*tensr_cdot(const t_tensr *a, const t_tensr *b);
  ** Extracts the real components from a complex tensor.
  **
  ** @param t        Pointer to the input complex tensor.
+ ** @param out      Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return         Pointer to tensor with real components, or NULL on failure.
  */
-t_tensr					*tensr_creal(const t_tensr *t);
+t_tensr					*tensr_creal(const t_tensr *t, t_tensr *out);
 
 /*
  ** Extracts the imaginary components from a complex tensor.
  **
  ** @param t        Pointer to the input complex tensor.
+ ** @param out      Optional output tensor. If NULL, a new tensor is allocated.
  **
- ** @return         Pointer to tensor with imaginary components, or NULL on failure.
+ ** @return         Pointer to tensor with imaginary components, or NULL.
  */
-t_tensr					*tensr_cimag(const t_tensr *t);
+t_tensr					*tensr_cimag(const t_tensr *t, t_tensr *out);
 
 /*
  ** Computes the phase angle (argument) of complex elements.
  **
  ** @param t        Pointer to the input complex tensor.
+ ** @param out      Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return         Pointer to tensor with phase angles, or NULL on failure.
  */
-t_tensr					*tensr_carg(const t_tensr *t);
+t_tensr					*tensr_carg(const t_tensr *t, t_tensr *out);
 
 #endif

@@ -57,6 +57,9 @@ Extracts the real components from a complex tensor.
 ```c
 t_tensr *real_part = tensr_creal(z, NULL);
 // Returns tensor containing only real components
+// Or specify output tensor:
+t_tensr *output = tensr_alloc(1, (size_t[]){3}, DT_F64);
+t_tensr *real_part = tensr_creal(z, output);
 ```
 
 ### tensr_cimag

@@ -6,12 +6,21 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/08 02:35:54 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 20:18:09 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 00:29:06 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <tensr/tensr.h>
+
+static t_dtype	convert_dtype(t_dtype dtype)
+{
+	if (dtype == DT_C64)
+		return (DT_F32);
+	if (dtype == DT_C128)
+		return (DT_F64);
+	return (dtype);
+}
 
 static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 {
@@ -23,7 +32,8 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 		ret = out;
 	else
 	{
-		ret = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
+		ret = tensr_alloc(t->layout.ndim, t->layout.shape,
+				convert_dtype(t->dtype));
 		if (!ret)
 			return (NULL);
 		alloc = true;
@@ -50,9 +60,9 @@ static void	assign_abs(void *dst, void *src, t_dtype dtype)
 	else if (dtype == DT_F64)
 		*(double *)dst = fabs(*(double *)src);
 	else if (dtype == DT_C64)
-		*(float complex *)dst = cabsf(*(float complex *)src);
+		*(float *)dst = cabsf(*(float complex *)src);
 	else if (dtype == DT_C128)
-		*(double complex *)dst = cabs(*(double complex *)src);
+		*(double *)dst = cabs(*(double complex *)src);
 }
 
 t_tensr	*tensr_abs(const t_tensr *t, t_tensr *out)

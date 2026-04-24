@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 23:19:51 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 23:45:43 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 00:22:23 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,34 @@ static t_dtype	convert_dtype(t_dtype dtype)
 	return (0);
 }
 
-t_tensr	*tensr_creal(const t_tensr *t)
+static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
+{
+	t_tensr	*ret;
+	t_bool	alloc;
+
+	alloc = false;
+	if (out)
+		ret = out;
+	else
+	{
+		ret = tensr_alloc(t->layout.ndim, t->layout.shape,
+				convert_dtype(t->dtype));
+		if (!ret)
+			return (NULL);
+		alloc = true;
+	}
+	if (!iter_init(&ret->layout, it))
+	{
+		if (alloc)
+			tensr_free(ret);
+		return (NULL);
+	}
+	return (ret);
+}
+
+t_tensr	*tensr_creal(const t_tensr *t, t_tensr *out)
 {
 	t_iter	it;
-	t_tensr	*out;
 	void	*dst;
 	void	*src;
 
@@ -32,9 +56,9 @@ t_tensr	*tensr_creal(const t_tensr *t)
 		return (NULL);
 	if (t->dtype != DT_C64 && t->dtype != DT_C128)
 		return (tensr_copy(t));
-	out = tensr_alloc(t->layout.ndim, t->layout.shape, convert_dtype(t->dtype));
-	if (!out || !iter_init(&out->layout, &it))
-		return (tensr_free(out), NULL);
+	out = initialize(t, out, &it);
+	if (!out)
+		return (NULL);
 	while (iter_next(&it))
 	{
 		src = tensr_get(t, it.indices);
