@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arr_f32.c                                          :+:      :+:    :+:   */
+/*   arr_c64.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/26 23:38:57 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 17:58:14 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/24 17:58:36 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/24 18:10:43 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
 
-t_array	arr_f32(float *data, const size_t len)
+t_array arr_c64(float complex *data, const size_t len)
 {
-	return ((t_array){.data = data, .len = len, .dtype = DT_F32});
+    return ((t_array){.data = data, .len = len, .dtype = DT_C64});
 }

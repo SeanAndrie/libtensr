@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/10 16:18:24 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/10 16:33:08 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:49:49 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_tensr	*tensr_scalar(double n, t_dtype dtype)
 {
 	t_tensr	*out;
 
+	if (dtype == DT_C64 || dtype == DT_C128)
+		return (NULL);
 	out = tensr_alloc(0, NULL, dtype);
 	if (!out)
 		return (NULL);
@@ -29,5 +31,7 @@ t_tensr	*tensr_scalar(double n, t_dtype dtype)
 		*(float *)tensr_get(out, (size_t[]){0}) = (float)n;
 	else if (dtype == DT_F64)
 		*(double *)tensr_get(out, (size_t[]){0}) = n;
+	else
+		return (NULL);
 	return (out);
 }

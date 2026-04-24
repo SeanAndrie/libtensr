@@ -6,20 +6,24 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 02:01:02 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/30 01:14:08 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:56:29 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <tensr/tensr.h>
 
-static t_bool	is_equal(void *a, void *b, double epsilon, t_dtype dtype)
+static t_bool is_equal(void *a, void *b, double epsilon, t_dtype dtype)
 {
-	if (dtype == DT_F32)
-		return (fabsf(*(float *)a - *(float *)b) < (float)epsilon);
-	else if (dtype == DT_F64)
-		return (fabs(*(double *)a - *(double *)b) < epsilon);
-	return (false);
+    if (dtype == DT_F32)
+        return (fabsf(*(float *)a - *(float *)b) < (float)epsilon);
+    else if (dtype == DT_F64)
+        return (fabs(*(double *)a - *(double *)b) < epsilon);
+    else if (dtype == DT_C64)
+        return (cabsf(*(float complex *)a - *(float complex *)b) < (float)epsilon);
+    else if (dtype == DT_C128)
+        return (cabs(*(double complex *)a - *(double complex *)b) < epsilon);
+    return (false);
 }
 
 t_bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
@@ -30,7 +34,7 @@ t_bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
 
 	if (!a || !b)
 		return (false);
-	if (a->dtype == DT_I32 || a->dtype == DT_I64)
+	if (a->dtype == DT_I32 || a->dtype == DT_I64 || a->dtype == DT_U8)
 		return (false);
 	if (a->dtype != b->dtype || !layout_equal(&a->layout, &b->layout))
 		return (false);

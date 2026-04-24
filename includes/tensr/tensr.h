@@ -6,13 +6,14 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/20 00:09:29 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:49:36 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TENSR_H
 # define TENSR_H
 
+# include <complex.h>
 # include <libft.h>
 # include <stdint.h>
 
@@ -27,7 +28,8 @@ typedef enum e_dtype
 	DT_I64,
 	DT_F32,
 	DT_F64,
-	DT_CUSTOM
+	DT_C64,
+	DT_C128
 }						t_dtype;
 
 /* Typed Array */
@@ -489,6 +491,9 @@ t_array					arr_i64(int64_t *data, const size_t len);
  */
 t_array					arr_f64(double *data, const size_t len);
 
+t_array					arr_c64(float complex *data, const size_t len);
+t_array					arr_c128(double complex *data, const size_t len);
+
 /*
  ** Fills a tensor with a constant value.
  **
@@ -499,19 +504,11 @@ t_array					arr_f64(double *data, const size_t len);
  */
 t_bool					tensr_fill(t_tensr *t, double value);
 
-/*
- ** Prints information about a tensor (shape, stride, dtype and data pointer).
- **
- ** @param name      Optional name to display with the tensor info (can be NULL).
- ** @param t        Pointer to the tensor to inspect.
- */
-void					tensr_info(const char *name, t_tensr *t);
-
-/*
- ** Prints the tensor's data to stdout in a readable format.
- **
- ** @param t        Pointer to the tensor to print.
- */
-void					tensr_print(t_tensr *t);
+t_tensr					*tensr_scalar_c(double complex n, t_dtype dtype);
+t_bool					tensr_fill_c(t_tensr *t, double complex value);
+t_tensr					*tensr_full_c(double complex value, const int ndim,
+							const size_t *shape, t_dtype dtype);
+t_tensr					*tensr_linspace_c(double complex start,
+							double complex end, const size_t n, t_dtype dtype);
 
 #endif

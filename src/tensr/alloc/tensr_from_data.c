@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:36:53 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 22:57:39 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 18:26:30 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ static t_array	create_array(void *data, const size_t len, t_dtype dtype)
 		arr = arr_f32((float *)data, len);
 	else if (dtype == DT_F64)
 		arr = arr_f64((double *)data, len);
+	else if (dtype == DT_C64)
+		arr = arr_c64((float complex *)data, len);
+	else if (dtype == DT_C128)
+		arr = arr_c128((double complex *)data, len);
 	return (arr);
 }
 

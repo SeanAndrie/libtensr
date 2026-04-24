@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/14 02:57:54 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/14 03:07:30 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:27:30 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_tensr	*tensr_full(double value, const int ndim, const size_t *shape,
 	t_tensr	*t;
 	void	*dst;
 
-	if (!shape || ndim < 0)
+	if (!shape || ndim < 0 || dtype == DT_C64 || dtype == DT_C128)
 		return (NULL);
 	t = tensr_alloc(ndim, shape, dtype);
 	if (!t || !iter_init(&t->layout, &it))

@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_fill.c                                       :+:      :+:    :+:   */
+/*   tensr_full_c.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/15 01:30:16 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 19:21:36 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/24 19:27:51 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/24 19:50:24 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
 
-t_bool	tensr_fill(t_tensr *t, double value)
+t_tensr	*tensr_full_c(double complex value, const int ndim, const size_t *shape,
+		t_dtype dtype)
 {
 	t_iter	it;
+	t_tensr	*t;
 	void	*dst;
 
-	if (!t || !iter_init(&t->layout, &it) || t->dtype == DT_C64
-		|| t->dtype == DT_C128)
-		return (FALSE);
+	if (!shape || ndim < 0 || dtype != DT_C64 || dtype != DT_C128)
+		return (NULL);
+	t = tensr_alloc(ndim, shape, dtype);
+	if (!t)
+		return (NULL);
+	if (!t || !iter_init(&t->layout, &it))
+		return (tensr_free(t), NULL);
 	while (iter_next(&it))
 	{
 		dst = tensr_get(t, it.indices);
-		if (t->dtype == DT_U8)
-			*(uint8_t *)dst = (uint8_t)value;
-		else if (t->dtype == DT_I32)
-			*(int32_t *)dst = (int32_t)value;
-		else if (t->dtype == DT_I64)
-			*(int64_t *)dst = (int64_t)value;
-		else if (t->dtype == DT_F32)
-			*(float *)dst = (float)value;
-		else if (t->dtype == DT_F64)
-			*(double *)dst = value;
+		if (dtype == DT_C64)
+			*(float complex *)dst = (float complex)value;
+		else if (dtype == DT_C128)
+			*(double complex *)dst = -value;
 	}
-	return (TRUE);
+	return (t);
 }

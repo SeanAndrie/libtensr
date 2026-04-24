@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/20 00:05:38 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/04/24 19:48:34 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ ARCHIVE := ar rcs
 
 SRC_DIR := src
 OBJ_DIR := obj
-
-TENSR_DEBUG_MODULES := $(addprefix debug/, tensr_info.c tensr_print.c)
 
 TENSR_CALLBACKS := $(addprefix callbacks/, \
 					$(addprefix func/, add_func.c sub_func.c mul_func.c div_func.c) \
@@ -33,12 +31,14 @@ TENSR_MATH_MODULES := $(addprefix tensr/math/, $(TENSR_CALLBACKS) \
    						$(addprefix linalg/, tensr_dot.c tensr_inner.c tensr_cross.c tensr_norm.c tensr_matmul.c tensr_normalize.c))
 
 TENSR_MODULES := $(addprefix tensr/, \
-					$(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_f64.c) \
-					$(addprefix alloc/, tensr_alloc.c tensr_copy.c tensr_linspace.c tensr_broadcast.c tensr_reduced.c tensr_from_data.c tensr_from_arr.c tensr_get.c tensr_set.c tensr_scalar.c tensr_full.c ) \
+					$(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_f64.c arr_c64.c arr_c128.c) \
+					$(addprefix alloc/, tensr_alloc.c tensr_copy.c tensr_linspace.c tensr_broadcast.c tensr_reduced.c tensr_from_data.c tensr_from_arr.c tensr_get.c tensr_set.c tensr_scalar.c tensr_full.c) \
 					$(addprefix iter/, iter_init.c iter_next.c iter_reset.c) \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
 					$(addprefix layout/, layout_alloc.c layout_init.c layout_copy.c layout_equal.c layout_free.c) \
-					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c))
+					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c) \
+					$(addprefix complex/, tensr_scalar_c.c tensr_fill_c.c tensr_full_c.c tensr_linspace_c.c) \
+					$(addprefix debug/, tensr_info.c tensr_print.c print_complex.c))
 
 SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(TENSR_DEBUG_MODULES))
 OBJS := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
