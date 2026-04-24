@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_scale.c                                      :+:      :+:    :+:   */
+/*   tensr_conjugate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/15 21:23:42 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 20:27:31 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/24 21:49:54 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/24 22:01:14 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 	return (ret);
 }
 
-t_tensr	*tensr_scale(const t_tensr *t, double value, t_tensr *out)
+t_tensr	*tensr_conjugate(const t_tensr *t, t_tensr *out)
 {
 	t_iter	it;
-	void	*src;
 	void	*dst;
+	void	*src;
 
-	if (!t || t->dtype == DT_C64 || t->dtype == DT_C128)
+	if (!t || (t->dtype != DT_C64 && t->dtype != DT_C128))
 		return (NULL);
 	out = initialize(t, out, &it);
 	if (!out)
@@ -51,16 +51,10 @@ t_tensr	*tensr_scale(const t_tensr *t, double value, t_tensr *out)
 	{
 		src = tensr_get(t, it.indices);
 		dst = tensr_get(out, it.indices);
-		if (t->dtype == DT_U8)
-			*(uint8_t *)dst = *(uint8_t *)src * (uint8_t)value;
-		else if (t->dtype == DT_I32)
-			*(int32_t *)dst = *(int32_t *)src * (int32_t)value;
-		else if (t->dtype == DT_I64)
-			*(int64_t *)dst = *(int64_t *)src * (int64_t)value;
-		else if (t->dtype == DT_F32)
-			*(float *)dst = *(float *)src * (float)value;
-		else if (t->dtype == DT_F64)
-			*(double *)dst = *(double *)src * value;
+		if (t->dtype == DT_C64)
+			*(float complex *)dst = conjf(*(float complex *)src);
+		else if (t->dtype == DT_C128)
+			*(double complex *)dst = conj(*(double complex *)src);
 	}
 	return (out);
 }

@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 23:52:01 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/06 01:38:43 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 20:22:40 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,24 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 	return (ret);
 }
 
+static void	negate(void *dst, void *src, t_dtype dtype)
+{
+	if (dtype == DT_U8)
+		*(uint8_t *)dst = *(uint8_t *)src;
+	else if (dtype == DT_I32)
+		*(int32_t *)dst = -(*(int32_t *)src);
+	else if (dtype == DT_I64)
+		*(int64_t *)dst = -(*(int64_t *)src);
+	else if (dtype == DT_F32)
+		*(float *)dst = -(*(float *)src);
+	else if (dtype == DT_F64)
+		*(double *)dst = -(*(double *)src);
+	else if (dtype == DT_C64)
+		*(float complex *)dst = -(*(float complex *)src);
+	else if (dtype == DT_C128)
+		*(double complex *)dst = -(*(double complex *)src);
+}
+
 t_tensr	*tensr_neg(const t_tensr *t, t_tensr *out)
 {
 	t_iter	it;
@@ -49,16 +67,7 @@ t_tensr	*tensr_neg(const t_tensr *t, t_tensr *out)
 	{
 		src = tensr_get(t, it.indices);
 		dst = tensr_get(out, it.indices);
-		if (out->dtype == DT_U8)
-			*(uint8_t *)dst = *(uint8_t *)src;
-		else if (out->dtype == DT_I32)
-			*(int32_t *)dst = -(*(int32_t *)src);
-		else if (out->dtype == DT_I64)
-			*(int64_t *)dst = -(*(int64_t *)src);
-		else if (out->dtype == DT_F32)
-			*(float *)dst = -(*(float *)src);
-		else if (out->dtype == DT_F64)
-			*(double *)dst = -(*(double *)src);
+		negate(dst, src, out->dtype);
 	}
 	return (out);
 }

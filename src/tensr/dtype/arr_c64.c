@@ -12,7 +12,7 @@
 
 #include <tensr/tensr.h>
 
-t_array arr_c64(float complex *data, const size_t len)
+t_array	arr_c64(float complex *data, const size_t len)
 {
-    return ((t_array){.data = data, .len = len, .dtype = DT_C64});
+	return ((t_array){.data = data, .len = len, .dtype = DT_C64});
 }

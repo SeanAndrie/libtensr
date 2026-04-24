@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 20:37:22 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/05 20:47:14 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 20:02:55 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,8 @@ void	div_func(void *a, void *b, void *out, t_dtype dtype)
 		*(float *)out = *(float *)a / *(float *)b;
 	else if (dtype == DT_F64)
 		*(double *)out = *(double *)a / *(double *)b;
+	else if (dtype == DT_C64)
+		*(float complex *)out = *(float complex *)a / *(float complex *)b;
+	else if (dtype == DT_C128)
+		*(double complex *)out = *(double complex *)a / *(double complex *)b;
 }

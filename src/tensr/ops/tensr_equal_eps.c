@@ -6,24 +6,25 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/07 02:01:02 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 19:56:29 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:57:43 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <tensr/tensr.h>
 
-static t_bool is_equal(void *a, void *b, double epsilon, t_dtype dtype)
+static t_bool	is_equal(void *a, void *b, double epsilon, t_dtype dtype)
 {
-    if (dtype == DT_F32)
-        return (fabsf(*(float *)a - *(float *)b) < (float)epsilon);
-    else if (dtype == DT_F64)
-        return (fabs(*(double *)a - *(double *)b) < epsilon);
-    else if (dtype == DT_C64)
-        return (cabsf(*(float complex *)a - *(float complex *)b) < (float)epsilon);
-    else if (dtype == DT_C128)
-        return (cabs(*(double complex *)a - *(double complex *)b) < epsilon);
-    return (false);
+	if (dtype == DT_F32)
+		return (fabsf(*(float *)a - *(float *)b) < (float)epsilon);
+	else if (dtype == DT_F64)
+		return (fabs(*(double *)a - *(double *)b) < epsilon);
+	else if (dtype == DT_C64)
+		return (cabsf(*(float complex *)a
+				- *(float complex *)b) < (float)epsilon);
+	else if (dtype == DT_C128)
+		return (cabs(*(double complex *)a - *(double complex *)b) < epsilon);
+	return (FALSE);
 }
 
 t_bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
@@ -33,23 +34,23 @@ t_bool	tensr_equal_eps(const t_tensr *a, const t_tensr *b, double epsilon)
 	void	*b_v;
 
 	if (!a || !b)
-		return (false);
+		return (FALSE);
 	if (a->dtype == DT_I32 || a->dtype == DT_I64 || a->dtype == DT_U8)
-		return (false);
+		return (FALSE);
 	if (a->dtype != b->dtype || !layout_equal(&a->layout, &b->layout))
-		return (false);
+		return (FALSE);
 	if (!iter_init(&a->layout, &it))
 	{
 		ft_dprintf(STDERR_FILENO,
 			"libtensr: tensr_equal_eps: failed to initialize iterator.\n");
-		return (false);
+		return (FALSE);
 	}
 	while (iter_next(&it))
 	{
 		a_v = tensr_get(a, it.indices);
 		b_v = tensr_get(b, it.indices);
 		if (!a_v || !b_v || !is_equal(a_v, b_v, epsilon, a->dtype))
-			return (false);
+			return (FALSE);
 	}
-	return (true);
+	return (TRUE);
 }

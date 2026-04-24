@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/24 19:48:34 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/04/24 23:55:16 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ TENSR_MODULES := $(addprefix tensr/, \
 					$(addprefix view/, tensr_view.c tensr_permute.c tensr_reshape.c tensr_transpose.c tensr_slice.c) \
 					$(addprefix layout/, layout_alloc.c layout_init.c layout_copy.c layout_equal.c layout_free.c) \
 					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c) \
-					$(addprefix complex/, tensr_scalar_c.c tensr_fill_c.c tensr_full_c.c tensr_linspace_c.c) \
+					$(addprefix complex/, tensr_complex.c tensr_cfill.c tensr_cfull.c tensr_clinspace.c tensr_cscale.c tensr_conjugate.c tensr_cdot.c tensr_creal.c tensr_cimag.c tensr_carg.c) \
 					$(addprefix debug/, tensr_info.c tensr_print.c print_complex.c))
 
 SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES) $(TENSR_DEBUG_MODULES))

@@ -13,10 +13,10 @@
 #ifndef TENSR_DEBUG_H
 # define TENSR_DEBUG_H
 
-typedef struct s_tensr t_tensr;
+typedef struct s_tensr	t_tensr;
 
-void	print_c64(const char *ptr);
-void	print_c128(const char *ptr);
+void					print_c64(const char *ptr);
+void					print_c128(const char *ptr);
 
 /*
  ** Prints information about a tensor (shape, stride, dtype and data pointer).

@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 01:57:22 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/19 19:47:40 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 20:12:37 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ t_tensr	*tensr_sqrt(const t_tensr *t, t_tensr *out)
 			*(float *)dst = sqrtf(*(float *)src);
 		else if (out->dtype == DT_F64)
 			*(double *)dst = sqrt(*(double *)src);
+		else if (out->dtype == DT_C64)
+			*(float complex *)dst = csqrtf(*(float complex *)src);
+		else if (out->dtype == DT_C128)
+			*(double complex *)dst = csqrt(*(double complex *)src);
 	}
 	return (out);
 }

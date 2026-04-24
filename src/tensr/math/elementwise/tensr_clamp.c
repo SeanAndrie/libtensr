@@ -43,7 +43,7 @@ t_tensr	*tensr_clamp(const t_tensr *t, double min, double max, t_tensr *out)
 	void	*src;
 	void	*dst;
 
-	if (!t)
+	if (!t || t->dtype == DT_C64 || t->dtype == DT_C128)
 		return (NULL);
 	out = initialize(t, out, &it);
 	if (!out)

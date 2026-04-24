@@ -12,7 +12,7 @@
 
 #include <tensr/tensr.h>
 
-t_array arr_c128(double complex *data, const size_t len)
+t_array	arr_c128(double complex *data, const size_t len)
 {
-    return ((t_array){.data = data, .len = len, .dtype = DT_C128});
+	return ((t_array){.data = data, .len = len, .dtype = DT_C128});
 }

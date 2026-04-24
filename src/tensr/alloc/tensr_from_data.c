@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 22:36:53 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 18:26:30 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 22:57:51 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ t_tensr	*tensr_from_data(void *data, const int ndim, const size_t *shape,
 	if (!data)
 		return (NULL);
 	if (!(dtype == DT_U8 || dtype == DT_I32 || dtype == DT_I64
-			|| dtype == DT_F32 || dtype == DT_F64))
+			|| dtype == DT_F32 || dtype == DT_F64 || dtype == DT_C64
+			|| dtype == DT_C128))
 		return (NULL);
 	t = tensr_alloc(ndim, shape, dtype);
 	if (!t)

@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_fill_c.c                                     :+:      :+:    :+:   */
+/*   tensr_complex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 19:15:02 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 19:49:27 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/24 21:06:37 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/24 21:06:39 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tensr/tensr.h>
 
-t_bool	tensr_fill_c(t_tensr *t, double complex value)
+t_tensr	*tensr_complex(double complex n, t_dtype dtype)
 {
-	t_iter	it;
-	void	*dst;
+	t_tensr	*out;
 
-	if (!t || !iter_init(&t->layout, &it) || t->dtype != DT_C64
-		|| t->dtype != DT_C128)
-		return (FALSE);
-	while (iter_next(&it))
-	{
-		dst = tensr_get(t, it.indices);
-		if (t->dtype == DT_C64)
-			*(float complex *)dst = (float complex)value;
-		else if (t->dtype == DT_C128)
-			*(double complex *)dst = value;
-	}
-	return (TRUE);
+	if (dtype != DT_C64 && dtype != DT_C128)
+		return (NULL);
+	out = tensr_alloc(0, NULL, dtype);
+	if (!out)
+		return (NULL);
+	if (dtype == DT_C64)
+		*(float complex *)out->data = n;
+	else if (dtype == DT_C128)
+		*(double complex *)out->data = n;
+	else
+		return (NULL);
+	return (out);
 }

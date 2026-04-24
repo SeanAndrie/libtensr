@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 19:49:36 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/24 23:55:25 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -504,11 +504,19 @@ t_array					arr_c128(double complex *data, const size_t len);
  */
 t_bool					tensr_fill(t_tensr *t, double value);
 
-t_tensr					*tensr_scalar_c(double complex n, t_dtype dtype);
-t_bool					tensr_fill_c(t_tensr *t, double complex value);
-t_tensr					*tensr_full_c(double complex value, const int ndim,
+t_tensr					*tensr_complex(double complex n, t_dtype dtype);
+t_bool					tensr_cfill(t_tensr *t, double complex value);
+t_tensr					*tensr_cfull(double complex value, const int ndim,
 							const size_t *shape, t_dtype dtype);
-t_tensr					*tensr_linspace_c(double complex start,
+t_tensr					*tensr_clinspace(double complex start,
 							double complex end, const size_t n, t_dtype dtype);
+t_tensr					*tensr_cscale(const t_tensr *t, double complex value,
+							t_tensr *out);
+
+t_tensr					*tensr_conjugate(const t_tensr *t, t_tensr *out);
+t_tensr					*tensr_cdot(const t_tensr *a, const t_tensr *b);
+t_tensr					*tensr_creal(const t_tensr *t);
+t_tensr					*tensr_cimag(const t_tensr *t);
+t_tensr					*tensr_carg(const t_tensr *t);
 
 #endif

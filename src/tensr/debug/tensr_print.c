@@ -28,10 +28,10 @@ static void	print_elem(const void *data, t_dtype dtype, size_t byte_off)
 		ft_printf("%f", (double)*(const float *)ptr);
 	else if (dtype == DT_F64)
 		ft_printf("%f", *(const double *)ptr);
-    else if (dtype == DT_C64)
-        print_c64(ptr);
-    else if (dtype == DT_C128)
-        print_c128(ptr);
+	else if (dtype == DT_C64)
+		print_c64(ptr);
+	else if (dtype == DT_C128)
+		print_c128(ptr);
 	else
 		ft_printf("?");
 }

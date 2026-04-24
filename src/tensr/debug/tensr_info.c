@@ -42,10 +42,10 @@ static void	print_dtype(t_dtype dtype)
 		ft_printf("F32");
 	else if (dtype == DT_F64)
 		ft_printf("F64");
-    else if (dtype == DT_C64)
-        ft_printf("C64");
-    else if (dtype == DT_C128)
-        ft_printf("C128");
+	else if (dtype == DT_C64)
+		ft_printf("C64");
+	else if (dtype == DT_C128)
+		ft_printf("C128");
 	else
 		ft_printf("Unknown");
 	ft_printf("\n");
