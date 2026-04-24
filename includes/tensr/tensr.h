@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 00:29:49 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 02:27:41 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,72 +30,54 @@ typedef enum e_dtype
 	DT_F64,
 	DT_C64,
 	DT_C128
-}						t_dtype;
+}					t_dtype;
 
 /* Typed Array */
 typedef struct s_array
 {
-	void				*data;
-	size_t				len;
-	enum e_dtype		dtype;
-}						t_array;
+	void			*data;
+	size_t			len;
+	enum e_dtype	dtype;
+}					t_array;
 
 /* Tensor Memory Layout */
 typedef struct s_layout
 {
-	int					ndim;
-	size_t				*shape;
-	size_t				*stride;
-	size_t				shape_buf[MAX_NDIM];
-	size_t				stride_buf[MAX_NDIM];
-}						t_layout;
+	int				ndim;
+	size_t			*shape;
+	size_t			*stride;
+	size_t			shape_buf[MAX_NDIM];
+	size_t			stride_buf[MAX_NDIM];
+}					t_layout;
 
 /* Main Tensor Structure */
 typedef struct s_tensr
 {
-	void				*data;
-	size_t				size;
-	enum e_dtype		dtype;
-	struct s_layout		layout;
-	size_t				elemsize;
-	enum e_bool			owns_data;
-}						t_tensr;
+	void			*data;
+	size_t			size;
+	enum e_dtype	dtype;
+	struct s_layout	layout;
+	size_t			elemsize;
+	enum e_bool		owns_data;
+}					t_tensr;
 
 /* Slice descriptor */
 typedef struct s_slice
 {
-	int					axis;
-	size_t				start;
-	size_t				end;
-	size_t				step;
-}						t_slice;
+	int				axis;
+	size_t			start;
+	size_t			end;
+	size_t			step;
+}					t_slice;
 
 /* Tensor iterator */
 typedef struct s_iter
 {
-	size_t				total;
-	size_t				counter;
-	struct s_layout		*layout;
-	size_t				indices[MAX_NDIM];
-}						t_iter;
-
-/* Reduction operation descriptor */
-typedef struct s_reduce_op
-{
-	void				(*init)(void *acc, t_dtype dtype);
-	void				(*apply)(void *acc, const void *value, t_dtype dtype);
-	void				(*finalize)(void *acc, size_t count, t_dtype dtype);
-}						t_reduce_op;
-
-typedef struct s_reduce_ctx
-{
-	struct s_iter		inner;
-	struct s_iter		outer;
-	size_t				base_off;
-	struct s_layout		reduced_l;
-	struct s_reduce_op	reduce_op;
-	enum e_bool			is_reduced[MAX_NDIM];
-}						t_reduce_ctx;
+	size_t			total;
+	size_t			counter;
+	struct s_layout	*layout;
+	size_t			indices[MAX_NDIM];
+}					t_iter;
 
 /*
 ** Allocates and initializes an empty base tensor.
@@ -105,8 +87,8 @@ typedef struct s_reduce_ctx
 ** @param dtype   Data type of the tensor.
 ** @return        A pointer to the base tensor.
 */
-t_tensr					*tensr_alloc(const int ndim, const size_t *shape,
-							t_dtype dtype);
+t_tensr				*tensr_alloc(const int ndim, const size_t *shape,
+						t_dtype dtype);
 
 /*
  ** Creates a deep copy of a tensor.
@@ -115,7 +97,7 @@ t_tensr					*tensr_alloc(const int ndim, const size_t *shape,
  **
  ** @return          A pointer to the copied tensor, or NULL on failure.
  */
-t_tensr					*tensr_copy(const t_tensr *t);
+t_tensr				*tensr_copy(const t_tensr *t);
 
 /*
  ** Casts a tensor to a different data type.
@@ -125,8 +107,7 @@ t_tensr					*tensr_copy(const t_tensr *t);
  **
  ** @return          A pointer to the cast tensor, or NULL on failure.
  */
-t_tensr					*tensr_cast(const t_tensr *t, t_dtype dtype,
-							t_tensr *out);
+t_tensr				*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out);
 
 /*
  ** Converts a typed array into a tensor.
@@ -138,11 +119,11 @@ t_tensr					*tensr_cast(const t_tensr *t, t_dtype dtype,
  **
  ** @return          A pointer to the converted tensor.
  */
-t_tensr					*tensr_from_arr(t_array *arr, const int ndim,
-							const size_t *shape, t_dtype dtype);
+t_tensr				*tensr_from_arr(t_array *arr, const int ndim,
+						const size_t *shape, t_dtype dtype);
 
-t_tensr					*tensr_from_data(void *data, const int ndim,
-							const size_t *shape, t_dtype dtype);
+t_tensr				*tensr_from_data(void *data, const int ndim,
+						const size_t *shape, t_dtype dtype);
 
 /*
  ** Creates a 1D tensor with evenly spaced values between start and end.
@@ -154,8 +135,8 @@ t_tensr					*tensr_from_data(void *data, const int ndim,
  **
  ** @return          A pointer to the created tensor, or NULL on failure.
  */
-t_tensr					*tensr_linspace(double start, double end,
-							const size_t n, t_dtype dtype);
+t_tensr				*tensr_linspace(double start, double end, const size_t n,
+						t_dtype dtype);
 
 /*
  ** Creates a tensor filled with a constant value.
@@ -167,8 +148,8 @@ t_tensr					*tensr_linspace(double start, double end,
  **
  ** @return          A pointer to the filled tensor, or NULL on failure.
  */
-t_tensr					*tensr_full(double value, const int ndim,
-							const size_t *shape, t_dtype dtype);
+t_tensr				*tensr_full(double value, const int ndim,
+						const size_t *shape, t_dtype dtype);
 
 /*
  ** Creates a scalar tensor.
@@ -176,7 +157,7 @@ t_tensr					*tensr_full(double value, const int ndim,
  ** @param n        The value of the scalar.
  ** @param t_dtype  Data type of tensor.
  */
-t_tensr					*tensr_scalar(double n, t_dtype dtype);
+t_tensr				*tensr_scalar(double n, t_dtype dtype);
 
 /*
  ** Creates a new tensor by broadcasting two tensors together.
@@ -190,8 +171,8 @@ t_tensr					*tensr_scalar(double n, t_dtype dtype);
  **
  ** @return          A pointer to the broadcasted tensor, or NULL on failure.
  */
-t_tensr					*tensr_broadcast(const t_layout *a, const t_layout *b,
-							t_dtype dtype);
+t_tensr				*tensr_broadcast(const t_layout *a, const t_layout *b,
+						t_dtype dtype);
 
 /*
 ** Creates a reduced (collapsed) tensor from a layout without data.
@@ -207,8 +188,8 @@ t_tensr					*tensr_broadcast(const t_layout *a, const t_layout *b,
 ** @return          A pointer to the reduced tensor, or NULL on failure.
 */
 
-t_tensr					*tensr_reduced(const t_tensr *t, const int n_axes,
-							t_bool *reduce_mask);
+t_tensr				*tensr_reduced(const t_tensr *t, const int n_axes,
+						t_bool *reduce_mask, t_dtype dtype);
 
 /*
  ** Creates a view of a parent tensor.
@@ -223,8 +204,8 @@ t_tensr					*tensr_reduced(const t_tensr *t, const int n_axes,
  **
  ** @return          Pointer to tensor view.
  */
-t_tensr					*tensr_view(const t_tensr *t, void *data,
-							const t_layout *l);
+t_tensr				*tensr_view(const t_tensr *t, void *data,
+						const t_layout *l);
 
 /*
  ** Creates a transposed view of a parent 2-D tensor.
@@ -232,7 +213,7 @@ t_tensr					*tensr_view(const t_tensr *t, void *data,
  ** @param           Pointer to the parent tensor.
  ** @return          Pointer to tensor view.
  */
-t_tensr					*tensr_transpose(const t_tensr *t);
+t_tensr				*tensr_transpose(const t_tensr *t);
 
 /*
  ** Creates a view of a parent tensor whose shape is reorganized based
@@ -243,7 +224,7 @@ t_tensr					*tensr_transpose(const t_tensr *t);
  **
  ** @return          Pointer to tensor view.
  */
-t_tensr					*tensr_permute(const t_tensr *t, const size_t *perm);
+t_tensr				*tensr_permute(const t_tensr *t, const size_t *perm);
 
 /*
  ** Creates a view of a reshaped parent tensor
@@ -254,8 +235,8 @@ t_tensr					*tensr_permute(const t_tensr *t, const size_t *perm);
  **
  ** @return          Pointer to parent tensor view.
  */
-t_tensr					*tensr_reshape(const t_tensr *t, const int ndim,
-							size_t *shape);
+t_tensr				*tensr_reshape(const t_tensr *t, const int ndim,
+						size_t *shape);
 
 /*
  ** Given an array of slice descriptors, creates a sliced
@@ -265,8 +246,8 @@ t_tensr					*tensr_reshape(const t_tensr *t, const int ndim,
  ** @param n_slices  Number of slices to perform on parent tensor.
  ** @param slices    An array of slice descriptors.
  */
-t_tensr					*tensr_slice(const t_tensr *t, const int n_slices,
-							const t_slice *slices);
+t_tensr				*tensr_slice(const t_tensr *t, const int n_slices,
+						const t_slice *slices);
 
 /*
  ** Expands the dimensions of a tensor by inserting a new axis at
@@ -281,7 +262,7 @@ t_tensr					*tensr_slice(const t_tensr *t, const int n_slices,
  **
  ** @return          true on success, false on failure.
  */
-t_bool					tensr_expand_dims(t_tensr *t, const int axis);
+t_bool				tensr_expand_dims(t_tensr *t, const int axis);
 
 /*
  ** Sets the value at a specific index in the tensor.
@@ -292,8 +273,8 @@ t_bool					tensr_expand_dims(t_tensr *t, const int axis);
  **
  ** @return          true on success, false on failure.
  */
-t_bool					tensr_set(const t_tensr *t, void *data,
-							const size_t *indices);
+t_bool				tensr_set(const t_tensr *t, void *data,
+						const size_t *indices);
 
 /*
  ** Gets the value at a specific index in the tensor.
@@ -304,7 +285,7 @@ t_bool					tensr_set(const t_tensr *t, void *data,
  ** @return          Pointer to the data at the specified index,
 	or NULL on failure.
  */
-void					*tensr_get(const t_tensr *t, const size_t *indices);
+void				*tensr_get(const t_tensr *t, const size_t *indices);
 
 /*
  ** Computes the element offset for a given set of indices in a layout.
@@ -314,7 +295,7 @@ void					*tensr_get(const t_tensr *t, const size_t *indices);
  **
  ** @return          The element offset from the base data pointer.
  */
-size_t					tensr_offset(const t_layout *l, const size_t *indices);
+size_t				tensr_offset(const t_layout *l, const size_t *indices);
 
 /*
  ** Checks if a tensor is stored contiguously in memory.
@@ -326,7 +307,7 @@ size_t					tensr_offset(const t_layout *l, const size_t *indices);
  **
  ** @return          true if contiguous, false otherwise.
  */
-t_bool					tensr_is_contiguous(const t_tensr *t);
+t_bool				tensr_is_contiguous(const t_tensr *t);
 
 /*
  ** Checks if two tensors are exactly equal.
@@ -338,7 +319,7 @@ t_bool					tensr_is_contiguous(const t_tensr *t);
  **
  ** @return          true if equal, false otherwise.
  */
-t_bool					tensr_equal(const t_tensr *a, const t_tensr *b);
+t_bool				tensr_equal(const t_tensr *a, const t_tensr *b);
 
 /*
 ** Checks if two tensors are equal within a tolerance.
@@ -349,8 +330,8 @@ t_bool					tensr_equal(const t_tensr *a, const t_tensr *b);
 **
 ** @return          true if equal within epsilon, false otherwise.
 */
-t_bool					tensr_equal_eps(const t_tensr *a, const t_tensr *b,
-							double epsilon);
+t_bool				tensr_equal_eps(const t_tensr *a, const t_tensr *b,
+						double epsilon);
 
 /*
  ** Frees the memory allocated for a tensor.
@@ -359,7 +340,7 @@ t_bool					tensr_equal_eps(const t_tensr *a, const t_tensr *b,
  **
  ** @param t         Pointer to the tensor to free.
  */
-void					tensr_free(t_tensr *t);
+void				tensr_free(t_tensr *t);
 
 /*
  ** Initializes a tensor iterator for iterating over all elements.
@@ -369,7 +350,7 @@ void					tensr_free(t_tensr *t);
  **
  ** @return          true on success, false on failure.
  */
-t_bool					iter_init(const t_layout *l, t_iter *it);
+t_bool				iter_init(const t_layout *l, t_iter *it);
 
 /*
  ** Advances the iterator to the next element.
@@ -379,14 +360,14 @@ t_bool					iter_init(const t_layout *l, t_iter *it);
  ** @return          true if there are more elements,
 	false if iteration is complete.
  */
-t_bool					iter_next(t_iter *it);
+t_bool				iter_next(t_iter *it);
 
 /*
  ** Resets the iterator to the beginning.
  **
  ** @param it        Pointer to the iterator to reset.
  */
-void					iter_reset(t_iter *it);
+void				iter_reset(t_iter *it);
 
 /*
  ** Allocates and initializes a tensor layout.
@@ -396,7 +377,7 @@ void					iter_reset(t_iter *it);
  **
  ** @return          true on success, false on failure.
  */
-t_bool					layout_alloc(const int ndim, t_layout *l);
+t_bool				layout_alloc(const int ndim, t_layout *l);
 
 /*
  ** Initializes a tensor layout with the given shape and computes strides.
@@ -411,8 +392,8 @@ t_bool					layout_alloc(const int ndim, t_layout *l);
  ** @return          The total number of elements (product of shape),
  **					or 0 on failure.
  */
-size_t					layout_init(t_layout *l, const int ndim,
-							const size_t *shape);
+size_t				layout_init(t_layout *l, const int ndim,
+						const size_t *shape);
 
 /*
  ** Copies a layout from source to destination.
@@ -422,7 +403,7 @@ size_t					layout_init(t_layout *l, const int ndim,
  **
  ** @return          true on success, false on failure.
  */
-t_bool					layout_copy(t_layout *dst, const t_layout *src);
+t_bool				layout_copy(t_layout *dst, const t_layout *src);
 
 /*
  ** Compares the shapes of two tensor layouts.
@@ -432,14 +413,16 @@ t_bool					layout_copy(t_layout *dst, const t_layout *src);
  **
  ** @return         true if shapes are equal, false if otherwise
  */
-t_bool					layout_equal(const t_layout *a, const t_layout *b);
+t_bool				layout_equal(const t_layout *a, const t_layout *b);
+
+t_layout			layout_reduced(const t_layout *l, const t_bool *is_reduced);
 
 /*
  ** Frees the memory allocated for a layout.
  **
  ** @param l         Pointer to the layout to free.
  */
-void					layout_free(t_layout *l);
+void				layout_free(t_layout *l);
 
 /*
  ** Creates a typed array with 8-bit unsigned integer data.
@@ -449,7 +432,7 @@ void					layout_free(t_layout *l);
  **
  ** @return          A typed array structure.
  */
-t_array					arr_u8(uint8_t *data, const size_t len);
+t_array				arr_u8(uint8_t *data, const size_t len);
 
 /*
  ** Creates a typed array with 32-bit integer data.
@@ -459,7 +442,7 @@ t_array					arr_u8(uint8_t *data, const size_t len);
  **
  ** @return          A typed array structure.
  */
-t_array					arr_i32(int32_t *data, const size_t len);
+t_array				arr_i32(int32_t *data, const size_t len);
 
 /*
  ** Creates a typed array with 32-bit floating point data.
@@ -469,7 +452,7 @@ t_array					arr_i32(int32_t *data, const size_t len);
  **
  ** @return          A typed array structure.
  */
-t_array					arr_f32(float *data, const size_t len);
+t_array				arr_f32(float *data, const size_t len);
 
 /*
  ** Creates a typed array with 64-bit integer data.
@@ -479,7 +462,7 @@ t_array					arr_f32(float *data, const size_t len);
  **
  ** @return          A typed array structure.
  */
-t_array					arr_i64(int64_t *data, const size_t len);
+t_array				arr_i64(int64_t *data, const size_t len);
 
 /*
  ** Creates a typed array with 64-bit floating point data.
@@ -489,7 +472,7 @@ t_array					arr_i64(int64_t *data, const size_t len);
  **
  ** @return          A typed array structure.
  */
-t_array					arr_f64(double *data, const size_t len);
+t_array				arr_f64(double *data, const size_t len);
 
 /*
  ** Creates a typed array with 64-bit complex float data.
@@ -499,7 +482,7 @@ t_array					arr_f64(double *data, const size_t len);
  **
  ** @return          A typed array structure.
  */
-t_array					arr_c64(float complex *data, const size_t len);
+t_array				arr_c64(float complex *data, const size_t len);
 
 /*
  ** Creates a typed array with 128-bit complex double data.
@@ -509,7 +492,7 @@ t_array					arr_c64(float complex *data, const size_t len);
  **
  ** @return          A typed array structure.
  */
-t_array					arr_c128(double complex *data, const size_t len);
+t_array				arr_c128(double complex *data, const size_t len);
 
 /*
  ** Fills a tensor with a constant value.
@@ -519,7 +502,7 @@ t_array					arr_c128(double complex *data, const size_t len);
  **
  ** @return          true on success, false on failure.
  */
-t_bool					tensr_fill(t_tensr *t, double value);
+t_bool				tensr_fill(t_tensr *t, double value);
 
 /*
  ** Creates a scalar complex tensor.
@@ -529,7 +512,7 @@ t_bool					tensr_fill(t_tensr *t, double value);
  **
  ** @return         Pointer to the scalar complex tensor, or NULL on failure.
  */
-t_tensr					*tensr_complex(double complex n, t_dtype dtype);
+t_tensr				*tensr_complex(double complex n, t_dtype dtype);
 
 /*
  ** Fills a complex tensor with a constant value.
@@ -539,7 +522,7 @@ t_tensr					*tensr_complex(double complex n, t_dtype dtype);
  **
  ** @return         true on success, false on failure.
  */
-t_bool					tensr_cfill(t_tensr *t, double complex value);
+t_bool				tensr_cfill(t_tensr *t, double complex value);
 
 /*
  ** Creates a complex tensor filled with a constant value.
@@ -551,8 +534,8 @@ t_bool					tensr_cfill(t_tensr *t, double complex value);
  **
  ** @return         Pointer to the filled complex tensor, or NULL on failure.
  */
-t_tensr					*tensr_cfull(double complex value, const int ndim,
-							const size_t *shape, t_dtype dtype);
+t_tensr				*tensr_cfull(double complex value, const int ndim,
+						const size_t *shape, t_dtype dtype);
 
 /*
  ** Creates a complex tensor with evenly spaced values.
@@ -564,8 +547,8 @@ t_tensr					*tensr_cfull(double complex value, const int ndim,
  **
  ** @return         Pointer to the complex tensor, or NULL on failure.
  */
-t_tensr					*tensr_clinspace(double complex start,
-							double complex end, const size_t n, t_dtype dtype);
+t_tensr				*tensr_clinspace(double complex start, double complex end,
+						const size_t n, t_dtype dtype);
 
 /*
  ** Scales a complex tensor by a complex constant.
@@ -576,8 +559,8 @@ t_tensr					*tensr_clinspace(double complex start,
  **
  ** @return         Pointer to the scaled complex tensor, or NULL on failure.
  */
-t_tensr					*tensr_cscale(const t_tensr *t, double complex value,
-							t_tensr *out);
+t_tensr				*tensr_cscale(const t_tensr *t, double complex value,
+						t_tensr *out);
 
 /*
  ** Computes the complex conjugate of a tensor.
@@ -589,7 +572,7 @@ t_tensr					*tensr_cscale(const t_tensr *t, double complex value,
  **
  ** @return         Pointer to the conjugate tensor, or NULL on failure.
  */
-t_tensr					*tensr_conjugate(const t_tensr *t, t_tensr *out);
+t_tensr				*tensr_conjugate(const t_tensr *t, t_tensr *out);
 
 /*
  ** Computes the Hermitian (conjugate) dot product.
@@ -602,7 +585,7 @@ t_tensr					*tensr_conjugate(const t_tensr *t, t_tensr *out);
  **
  ** @return         Pointer to the scalar result tensor, or NULL on failure.
  */
-t_tensr					*tensr_cdot(const t_tensr *a, const t_tensr *b);
+t_tensr				*tensr_cdot(const t_tensr *a, const t_tensr *b);
 
 /*
  ** Extracts the real components from a complex tensor.
@@ -612,7 +595,7 @@ t_tensr					*tensr_cdot(const t_tensr *a, const t_tensr *b);
  **
  ** @return         Pointer to tensor with real components, or NULL on failure.
  */
-t_tensr					*tensr_creal(const t_tensr *t, t_tensr *out);
+t_tensr				*tensr_creal(const t_tensr *t, t_tensr *out);
 
 /*
  ** Extracts the imaginary components from a complex tensor.
@@ -622,7 +605,7 @@ t_tensr					*tensr_creal(const t_tensr *t, t_tensr *out);
  **
  ** @return         Pointer to tensor with imaginary components, or NULL.
  */
-t_tensr					*tensr_cimag(const t_tensr *t, t_tensr *out);
+t_tensr				*tensr_cimag(const t_tensr *t, t_tensr *out);
 
 /*
  ** Computes the phase angle (argument) of complex elements.
@@ -632,6 +615,6 @@ t_tensr					*tensr_cimag(const t_tensr *t, t_tensr *out);
  **
  ** @return         Pointer to tensor with phase angles, or NULL on failure.
  */
-t_tensr					*tensr_carg(const t_tensr *t, t_tensr *out);
+t_tensr				*tensr_carg(const t_tensr *t, t_tensr *out);
 
 #endif

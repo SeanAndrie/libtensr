@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_reduced.c                                    :+:      :+:    :+:   */
+/*   layout_reduced.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/09 19:28:37 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 02:27:14 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/25 02:13:35 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/25 02:50:52 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <tensr/tensr.h>
 
-t_tensr	*tensr_reduced(const t_tensr *t, const int n_axes, t_bool *reduce_mask,
-		t_dtype dtype)
+t_layout	layout_reduced(const t_layout *l, const t_bool *is_reduced)
 {
-	int		i;
-	int		j;
-	int		ndim;
-	size_t	shape[MAX_NDIM];
+	int			i;
+	int			j;
+	t_layout	reduced_l;
 
-	if (n_axes <= 0 || !t || !reduce_mask)
-		return (NULL);
-	ndim = t->layout.ndim - n_axes;
 	j = 0;
 	i = -1;
-	while (++i < t->layout.ndim)
+	ft_memset(&reduced_l, 0, sizeof(t_layout));
+	if (!l || !is_reduced)
+		return (reduced_l);
+	reduced_l.shape = reduced_l.shape_buf;
+	reduced_l.stride = reduced_l.stride_buf;
+	while (++i < l->ndim)
 	{
-		if (reduce_mask[i])
+		if (!is_reduced[i])
 			continue ;
-		shape[j++] = t->layout.shape[i];
+		reduced_l.shape[j] = l->shape[i];
+		reduced_l.stride[j] = l->stride[i];
+		j++;
 	}
-	if (j == 0)
-		return (tensr_alloc(0, NULL, dtype));
-	return (tensr_alloc(ndim, shape, dtype));
+	reduced_l.ndim = j;
+	return (reduced_l);
 }
