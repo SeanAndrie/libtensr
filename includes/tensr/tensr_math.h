@@ -14,7 +14,7 @@
 # define TENSR_MATH_H
 
 # include <tensr/tensr.h>
-# include <tensr/tensr_callbacks.h>
+# include <utils/tensr_callbacks.h>
 
 // Elementwise Operations
 

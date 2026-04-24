@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   max_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 01:04:53 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/19 23:58:08 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/19 23:58:09 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/tensr.h>
+#include <utils/tensr_callbacks.h>
 
-# include <tensr/tensr.h>
-# include <tensr/tensr_math.h>
-# include <utils/tensr_debug.h>
-
-#endif
+void	max_init(void *acc, t_dtype dtype)
+{
+	if (dtype == DT_U8)
+		*(uint8_t *)acc = 0;
+	else if (dtype == DT_I32)
+		*(int32_t *)acc = INT32_MIN;
+	else if (dtype == DT_I64)
+		*(int64_t *)acc = INT64_MIN;
+	else if (dtype == DT_F32)
+		*(float *)acc = -FLT_MAX;
+	else if (dtype == DT_F64)
+		*(double *)acc = -DBL_MAX;
+}
