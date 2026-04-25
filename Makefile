@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/25 02:49:52 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/04/25 07:53:07 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_DIR := src
 OBJ_DIR := obj
 
 TENSR_CALLBACKS := $(addprefix callbacks/, \
-					$(addprefix func/, add_func.c sub_func.c mul_func.c div_func.c is_greater.c) \
+					$(addprefix func/, add_func.c sub_func.c mul_func.c div_func.c is_greater.c is_less.c) \
 					$(addprefix sum/, sum_init.c sum_apply.c) \
 					$(addprefix max/, max_init.c max_apply.c) \
 					$(addprefix mean/, mean_finalize.c) \
@@ -28,7 +28,7 @@ TENSR_CALLBACKS := $(addprefix callbacks/, \
 
 TENSR_MATH_MODULES := $(addprefix math/, $(TENSR_CALLBACKS) \
                       $(addprefix elementwise/, tensr_elementwise.c tensr_abs.c tensr_add.c tensr_mul.c tensr_sub.c tensr_div.c tensr_neg.c tensr_sqrt.c tensr_clamp.c tensr_scale.c) \
-                      $(addprefix reductions/, tensr_arg.c tensr_reduce_ctx.c tensr_reduce.c tensr_reduce_strided.c tensr_sum.c tensr_max.c tensr_min.c tensr_mean.c tensr_argmax.c) \
+                      $(addprefix reductions/, tensr_arg.c tensr_reduce_ctx.c tensr_reduce.c tensr_reduce_strided.c tensr_sum.c tensr_max.c tensr_min.c tensr_mean.c tensr_argmax.c tensr_argmin.c) \
                       $(addprefix linalg/, tensr_dot.c tensr_inner.c tensr_cross.c tensr_norm.c tensr_matmul.c tensr_normalize.c))
 
 TENSR_MODULES := $(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_f64.c arr_c64.c arr_c128.c) \
@@ -60,4 +60,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: re fclean clean all
+test: all
+	@$(MAKE) -C tests run
+
+.PHONY: re fclean clean all test
