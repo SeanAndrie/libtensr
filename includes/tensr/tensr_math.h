@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 21:18:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 02:50:32 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/04/25 07:53:35 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ t_tensr					*tensr_arg(const t_tensr *t, const int n_axes,
 								const void *b, t_dtype dtype));
 
 t_tensr					*tensr_argmax(const t_tensr *t, const int n_axes,
+							const size_t *axes);
+
+t_tensr					*tensr_argmin(const t_tensr *t, const int n_axes,
 							const size_t *axes);
 
 // Elementwise Operations

@@ -59,7 +59,7 @@ static t_tensr	*cast_same_dtype(const t_tensr *t, t_tensr *out)
 	return (tensr_copy(t));
 }
 
-static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
+static t_tensr	*initialize(const t_tensr *t, t_dtype dtype, t_tensr *out, t_iter *it)
 {
 	t_tensr	*ret;
 	t_bool	alloc;
@@ -69,7 +69,7 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 		ret = out;
 	else
 	{
-		ret = tensr_alloc(t->layout.ndim, t->layout.shape, t->dtype);
+		ret = tensr_alloc(t->layout.ndim, t->layout.shape, dtype);
 		if (!ret)
 			return (NULL);
 		alloc = TRUE;
@@ -92,7 +92,7 @@ t_tensr	*tensr_cast(const t_tensr *t, t_dtype dtype, t_tensr *out)
 		return (NULL);
 	if (t->dtype == dtype)
 		return (cast_same_dtype(t, out));
-	out = initialize(t, out, &it);
+	out = initialize(t, dtype, out, &it);
 	if (!out)
 		return (NULL);
 	while (iter_next(&it))

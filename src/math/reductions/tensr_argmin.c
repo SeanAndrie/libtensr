@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_greater.c                                       :+:      :+:    :+:   */
+/*   tensr_argmin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/25 02:47:44 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 07:54:32 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/25 07:51:17 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/04/25 07:55:12 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/tensr.h>
+#include <tensr/tensr_math.h>
 #include <utils/tensr_callbacks.h>
 
-t_bool	is_greater(const void *a, const void *b, t_dtype dtype)
+t_tensr	*tensr_argmin(const t_tensr *t, const int n_axes, const size_t *axes)
 {
-	if (dtype == DT_U8)
-		return (*(uint8_t *)a > *(uint8_t *)b);
-	else if (dtype == DT_I32)
-		return (*(int32_t *)a > *(int32_t *)b);
-	else if (dtype == DT_I64)
-		return (*(int64_t *)a > *(int64_t *)b);
-	else if (dtype == DT_F32)
-		return (*(float *)a > *(float *)b);
-	else if (dtype == DT_F64)
-		return (*(double *)a > *(double *)b);
-	return (FALSE);
+	if (!t || !axes || n_axes <= 0 || t->dtype == DT_C64 || t->dtype == DT_C128)
+		return (NULL);
+	return (tensr_arg(t, n_axes, axes, is_less));
 }
