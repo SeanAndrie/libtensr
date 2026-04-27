@@ -53,9 +53,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
+	@make -C tests clean
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
+	@make -C tests fclean
 	@rm -f $(NAME)
 
 re: fclean all
