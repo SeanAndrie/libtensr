@@ -24,7 +24,7 @@
 
 - **Zero-copy views** - Create lightweight views without copying data
 - **Broadcasting** - Automatic shape expansion during operations
-- **Multiple data types** - Support for f32, f64, i32, i64, u8
+- **Multiple data types** - Support for f32, f64, i32, i64, u8, c64, c128
 - **Strided memory** - Row-major layout with customizable strides
 - **Custom operations** - Extend via callbacks
 
