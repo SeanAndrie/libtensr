@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :::      ::::::::    #
-#                                                     +:+ ++:      ++:       #
-#    By: opencode <opencore@student.42abudhabi.ae>   ::::   ::::  :::        #
-#                                                 ..###:   ###: :###:       #
-#   Created: 2026/04/25 00:00:00 by opencode          #+#    #+#              #
-#   Updated: 2026/04/25 00:00:00 by opencode         ###   ########.fr       #
-#                                                                              #
-# **************************************************************************** #
-
 NAME := test_runner
 CC := cc
 CFLAGS := -Wall -Werror -Wextra -I. -I../includes -I../includes/tensr -I../includes/utils -I../../libft/includes
