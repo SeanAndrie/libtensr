@@ -34,6 +34,6 @@ t_tensr	*tensr_dot(const t_tensr *a, const t_tensr *b)
 	if (ndim_a == 1 && ndim_b == 1)
 		return (tensr_inner(a, b, 1, (size_t[]){0}));
 	if (ndim_a == 2 && ndim_b == 2)
-		return (tensr_matmul(a, b));
+		return (tensr_matmul(a, b, NULL));
 	return (NULL);
 }

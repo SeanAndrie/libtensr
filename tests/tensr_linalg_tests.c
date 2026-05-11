@@ -96,11 +96,16 @@ static void test_matmul_basic(void)
     data_b[2] = 0.0; data_b[3] = 1.0;
     data_b[4] = 1.0; data_b[5] = 1.0;
 
-    result = tensr_matmul(a, b);
+    result = tensr_matmul(a, b, NULL);
     assert(result);
     assert(result->layout.ndim == 2);
     assert(result->layout.shape[0] == 2);
     assert(result->layout.shape[1] == 2);
+    double *r = (double *)result->data;
+    assert(r[0] == 4.0);
+    assert(r[1] == 5.0);
+    assert(r[2] == 10.0);
+    assert(r[3] == 11.0);
 
     tensr_free(a);
     tensr_free(b);
@@ -184,14 +189,111 @@ static void test_matmul_identity(void)
     data_b[0] = 1.0; data_b[1] = 0.0;
     data_b[2] = 0.0; data_b[3] = 1.0;
 
-    result = tensr_matmul(a, b);
+    result = tensr_matmul(a, b, NULL);
     assert(result);
     assert(result->layout.shape[0] == 2);
     assert(result->layout.shape[1] == 2);
+    double *r = (double *)result->data;
+    assert(r[0] == 1.0);
+    assert(r[1] == 2.0);
+    assert(r[2] == 3.0);
+    assert(r[3] == 4.0);
 
     tensr_free(a);
     tensr_free(b);
     tensr_free(result);
+}
+
+static void test_matmul_with_out(void)
+{
+    t_tensr *a;
+    t_tensr *b;
+    t_tensr *out;
+    t_tensr *result;
+
+    a = tensr_alloc(2, (size_t[]){2, 3}, DT_F64);
+    b = tensr_alloc(2, (size_t[]){3, 2}, DT_F64);
+    out = tensr_alloc(2, (size_t[]){2, 2}, DT_F64);
+    ((double *)a->data)[0] = 1.0; ((double *)a->data)[1] = 2.0; ((double *)a->data)[2] = 3.0;
+    ((double *)a->data)[3] = 4.0; ((double *)a->data)[4] = 5.0; ((double *)a->data)[5] = 6.0;
+    ((double *)b->data)[0] = 1.0; ((double *)b->data)[1] = 0.0;
+    ((double *)b->data)[2] = 0.0; ((double *)b->data)[3] = 1.0;
+    ((double *)b->data)[4] = 1.0; ((double *)b->data)[5] = 1.0;
+
+    result = tensr_matmul(a, b, out);
+    assert(result);
+    assert(result == out);
+    double *r = (double *)result->data;
+    assert(r[0] == 4.0);
+    assert(r[1] == 5.0);
+    assert(r[2] == 10.0);
+    assert(r[3] == 11.0);
+
+    tensr_free(a);
+    tensr_free(b);
+    tensr_free(out);
+}
+
+static void test_matmul_out_alloc(void)
+{
+    t_tensr *a;
+    t_tensr *b;
+    t_tensr *result;
+
+    a = tensr_alloc(2, (size_t[]){2, 3}, DT_F64);
+    b = tensr_alloc(2, (size_t[]){3, 2}, DT_F64);
+    ((double *)a->data)[0] = 1.0; ((double *)a->data)[1] = 2.0; ((double *)a->data)[2] = 3.0;
+    ((double *)a->data)[3] = 4.0; ((double *)a->data)[4] = 5.0; ((double *)a->data)[5] = 6.0;
+    ((double *)b->data)[0] = 1.0; ((double *)b->data)[1] = 0.0;
+    ((double *)b->data)[2] = 0.0; ((double *)b->data)[3] = 1.0;
+    ((double *)b->data)[4] = 1.0; ((double *)b->data)[5] = 1.0;
+
+    result = tensr_matmul(a, b, NULL);
+    assert(result);
+    assert(result->layout.ndim == 2);
+    assert(result->layout.shape[0] == 2);
+    assert(result->layout.shape[1] == 2);
+    double *r = (double *)result->data;
+    assert(r[0] == 4.0);
+    assert(r[1] == 5.0);
+    assert(r[2] == 10.0);
+    assert(r[3] == 11.0);
+
+    tensr_free(a);
+    tensr_free(b);
+    tensr_free(result);
+}
+
+static void test_matmul_incompatible_dims(void)
+{
+    t_tensr *a;
+    t_tensr *b;
+    t_tensr *result;
+
+    a = tensr_alloc(2, (size_t[]){2, 3}, DT_F64);
+    b = tensr_alloc(2, (size_t[]){2, 2}, DT_F64);
+
+    result = tensr_matmul(a, b, NULL);
+    assert(!result);
+
+    tensr_free(a);
+    tensr_free(b);
+}
+
+static void test_matmul_null_inputs(void)
+{
+    t_tensr *a;
+    t_tensr *result;
+
+    a = tensr_alloc(2, (size_t[]){2, 3}, DT_F64);
+
+    result = tensr_matmul(NULL, a, NULL);
+    assert(!result);
+
+    result = tensr_matmul(a, NULL, NULL);
+    assert(!result);
+
+    tensr_free(a);
 }
 
 void tensr_linalg_tests(void)
@@ -204,4 +306,8 @@ void tensr_linalg_tests(void)
     test_normalize_basic();
     test_inner_basic();
     test_matmul_identity();
+    test_matmul_with_out();
+    test_matmul_out_alloc();
+    test_matmul_incompatible_dims();
+    test_matmul_null_inputs();
 }

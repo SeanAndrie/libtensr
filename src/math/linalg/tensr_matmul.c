@@ -45,7 +45,7 @@ static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
 		tensr_free(a_s);
 		return (NULL);
 	}
-	dot = tensr_inner(a_s, b_s, 1, (size_t[]){0});
+	dot = tensr_inner(a_s, b_s, 2, (size_t[]){0, 1});
 	tensr_free(b_s);
 	tensr_free(a_s);
 	return (dot);
@@ -79,16 +79,30 @@ static t_bool	fill_out(const t_tensr *a, const t_tensr *b, t_tensr *out)
 	return (TRUE);
 }
 
-t_tensr	*tensr_matmul(const t_tensr *a, const t_tensr *b)
+static t_tensr	*initialize(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {
-	t_tensr	*out;
+	t_tensr	*ret;
+
+	if (out)
+		ret = out;
+	else
+	{
+		ret = tensr_alloc(2, (size_t[]){a->layout.shape[0], b->layout.shape[1]},
+				a->dtype);
+		if (!ret)
+			return (NULL);
+	}
+	return (ret);
+}
+
+t_tensr	*tensr_matmul(const t_tensr *a, const t_tensr *b, t_tensr *out)
+{
 	t_tensr	*b_t;
 
 	if (!a || !b || a->dtype != b->dtype || !is_compatible(&a->layout,
 			&b->layout))
 		return (NULL);
-	out = tensr_alloc(2, (size_t[]){a->layout.shape[0], b->layout.shape[1]},
-			a->dtype);
+	out = initialize(a, b, out);
 	if (!out)
 		return (NULL);
 	b_t = tensr_transpose(b);

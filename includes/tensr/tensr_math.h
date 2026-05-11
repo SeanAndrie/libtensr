@@ -287,10 +287,11 @@ t_tensr					*tensr_cross(const t_tensr *a, const t_tensr *b);
  **
  ** @param a         Pointer to the first tensor (matrix).
  ** @param b         Pointer to the second tensor (matrix).
+ ** @param out       Optional output tensor. If NULL, a new tensor is allocated.
  **
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
-t_tensr					*tensr_matmul(const t_tensr *a, const t_tensr *b);
+t_tensr					*tensr_matmul(const t_tensr *a, const t_tensr *b, t_tensr *out);
 
 /*
  ** Normalizes the tensor to unit length (L2 norm = 1).
