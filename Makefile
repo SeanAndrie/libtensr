@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/25 07:53:07 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/05/11 14:04:36 by seang            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ clean:
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@make -C tests fclean
+	@$(MAKE) -C tests fclean
 	@rm -f $(NAME)
 
 re: fclean all
