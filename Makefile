@@ -13,7 +13,7 @@
 NAME := libtensr.a
 CC := cc
 OPTIM_FLAGS := -O3 -ffast-math -funroll-loops -fno-signed-zeros -march=native
-CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/tensr -Iincludes/utils -I../libft/includes
+CFLAGS := -Wall -Werror -Wextra -Iincludes -Iincludes/tensr -Iincludes/utils -I../libft/includes -I../harena/includes
 ARCHIVE := ar rcs
 
 SRC_DIR := src

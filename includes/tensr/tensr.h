@@ -6,16 +6,17 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 02:27:41 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:20:13 by seang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TENSR_H
 # define TENSR_H
 
-# include <complex.h>
 # include <libft.h>
+# include <harena.h>
 # include <stdint.h>
+# include <complex.h>
 
 # define MAX_NDIM 32
 # define MAX_ACC_SIZE 8
