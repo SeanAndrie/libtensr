@@ -1,27 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   tensr_alloc_tests.c                                :::      ::::::::   */
-/*                                                    +:+ +:+        ┼┼┼┼┼┼   */
-/*   By: opencode <opencore@student.42abudhabi.ae>   +-++-++-+  +-++-+        */
-/*                                                ++++++++++++  +++++++++++    */
-/*   Created: 2026/04/25 00:00:00 by opencode          #+#    #+#              */
-/*   Updated: 2026/04/25 00:00:00 by opencode         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <test.h>
-
-static void test_alloc_null_shape(void)
-{
-    assert(!tensr_alloc(1, NULL, DT_I32));
-    assert(!tensr_alloc(2, NULL, DT_F64));
-}
-
-static void test_alloc_various_dims(void)
-{
-    t_tensr *t;
-
     t = tensr_alloc(0, NULL, DT_I32);
     assert(t);
     assert(t->size == 1);

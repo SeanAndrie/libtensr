@@ -1,26 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   tensr_linalg_tests.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seang </var/spool/mail/seang>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/11 14:01:45 by seang             #+#    #+#             */
-/*   Updated: 2026/05/11 14:03:04 by seang            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <test.h>
-
-static void test_dot_basic(void)
-{
-    t_tensr *a;
-    t_tensr *b;
-    t_tensr *result;
-
-    a = tensr_alloc(1, (size_t[]){3}, DT_F64);
-    b = tensr_alloc(1, (size_t[]){3}, DT_F64);
-    ((double *)a->data)[0] = 1.0; ((double *)a->data)[1] = 2.0; ((double *)a->data)[2] = 3.0;
     ((double *)b->data)[0] = 4.0; ((double *)b->data)[1] = 5.0; ((double *)b->data)[2] = 6.0;
 
     result = tensr_dot(a, b);
