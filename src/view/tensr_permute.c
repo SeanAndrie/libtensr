@@ -21,7 +21,7 @@ t_tensr	*tensr_permute(const t_tensr *t, const size_t *perm)
 	if (!t || !perm)
 		return (NULL);
 	if (!layout_alloc(t->layout.ndim, &layout))
-		return (FALSE);
+		return (NULL);
 	i = -1;
 	while (++i < t->layout.ndim)
 	{
