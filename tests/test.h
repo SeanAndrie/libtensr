@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <stdint.h>
 #include <libtensr.h>
+#include <stdbool.h>
 
 void    tensr_alloc_tests(void);
 void    tensr_copy_tests(void);
