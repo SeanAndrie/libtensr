@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/06 13:44:10 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 00:49:20 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/05/13 18:47:34 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ static t_bool	is_compatible(const t_layout *a, const t_layout *b)
 	return (TRUE);
 }
 
-static void	slices_init(t_slice *a_slices, t_slice *b_slices,
-		const int inner_dim)
+static t_slice	slice_init(const int inner_dim)
 {
-	a_slices[1] = (t_slice){.axis = 1, .start = 0, .end = inner_dim, .step = 1};
-	b_slices[1] = (t_slice){.axis = 1, .start = 0, .end = inner_dim, .step = 1};
+	return ((t_slice){.axis = 1, .start = 0, .end = inner_dim, .step = 1});
 }
 
 static void	*calculate_entry(const t_tensr *a, const t_tensr *b,
@@ -60,7 +58,8 @@ static t_bool	fill_out(const t_tensr *a, const t_tensr *b, t_tensr *out)
 	t_slice	b_slices[2];
 
 	i = -1;
-	slices_init(a_slices, b_slices, a->layout.shape[1]);
+	a_slices[1] = slice_init(a->layout.shape[1]);
+	b_slices[1] = slice_init(b->layout.shape[1]);
 	while (++i < (int)out->layout.shape[0])
 	{
 		a_slices[0] = (t_slice){0, i, i + 1, 1};
@@ -97,6 +96,7 @@ static t_tensr	*initialize(const t_tensr *a, const t_tensr *b, t_tensr *out)
 
 t_tensr	*tensr_matmul(const t_tensr *a, const t_tensr *b, t_tensr *out)
 {
+	t_bool	ok;
 	t_tensr	*b_t;
 
 	if (!a || !b || a->dtype != b->dtype || !is_compatible(&a->layout,
@@ -111,12 +111,12 @@ t_tensr	*tensr_matmul(const t_tensr *a, const t_tensr *b, t_tensr *out)
 		tensr_free(out);
 		return (NULL);
 	}
-	if (!fill_out(a, b_t, out))
+	ok = fill_out(a, b_t, out);
+	tensr_free(b_t);
+	if (!ok)
 	{
-		tensr_free(b_t);
 		tensr_free(out);
 		return (NULL);
 	}
-	tensr_free(b_t);
 	return (out);
 }

@@ -12,7 +12,7 @@
 
 NAME := test_runner
 CC := cc
-CFLAGS := -Wall -Werror -Wextra -I. -I../includes -I../includes/tensr -I../includes/utils -I../../libft/includes
+CFLAGS := -Wall -Werror -Wextra -I. -I../includes -I../includes/tensr -I../includes/utils -I../../libft/includes -I../../harena/includes
 
 LIBFT := ../../libft/libft.a
 LIBTENSR := ../libtensr.a

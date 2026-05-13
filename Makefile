@@ -6,7 +6,7 @@
 #    By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/17 12:53:36 by sgadinga          #+#    #+#              #
-#    Updated: 2026/04/25 07:53:07 by sgadinga         ###   ########.fr        #
+#    Updated: 2026/05/13 20:00:09 by sgadinga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ TENSR_MODULES := $(addprefix dtype/, arr_u8.c arr_i32.c arr_i64.c arr_f32.c arr_
 					$(addprefix layout/, layout_alloc.c layout_init.c layout_copy.c layout_equal.c layout_reduced.c layout_free.c) \
 					$(addprefix ops/, tensr_free.c tensr_offset.c tensr_is_contiguous.c tensr_equal.c tensr_equal_eps.c tensr_cast.c tensr_fill.c tensr_expand_dims.c) \
 					$(addprefix complex/, tensr_complex.c tensr_cfill.c tensr_cfull.c tensr_clinspace.c tensr_cscale.c tensr_conjugate.c tensr_cdot.c tensr_creal.c tensr_cimag.c tensr_carg.c) \
+					$(addprefix ctx/, tensr_ctx_set.c tensr_ctx_unset.c) \
 					$(addprefix debug/, tensr_info.c tensr_print.c print_complex.c)
 
 SRCS := $(addprefix $(SRC_DIR)/, $(TENSR_MODULES) $(TENSR_MATH_MODULES))

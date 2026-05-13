@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 12:54:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/05/11 17:20:13 by seang            ###   ########.fr       */
+/*   Updated: 2026/05/13 20:00:01 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 
 # define MAX_NDIM 32
 # define MAX_ACC_SIZE 8
+
+typedef struct s_tensr_ctx
+{
+	t_harena		*graph;
+	t_harena		*forward;
+	t_harena		*scratch;
+}					t_tensr_ctx;
+
+static _Thread_local t_tensr_ctx *ctx = NULL;
 
 /* Supported Data Types */
 typedef enum e_dtype
@@ -60,6 +69,7 @@ typedef struct s_tensr
 	struct s_layout	layout;
 	size_t			elemsize;
 	enum e_bool		owns_data;
+	enum e_bool		arena_owned;
 }					t_tensr;
 
 /* Slice descriptor */
@@ -617,5 +627,10 @@ t_tensr				*tensr_cimag(const t_tensr *t, t_tensr *out);
  ** @return         Pointer to tensor with phase angles, or NULL on failure.
  */
 t_tensr				*tensr_carg(const t_tensr *t, t_tensr *out);
+
+t_bool	tensr_ctx_set(const size_t graph_size, const size_t forward_size,
+		const size_t scratch_size);
+
+void    tensr_ctx_unset(void);
 
 #endif
