@@ -61,7 +61,7 @@ t_tensr	*tensr_arg(const t_tensr *t, const int n_axes, const size_t *axes,
 	if (!t || !axes || n_axes <= 0 || !cmp || t->dtype == DT_C64
 		|| t->dtype == DT_C128)
 		return (NULL);
-	ctx = tensr_reduce_ctx(n_axes, axes, (t_reduce_op){NULL});
+	ctx = tensr_reduce_ctx(n_axes, axes, (t_reduce_op){0});
 	if (!ctx)
 		return (NULL);
 	out = tensr_reduced(t, 1, ctx->is_reduced, DT_I64);
