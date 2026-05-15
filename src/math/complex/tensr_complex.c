@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libtensr.h                                         :+:      :+:    :+:   */
+/*   tensr_complex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/02 14:48:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/05/14 01:52:32 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/24 21:06:37 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/05/14 01:22:39 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBTENSR_H
-# define LIBTENSR_H
+#include <tensr/tensr_math.h>
 
-# include <tensr/tensr.h>
-# include <tensr/tensr_math.h>
+t_tensr	*tensr_complex(double complex n, t_dtype dtype)
+{
+	t_tensr	*out;
 
-# include <utils/tensr_debug.h>
-
-#endif
+	if (dtype != DT_C64 && dtype != DT_C128)
+		return (NULL);
+	out = tensr_alloc(0, NULL, dtype);
+	if (!out)
+		return (NULL);
+	if (dtype == DT_C64)
+		*(float complex *)out->data = n;
+	else if (dtype == DT_C128)
+		*(double complex *)out->data = n;
+	else
+		return (NULL);
+	return (out);
+}

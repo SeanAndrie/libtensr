@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 14:11:36 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/03/14 02:48:37 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/05/14 01:58:14 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_tensr	*tensr_view(const t_tensr *t, void *data, const t_layout *l)
 	int		i;
 	t_tensr	*v;
 
-	v = malloc(sizeof(t_tensr));
+	v = tensr_malloc(sizeof(t_tensr));
 	if (!v)
 		return (NULL);
 	v->size = 1;

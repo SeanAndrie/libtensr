@@ -6,7 +6,7 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/19 21:18:59 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 07:53:35 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/05/14 01:20:48 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -326,5 +326,118 @@ t_tensr					*tensr_scale(const t_tensr *t, double value,
  ** @return          A pointer to the result tensor, or NULL on failure.
  */
 t_tensr					*tensr_dot(const t_tensr *a, const t_tensr *b);
+
+/*
+ ** Creates a scalar complex tensor.
+ **
+ ** @param n        Complex value for the scalar.
+ ** @param dtype   Complex data type (DT_C64 or DT_C128).
+ **
+ ** @return         Pointer to the scalar complex tensor, or NULL on failure.
+ */
+t_tensr				*tensr_complex(double complex n, t_dtype dtype);
+
+/*
+ ** Fills a complex tensor with a constant value.
+ **
+ ** @param t         Pointer to the complex tensor to fill.
+ ** @param value    Complex value to fill with.
+ **
+ ** @return         true on success, false on failure.
+ */
+t_bool				tensr_cfill(t_tensr *t, double complex value);
+
+/*
+ ** Creates a complex tensor filled with a constant value.
+ **
+ ** @param value    Complex value to fill the tensor with.
+ ** @param ndim    Number of dimensions.
+ ** @param shape   Array representing the number of elements per axis.
+ ** @param dtype   Complex data type (DT_C64 or DT_C128).
+ **
+ ** @return         Pointer to the filled complex tensor, or NULL on failure.
+ */
+t_tensr				*tensr_cfull(double complex value, const int ndim,
+						const size_t *shape, t_dtype dtype);
+
+/*
+ ** Creates a complex tensor with evenly spaced values.
+ **
+ ** @param start    Starting complex value.
+ ** @param end      Ending complex value.
+ ** @param n        Number of elements in the tensor.
+ ** @param dtype    Complex data type (DT_C64 or DT_C128).
+ **
+ ** @return         Pointer to the complex tensor, or NULL on failure.
+ */
+t_tensr				*tensr_clinspace(double complex start, double complex end,
+						const size_t n, t_dtype dtype);
+
+/*
+ ** Scales a complex tensor by a complex constant.
+ **
+ ** @param t        Pointer to the input complex tensor.
+ ** @param value   Complex scaling factor.
+ ** @param out     Optional output tensor. If NULL, a new tensor is allocated.
+ **
+ ** @return         Pointer to the scaled complex tensor, or NULL on failure.
+ */
+t_tensr				*tensr_cscale(const t_tensr *t, double complex value,
+						t_tensr *out);
+
+/*
+ ** Computes the complex conjugate of a tensor.
+ **
+ ** Negates the imaginary part of each complex element.
+ **
+ ** @param t        Pointer to the input complex tensor.
+ ** @param out      Optional output tensor. If NULL, a new tensor is allocated.
+ **
+ ** @return         Pointer to the conjugate tensor, or NULL on failure.
+ */
+t_tensr				*tensr_conjugate(const t_tensr *t, t_tensr *out);
+
+/*
+ ** Computes the Hermitian (conjugate) dot product.
+ **
+ ** Uses conjugate of a: sum(conj(a) * b.
+ ** This is the standard inner product for complex vectors.
+ **
+ ** @param a        Pointer to the first complex tensor.
+ ** @param b        Pointer to the second complex tensor.
+ **
+ ** @return         Pointer to the scalar result tensor, or NULL on failure.
+ */
+t_tensr				*tensr_cdot(const t_tensr *a, const t_tensr *b);
+
+/*
+ ** Extracts the real components from a complex tensor.
+ **
+ ** @param t        Pointer to the input complex tensor.
+ ** @param out      Optional output tensor. If NULL, a new tensor is allocated.
+ **
+ ** @return         Pointer to tensor with real components, or NULL on failure.
+ */
+t_tensr				*tensr_creal(const t_tensr *t, t_tensr *out);
+
+/*
+ ** Extracts the imaginary components from a complex tensor.
+ **
+ ** @param t        Pointer to the input complex tensor.
+ ** @param out      Optional output tensor. If NULL, a new tensor is allocated.
+ **
+ ** @return         Pointer to tensor with imaginary components, or NULL.
+ */
+t_tensr				*tensr_cimag(const t_tensr *t, t_tensr *out);
+
+/*
+ ** Computes the phase angle (argument) of complex elements.
+ **
+ ** @param t        Pointer to the input complex tensor.
+ ** @param out      Optional output tensor. If NULL, a new tensor is allocated.
+ **
+ ** @return         Pointer to tensor with phase angles, or NULL on failure.
+ */
+t_tensr				*tensr_carg(const t_tensr *t, t_tensr *out);
 
 #endif

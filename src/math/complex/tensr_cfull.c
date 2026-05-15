@@ -6,11 +6,11 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 21:12:16 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 21:12:17 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/05/14 01:22:12 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/tensr.h>
+#include <tensr/tensr_math.h>
 
 t_tensr	*tensr_cfull(double complex value, const int ndim, const size_t *shape,
 		t_dtype dtype)

@@ -6,11 +6,11 @@
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 21:12:24 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 21:12:25 by sgadinga         ###   ########.fr       */
+/*   Updated: 2026/05/14 01:22:34 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/tensr.h>
+#include <tensr/tensr_math.h>
 
 static void	set_cast_c(void *dst, double complex val, t_dtype dtype)
 {

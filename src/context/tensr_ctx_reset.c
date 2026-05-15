@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_complex.c                                    :+:      :+:    :+:   */
+/*   tensr_ctx_reset.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 21:06:37 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 21:06:39 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/05/14 01:38:45 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/05/14 01:55:09 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/tensr.h>
+#include <tensr/tensr_ctx.h>
 
-t_tensr	*tensr_complex(double complex n, t_dtype dtype)
+void    tensr_ctx_reset(void)
 {
-	t_tensr	*out;
-
-	if (dtype != DT_C64 && dtype != DT_C128)
-		return (NULL);
-	out = tensr_alloc(0, NULL, dtype);
-	if (!out)
-		return (NULL);
-	if (dtype == DT_C64)
-		*(float complex *)out->data = n;
-	else if (dtype == DT_C128)
-		*(double complex *)out->data = n;
-	else
-		return (NULL);
-	return (out);
+    if (!ctx)
+        return ;
+    harena_reset(ctx->graph);
+    harena_reset(ctx->forward);
+    harena_reset(ctx->scratch);
 }

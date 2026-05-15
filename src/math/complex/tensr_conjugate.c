@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_cscale.c                                     :+:      :+:    :+:   */
+/*   tensr_conjugate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 21:12:32 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/24 21:12:35 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/24 21:49:54 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/05/14 01:23:00 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/tensr.h>
+#include <tensr/tensr_math.h>
 
 static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 {
@@ -36,11 +36,11 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 	return (ret);
 }
 
-t_tensr	*tensr_cscale(const t_tensr *t, double complex value, t_tensr *out)
+t_tensr	*tensr_conjugate(const t_tensr *t, t_tensr *out)
 {
 	t_iter	it;
-	void	*src;
 	void	*dst;
+	void	*src;
 
 	if (!t || (t->dtype != DT_C64 && t->dtype != DT_C128))
 		return (NULL);
@@ -52,10 +52,9 @@ t_tensr	*tensr_cscale(const t_tensr *t, double complex value, t_tensr *out)
 		src = tensr_get(t, it.indices);
 		dst = tensr_get(out, it.indices);
 		if (t->dtype == DT_C64)
-			*(float complex *)dst = *(float complex *)src
-				* (float complex)value;
+			*(float complex *)dst = conjf(*(float complex *)src);
 		else if (t->dtype == DT_C128)
-			*(double complex *)dst = *(double complex *)src * value;
+			*(double complex *)dst = conj(*(double complex *)src);
 	}
 	return (out);
 }

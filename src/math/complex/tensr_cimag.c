@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tensr_creal.c                                      :+:      :+:    :+:   */
+/*   tensr_cimag.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgadinga <sgadinga@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 23:19:51 by sgadinga          #+#    #+#             */
-/*   Updated: 2026/04/25 00:22:23 by sgadinga         ###   ########.fr       */
+/*   Created: 2026/04/24 23:27:21 by sgadinga          #+#    #+#             */
+/*   Updated: 2026/05/14 01:22:29 by sgadinga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tensr/tensr.h>
+#include <tensr/tensr_math.h>
 
 static t_dtype	convert_dtype(t_dtype dtype)
 {
@@ -46,16 +46,14 @@ static t_tensr	*initialize(const t_tensr *t, t_tensr *out, t_iter *it)
 	return (ret);
 }
 
-t_tensr	*tensr_creal(const t_tensr *t, t_tensr *out)
+t_tensr	*tensr_cimag(const t_tensr *t, t_tensr *out)
 {
 	t_iter	it;
 	void	*dst;
 	void	*src;
 
-	if (!t)
+	if (!t || (t->dtype != DT_C64 && t->dtype != DT_C128))
 		return (NULL);
-	if (t->dtype != DT_C64 && t->dtype != DT_C128)
-		return (tensr_copy(t));
 	out = initialize(t, out, &it);
 	if (!out)
 		return (NULL);
@@ -64,9 +62,9 @@ t_tensr	*tensr_creal(const t_tensr *t, t_tensr *out)
 		src = tensr_get(t, it.indices);
 		dst = tensr_get(out, it.indices);
 		if (t->dtype == DT_C64)
-			*(float *)dst = crealf(*(float complex *)src);
+			*(float *)dst = cimag(*(float complex *)src);
 		else if (t->dtype == DT_C128)
-			*(double *)dst = creal(*(double complex *)src);
+			*(double *)dst = cimag(*(double complex *)src);
 	}
 	return (out);
 }
